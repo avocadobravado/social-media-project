@@ -1,0 +1,20 @@
+.main-nav {
+  // border: 5px solid mistyrose;
+  .main-nav-wrapper {
+    width: 95%;
+    display: flex;
+    justify-content: space-around;
+    align-items: baseline;
+    border: 5px solid tomato;
+  }
+  ul {
+    display: flex;
+    li {
+      padding-right: 7%;
+      text-align: right;
+      width: 150px;
+      max-width: 150px;
+      border: 5px solid thistle;
+    }
+  }
+}

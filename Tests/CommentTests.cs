@@ -27,7 +27,7 @@ namespace SocialMedia.Objects
     [Fact]
     public void Comment_Save_SavesCommentToDatabase()
     {
-      Comment controlComment = new Comment("Hello world", 1, 1, 1, 1, new DateTime(2017, 06, 19));
+      Comment controlComment = new Comment("Hello world", 1, 1, new DateTime(2017, 06, 19));
       controlComment.Save();
 
       Comment testComment = Comment.GetAll()[0];
@@ -38,8 +38,8 @@ namespace SocialMedia.Objects
     [Fact]
     public void Comment_Equals_ObjectsEqualsIdenticalObject()
     {
-      Comment comment1 = new Comment("Hello world", 1, 1, 1, 1, new DateTime(2017, 06, 19));
-      Comment comment2 = new Comment("Hello world", 1, 1, 1, 1, new DateTime(2017, 06, 19));
+      Comment comment1 = new Comment("Hello world", 1, 1, new DateTime(2017, 06, 19));
+      Comment comment2 = new Comment("Hello world", 1, 1, new DateTime(2017, 06, 19));
 
       Assert.Equal(comment1, comment2);
     }
@@ -47,7 +47,7 @@ namespace SocialMedia.Objects
     [Fact]
     public void Comment_Find_FindsCommentById()
     {
-      Comment controlComment = new Comment("Hello world", 1, 1, 1, 1, new DateTime(2017, 06, 19));
+      Comment controlComment = new Comment("Hello world", 1, 1, new DateTime(2017, 06, 19));
       controlComment.Save();
 
       Comment testComment = Comment.Find(controlComment.Id);

@@ -27,7 +27,7 @@ namespace SocialMedia.Objects
     [Fact]
     public void Post_Save_SavesPostToDatabase()
     {
-      Post controlPost = new Post("Hello world", 1, 1, 1, new DateTime(2017, 06, 19));
+      Post controlPost = new Post("Hello world", 1, new DateTime(2017, 06, 19));
       controlPost.Save();
 
       Post testPost = Post.GetAll()[0];
@@ -38,8 +38,8 @@ namespace SocialMedia.Objects
     [Fact]
     public void Post_Equals_ObjectsEqualsIdenticalObject()
     {
-      Post post1 = new Post("Hello world", 1, 1, 1, new DateTime(2017, 06, 19));
-      Post post2 = new Post("Hello world", 1, 1, 1, new DateTime(2017, 06, 19));
+      Post post1 = new Post("Hello world", 1, new DateTime(2017, 06, 19));
+      Post post2 = new Post("Hello world", 1, new DateTime(2017, 06, 19));
 
       Assert.Equal(post1, post2);
     }
@@ -47,7 +47,7 @@ namespace SocialMedia.Objects
     [Fact]
     public void Post_Find_FindsPostById()
     {
-      Post controlPost = new Post("Hello world", 1, 1, 1, new DateTime(2017, 06, 19));
+      Post controlPost = new Post("Hello world", 1, new DateTime(2017, 06, 19));
       controlPost.Save();
 
       Post testPost = Post.Find(controlPost.Id);

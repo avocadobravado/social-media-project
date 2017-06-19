@@ -25,7 +25,7 @@ namespace SocialMedia.Objects
       Timestamp = default(DateTime);
     }
 
-    public Comment(string content, int postId, int userId, int likes, int dislikes, DateTime timestamp, int id = 0)
+    public Comment(string content, int postId, int userId, DateTime timestamp, int likes = 0, int dislikes = 0, int id = 0)
     {
       Id = id;
       Content = content;
@@ -76,7 +76,7 @@ namespace SocialMedia.Objects
         int likes = rdr.GetInt32(4);
         int dislikes = rdr.GetInt32(5);
         DateTime timestamp = rdr.GetDateTime(6);
-        Comment newComment = new Comment(content, postId, userId, likes, dislikes, timestamp, id);
+        Comment newComment = new Comment(content, postId, userId, timestamp, likes, dislikes, id);
         allComments.Add(newComment);
       }
 

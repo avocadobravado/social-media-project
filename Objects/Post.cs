@@ -23,7 +23,7 @@ namespace SocialMedia.Objects
       Timestamp = default(DateTime);
     }
 
-    public Post(string content, int userId, int likes, int dislikes, DateTime timestamp, int id = 0)
+    public Post(string content, int userId, DateTime timestamp, int likes = 0, int dislikes = 0, int id = 0)
     {
       Id = id;
       Content = content;
@@ -71,7 +71,7 @@ namespace SocialMedia.Objects
         int likes = rdr.GetInt32(3);
         int dislikes = rdr.GetInt32(4);
         DateTime timestamp = rdr.GetDateTime(5);
-        Post newPost = new Post(content, userId, likes, dislikes, timestamp, id);
+        Post newPost = new Post(content, userId, timestamp, likes, dislikes, id);
         allPosts.Add(newPost);
       }
 

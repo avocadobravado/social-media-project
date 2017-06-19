@@ -55,6 +55,22 @@ namespace SocialMedia.Objects
       Assert.Equal(controlPost, testPost);
     }
 
+    [Fact]
+    public void Post_Delete_DeletesIndividualPost()
+    {
+      Post post1 = new Post("Hello world", 1, new DateTime(2017, 06, 19));
+      post1.Save();
+      Post post2 = new Post("Goodbye world", 1, new DateTime(2017, 06, 20));
+      post2.Save();
+
+      post2.Delete();
+
+      List<Post> testList = Post.GetAll();
+      List<Post> controlList = new List<Post>{post1};
+
+      Assert.Equal(controlList, testList);
+    }
+
     public void Dispose()
     {
       Post.DeleteAll();

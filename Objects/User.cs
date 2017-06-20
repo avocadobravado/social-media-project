@@ -501,6 +501,29 @@ namespace SocialMedia.Objects
       return result;
     }
 
+    public List<Post> GetTimeline()
+    {
+      List<User> friends = this.GetFriends();
+      List<Post> myPosts = this.GetPosts();
+      List<Post> timeline = new List<Post>{};
+      foreach(var friend in friends)
+      {
+        List<Post> posts = friend.GetPosts();
+        foreach(var post in posts)
+        {
+          timeline.Add(post);
+        }
+      }
+      foreach(var post in myPosts)
+      {
+        timeline.Add(post);
+      }
+
+      timeline.Sort((post1, post2) => DateTime.Compare(post1.Timestamp, post2.Timestamp));
+
+      return timeline;
+    }
+
     public void RemoveFriend(User userToRemove)
     {
       SqlConnection conn = DB.Connection();

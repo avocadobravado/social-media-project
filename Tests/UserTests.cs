@@ -406,6 +406,32 @@ namespace SocialMedia.Objects
       Assert.Equal(false, testUser.HasDislikedComment(newComment));
     }
 
+    public void User_GetTimeline_ChronologicalListOfPosts()
+    {
+      User user1 = new User("Joshua", "Fairchild", "jfairchild", "password", "mail@mail.com", new DateTime(2017, 06, 01));
+      user1.Save();
+      User user2 = new User("Guy", "Anderson", "ganderson", "password", "mail@mail.com", new DateTime(2017, 06, 01));
+      user2.Save();
+      User user3 = new User("Tom", "Hanks", "thanks", "password", "mail@mail.com", new DateTime(2017, 06, 01));
+      user3.Save();
+
+      Post post1 = new Post("Hello world", user1.Id, new DateTime(2017, 06, 04));
+      post1.Save();
+      Post post2 = new Post("Hola mundo", user3.Id, new DateTime(2017, 06, 02));
+      post2.Save();
+      Post post3 = new Post("Hallo wereld", user3.Id, new DateTime(2017, 06, 03));
+      post3.Save();
+      Post post4 = new Post("Goodbye world", user2.Id, new DateTime(2017, 06, 05));
+      post4.Save();
+
+      user1.AddFriend(user3);
+
+      List<Post> testList = user1.GetTimeline();
+      List<Post> controlList = new List<Post>{post2, post3, post1};
+
+      Assert.Equal(controlList, testList);
+    }
+
     public void Dispose()
     {
       User.DeleteAll();

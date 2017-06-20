@@ -298,6 +298,43 @@ namespace SocialMedia.Objects
       return result;
     }
 
+    public static List<User> Search(string searchQuery)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT * FROM users WHERE first_name LIKE @SearchQuery OR last_name LIKE @SearchQuery OR username LIKE @SearchQuery OR email LIKE @SearchQuery", conn);
+      cmd.Parameters.Add(new SqlParameter("@SearchQuery", $"%{searchQuery}%"));
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      List<User> matches = new List<User>{};
+
+      while(rdr.Read())
+      {
+        int id = rdr.GetInt32(0);
+        string firstName = rdr.GetString(1);
+        string lastName = rdr.GetString(2);
+        string username = rdr.GetString(3);
+        string password = rdr.GetString(4);
+        string email = rdr.GetString(5);
+        DateTime timestamp = rdr.GetDateTime(6);
+        User newUser = new User(firstName, lastName, username, password, email, timestamp, id);
+        matches.Add(newUser);
+      }
+
+      if(rdr != null)
+      {
+        rdr.Close();
+      }
+      if(conn != null)
+      {
+        conn.Close();
+      }
+
+      return matches;
+    }
+
     public void RemoveFriend(User userToRemove)
     {
       SqlConnection conn = DB.Connection();

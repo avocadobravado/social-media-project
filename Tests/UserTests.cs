@@ -213,6 +213,26 @@ namespace SocialMedia.Objects
       Assert.Equal(controlBool, testBool);
     }
 
+    [Fact]
+    public void User_Search_ReturnsIntendedMatches()
+    {
+      User user1 = new User("Joshua", "Fairchild", "jfairchild", "password", "mail@mail.com", new DateTime(2017, 06, 19));
+      user1.Save();
+      User user2 = new User("Butch", "Fairchild", "fairjosh", "password", "mail@mail.com", new DateTime(2017, 06, 19));
+      user2.Save();
+      User user3 = new User("josh", "Fairchild", "jfair", "password", "joshua@mail.com", new DateTime(2017, 06, 19));
+      user3.Save();
+      User user4 = new User("Tom", "Hanks", "thanks", "password", "tom@mail.com", new DateTime(2017, 06, 19));
+      user4.Save();
+      User user5 = new User("JOSHUA", "Fairchild", "jfair", "password", "mail@mail.com", new DateTime(2017, 06, 19));
+      user5.Save();
+
+      List<User> testList = User.Search("josh");
+      List<User> controlList = new List<User>{user1, user2, user3, user5};
+
+      Assert.Equal(controlList, testList);
+    }
+
     public void Dispose()
     {
       User.DeleteAll();

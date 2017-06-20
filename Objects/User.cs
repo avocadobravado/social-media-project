@@ -284,6 +284,20 @@ namespace SocialMedia.Objects
       return friends;
     }
 
+    public bool IsFriendsWith(User userToCheck)
+    {
+      bool result = false;
+      List<User> userFriends = this.GetFriends();
+      foreach(User friend in userFriends)
+      {
+        if(friend.Username == userToCheck.Username)
+        {
+          result = true;
+        }
+      }
+      return result;
+    }
+
     public void RemoveFriend(User userToRemove)
     {
       SqlConnection conn = DB.Connection();

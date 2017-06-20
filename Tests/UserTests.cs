@@ -183,6 +183,36 @@ namespace SocialMedia.Objects
       Assert.Equal(controlList, testList);
     }
 
+    [Fact]
+    public void User_IsFriendsWith_ReturnsTrue()
+    {
+      User user1 = new User("Joshua", "Fairchild", "jfairchild", "password", "mail@mail.com", new DateTime(2017, 06, 19));
+      user1.Save();
+      User user2 = new User("Guy", "Anderson", "ganderson", "password", "mail@mail.com", new DateTime(2017, 06, 19));
+      user2.Save();
+
+      user2.AddFriend(user1);
+
+      bool testBool = user1.IsFriendsWith(user2);
+      bool controlBool = true;
+
+      Assert.Equal(controlBool, testBool);
+    }
+
+    [Fact]
+    public void User_IsFriendsWith_ReturnsFalse()
+    {
+      User user1 = new User("Joshua", "Fairchild", "jfairchild", "password", "mail@mail.com", new DateTime(2017, 06, 19));
+      user1.Save();
+      User user2 = new User("Guy", "Anderson", "ganderson", "password", "mail@mail.com", new DateTime(2017, 06, 19));
+      user2.Save();
+
+      bool testBool = user1.IsFriendsWith(user2);
+      bool controlBool = false;
+
+      Assert.Equal(controlBool, testBool);
+    }
+
     public void Dispose()
     {
       User.DeleteAll();

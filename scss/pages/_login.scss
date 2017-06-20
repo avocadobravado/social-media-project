@@ -34,6 +34,7 @@
  .sign-in {
    align-self: flex-end;
    flex-direction: column;
+   margin-top: 15px;
    input {
      width: 200px;
      margin: 1% 0;
@@ -41,6 +42,15 @@
      background-color: rgba(255, 255, 255, 0.5);
      border: none;
      color: $dark-blue;
+     font-size: 18px;
+     padding-left: 5px;
+     margin-right: 5px;
+     transition: all .3s ease-in-out;
+     &:focus {
+      border: 1px solid $teal;
+      background-color: rgba(255, 255, 255, 0.65);
+      // background-color: red;
+     }
    }
    .login-button {
      background-color: $dark-blue;
@@ -152,8 +162,8 @@
 
     // Change colors
     &:hover::before {
-      border-top-color: darken($dark-blue, 5%);
-      border-right-color: darken($dark-blue, 5%);
+      border-top-color: $light-green;
+      border-right-color: $light-green;
       transition:
       width 0.4s ease-out, // Width expands first
       height 0.4s ease-out 0.4s; // And then height
@@ -161,8 +171,8 @@
     }
 
     &:hover::after {
-      border-bottom-color: darken($dark-blue, 5%);
-      border-left-color: darken($dark-blue, 5%);
+      border-bottom-color: $light-green;
+      border-left-color: $light-green;
       transition: // Animate height first, then width
       height 0.4s ease-out,
       width 0.4s ease-out 0.4s;

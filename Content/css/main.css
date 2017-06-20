@@ -1,96 +1,750 @@
+body {
+  margin: 0;
+  padding: 0; }
+
+/*! normalize.css v7.0.0 | MIT License | github.com/necolas/normalize.css */
+/* Document
+   ========================================================================== */
+/**
+ * 1. Correct the line height in all browsers.
+ * 2. Prevent adjustments of font size after orientation changes in
+ *    IE on Windows Phone and in iOS.
+ */
+html {
+  line-height: 1.15;
+  /* 1 */
+  -ms-text-size-adjust: 100%;
+  /* 2 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */ }
+
+/* Sections
+   ========================================================================== */
+/**
+ * Remove the margin in all browsers (opinionated).
+ */
+body {
+  margin: 0; }
+
+/**
+ * Add the correct display in IE 9-.
+ */
+article,
+aside,
+footer,
+header,
+nav,
+section {
+  display: block; }
+
+/**
+ * Correct the font size and margin on `h1` elements within `section` and
+ * `article` contexts in Chrome, Firefox, and Safari.
+ */
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0; }
+
+/* Grouping content
+   ========================================================================== */
+/**
+ * Add the correct display in IE 9-.
+ * 1. Add the correct display in IE.
+ */
+figcaption,
+figure,
+main {
+  /* 1 */
+  display: block; }
+
+/**
+ * Add the correct margin in IE 8.
+ */
+figure {
+  margin: 1em 40px; }
+
+/**
+ * 1. Add the correct box sizing in Firefox.
+ * 2. Show the overflow in Edge and IE.
+ */
+hr {
+  box-sizing: content-box;
+  /* 1 */
+  height: 0;
+  /* 1 */
+  overflow: visible;
+  /* 2 */ }
+
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+pre {
+  font-family: monospace, monospace;
+  /* 1 */
+  font-size: 1em;
+  /* 2 */ }
+
+/* Text-level semantics
+   ========================================================================== */
+/**
+ * 1. Remove the gray background on active links in IE 10.
+ * 2. Remove gaps in links underline in iOS 8+ and Safari 8+.
+ */
+a {
+  background-color: transparent;
+  /* 1 */
+  -webkit-text-decoration-skip: objects;
+  /* 2 */ }
+
+/**
+ * 1. Remove the bottom border in Chrome 57- and Firefox 39-.
+ * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+ */
+abbr[title] {
+  border-bottom: none;
+  /* 1 */
+  text-decoration: underline;
+  /* 2 */
+  text-decoration: underline dotted;
+  /* 2 */ }
+
+/**
+ * Prevent the duplicate application of `bolder` by the next rule in Safari 6.
+ */
+b,
+strong {
+  font-weight: inherit; }
+
+/**
+ * Add the correct font weight in Chrome, Edge, and Safari.
+ */
+b,
+strong {
+  font-weight: bolder; }
+
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+code,
+kbd,
+samp {
+  font-family: monospace, monospace;
+  /* 1 */
+  font-size: 1em;
+  /* 2 */ }
+
+/**
+ * Add the correct font style in Android 4.3-.
+ */
+dfn {
+  font-style: italic; }
+
+/**
+ * Add the correct background and color in IE 9-.
+ */
+mark {
+  background-color: #ff0;
+  color: #000; }
+
+/**
+ * Add the correct font size in all browsers.
+ */
+small {
+  font-size: 80%; }
+
+/**
+ * Prevent `sub` and `sup` elements from affecting the line height in
+ * all browsers.
+ */
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline; }
+
+sub {
+  bottom: -0.25em; }
+
+sup {
+  top: -0.5em; }
+
+/* Embedded content
+   ========================================================================== */
+/**
+ * Add the correct display in IE 9-.
+ */
+audio,
+video {
+  display: inline-block; }
+
+/**
+ * Add the correct display in iOS 4-7.
+ */
+audio:not([controls]) {
+  display: none;
+  height: 0; }
+
+/**
+ * Remove the border on images inside links in IE 10-.
+ */
+img {
+  border-style: none; }
+
+/**
+ * Hide the overflow in IE.
+ */
+svg:not(:root) {
+  overflow: hidden; }
+
+/* Forms
+   ========================================================================== */
+/**
+ * 1. Change the font styles in all browsers (opinionated).
+ * 2. Remove the margin in Firefox and Safari.
+ */
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: sans-serif;
+  /* 1 */
+  font-size: 100%;
+  /* 1 */
+  line-height: 1.15;
+  /* 1 */
+  margin: 0;
+  /* 2 */ }
+
+/**
+ * Show the overflow in IE.
+ * 1. Show the overflow in Edge.
+ */
+button,
+input {
+  /* 1 */
+  overflow: visible; }
+
+/**
+ * Remove the inheritance of text transform in Edge, Firefox, and IE.
+ * 1. Remove the inheritance of text transform in Firefox.
+ */
+button,
+select {
+  /* 1 */
+  text-transform: none; }
+
+/**
+ * 1. Prevent a WebKit bug where (2) destroys native `audio` and `video`
+ *    controls in Android 4.
+ * 2. Correct the inability to style clickable types in iOS and Safari.
+ */
+button,
+html [type="button"],
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button;
+  /* 2 */ }
+
+/**
+ * Remove the inner border and padding in Firefox.
+ */
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+  border-style: none;
+  padding: 0; }
+
+/**
+ * Restore the focus styles unset by the previous rule.
+ */
+button:-moz-focusring,
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
+  outline: 1px dotted ButtonText; }
+
+/**
+ * Correct the padding in Firefox.
+ */
+fieldset {
+  padding: 0.35em 0.75em 0.625em; }
+
+/**
+ * 1. Correct the text wrapping in Edge and IE.
+ * 2. Correct the color inheritance from `fieldset` elements in IE.
+ * 3. Remove the padding so developers are not caught out when they zero out
+ *    `fieldset` elements in all browsers.
+ */
+legend {
+  box-sizing: border-box;
+  /* 1 */
+  color: inherit;
+  /* 2 */
+  display: table;
+  /* 1 */
+  max-width: 100%;
+  /* 1 */
+  padding: 0;
+  /* 3 */
+  white-space: normal;
+  /* 1 */ }
+
+/**
+ * 1. Add the correct display in IE 9-.
+ * 2. Add the correct vertical alignment in Chrome, Firefox, and Opera.
+ */
+progress {
+  display: inline-block;
+  /* 1 */
+  vertical-align: baseline;
+  /* 2 */ }
+
+/**
+ * Remove the default vertical scrollbar in IE.
+ */
+textarea {
+  overflow: auto; }
+
+/**
+ * 1. Add the correct box sizing in IE 10-.
+ * 2. Remove the padding in IE 10-.
+ */
+[type="checkbox"],
+[type="radio"] {
+  box-sizing: border-box;
+  /* 1 */
+  padding: 0;
+  /* 2 */ }
+
+/**
+ * Correct the cursor style of increment and decrement buttons in Chrome.
+ */
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+  height: auto; }
+
+/**
+ * 1. Correct the odd appearance in Chrome and Safari.
+ * 2. Correct the outline style in Safari.
+ */
+[type="search"] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  outline-offset: -2px;
+  /* 2 */ }
+
+/**
+ * Remove the inner padding and cancel buttons in Chrome and Safari on macOS.
+ */
+[type="search"]::-webkit-search-cancel-button,
+[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none; }
+
+/**
+ * 1. Correct the inability to style clickable types in iOS and Safari.
+ * 2. Change font properties to `inherit` in Safari.
+ */
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  /* 1 */
+  font: inherit;
+  /* 2 */ }
+
+/* Interactive
+   ========================================================================== */
 /*
-Error: Invalid CSS after "#3FB8AF: #3FB8AF": expected "{", was "; // this is th..."
-        on line 89 of scss/pages/_login.scss
-        from line 1 of scss/pages/_main.scss
-        from line 6 of scss/main.scss
+ * Add the correct display in IE 9-.
+ * 1. Add the correct display in Edge, IE, and Firefox.
+ */
+details,
+menu {
+  display: block; }
 
-84: 
-85:   // SIGN UP BUTTON BEGINS
-86:   .sign-up-button {
-87:     //Colors
-88: $background: #fefefe;
-89: #3FB8AF: #3FB8AF; // this is the hover color right now
-90: $secondary: #f45e61;
-91: $tertiary: #DAD8A7;
-92: 
-93: // Basic styles
-94: .button-wrapper {
+/*
+ * Add the correct display in all browsers.
+ */
+summary {
+  display: list-item; }
 
-Backtrace:
-scss/pages/_login.scss:89
-scss/pages/_main.scss:1
-scss/main.scss:6
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/scss/parser.rb:1207:in `expected'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/scss/parser.rb:1137:in `expected'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/scss/parser.rb:1132:in `tok!'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/scss/parser.rb:665:in `block'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/scss/parser.rb:735:in `declaration_or_ruleset'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/scss/parser.rb:685:in `block_child'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/scss/parser.rb:677:in `block_contents'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/scss/parser.rb:666:in `block'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/scss/parser.rb:735:in `declaration_or_ruleset'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/scss/parser.rb:685:in `block_child'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/scss/parser.rb:677:in `block_contents'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/scss/parser.rb:666:in `block'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/scss/parser.rb:658:in `ruleset'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/scss/parser.rb:684:in `block_child'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/scss/parser.rb:677:in `block_contents'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/scss/parser.rb:125:in `stylesheet'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/scss/parser.rb:41:in `parse'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/engine.rb:406:in `_to_tree'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/engine.rb:312:in `to_tree'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/tree/visitors/perform.rb:326:in `block in visit_import'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/stack.rb:88:in `block in with_import'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/stack.rb:115:in `with_frame'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/stack.rb:88:in `with_import'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/tree/visitors/perform.rb:325:in `visit_import'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/tree/visitors/base.rb:36:in `visit'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/tree/visitors/perform.rb:160:in `block in visit'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/stack.rb:79:in `block in with_base'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/stack.rb:115:in `with_frame'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/stack.rb:79:in `with_base'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/tree/visitors/perform.rb:160:in `visit'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/tree/visitors/perform.rb:328:in `block (2 levels) in visit_import'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/tree/visitors/perform.rb:328:in `map'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/tree/visitors/perform.rb:328:in `block in visit_import'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/stack.rb:88:in `block in with_import'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/stack.rb:115:in `with_frame'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/stack.rb:88:in `with_import'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/tree/visitors/perform.rb:325:in `visit_import'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/tree/visitors/base.rb:36:in `visit'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/tree/visitors/perform.rb:160:in `block in visit'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/stack.rb:79:in `block in with_base'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/stack.rb:115:in `with_frame'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/stack.rb:79:in `with_base'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/tree/visitors/perform.rb:160:in `visit'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/tree/visitors/base.rb:52:in `map'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/tree/visitors/base.rb:52:in `visit_children'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/tree/visitors/perform.rb:169:in `block in visit_children'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/tree/visitors/perform.rb:181:in `with_environment'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/tree/visitors/perform.rb:168:in `visit_children'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/tree/visitors/base.rb:36:in `block in visit'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/tree/visitors/perform.rb:188:in `visit_root'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/tree/visitors/base.rb:36:in `visit'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/tree/visitors/perform.rb:159:in `visit'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/tree/visitors/perform.rb:8:in `visit'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/tree/root_node.rb:36:in `css_tree'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/tree/root_node.rb:29:in `render_with_sourcemap'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/engine.rb:381:in `_render_with_sourcemap'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/engine.rb:298:in `render_with_sourcemap'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/plugin/compiler.rb:492:in `update_stylesheet'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/plugin/compiler.rb:215:in `block in update_stylesheets'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/plugin/compiler.rb:209:in `each'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/plugin/compiler.rb:209:in `update_stylesheets'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/plugin/compiler.rb:473:in `on_file_changed'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/lib/sass/plugin/compiler.rb:331:in `block in watch'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/vendor/listen/lib/listen/listener.rb:252:in `on_change'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/vendor/listen/lib/listen/listener.rb:290:in `block in initialize_adapter'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/vendor/listen/lib/listen/adapter.rb:254:in `report_changes'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/vendor/listen/lib/listen/adapter.rb:323:in `poll_changed_directories'
-/usr/local/lib/ruby/gems/2.3.0/gems/sass-3.4.24/vendor/listen/lib/listen/adapter.rb:299:in `block in start_poller'
-*/
-body:before {
-  white-space: pre;
-  font-family: monospace;
-  content: "Error: Invalid CSS after \"#3FB8AF: #3FB8AF\": expected \"{\", was \"; // this is th...\"\A         on line 89 of scss/pages/_login.scss\A         from line 1 of scss/pages/_main.scss\A         from line 6 of scss/main.scss\A \A 84: \A 85:   // SIGN UP BUTTON BEGINS\A 86:   .sign-up-button {\A 87:     //Colors\A 88: $background: #fefefe;\A 89: #3FB8AF: #3FB8AF; // this is the hover color right now\A 90: $secondary: #f45e61;\A 91: $tertiary: #DAD8A7;\A 92: \A 93: // Basic styles\A 94: .button-wrapper {"; }
+/* Scripting
+   ========================================================================== */
+/**
+ * Add the correct display in IE 9-.
+ */
+canvas {
+  display: inline-block; }
+
+/**
+ * Add the correct display in IE.
+ */
+template {
+  display: none; }
+
+/* Hidden
+   ========================================================================== */
+/**
+ * Add the correct display in IE 10-.
+ */
+[hidden] {
+  display: none; }
+
+body {
+  font-size: 1.2em;
+  font-family: "Nunito"; }
+
+a, li a {
+  text-decoration: none; }
+
+button {
+  font-family: "Nunito"; }
+
+input {
+  font-family: "Nunito"; }
+
+ul {
+  padding: 0; }
+  ul li {
+    list-style-type: none; }
+
+input {
+  border-radius: 3px; }
+  input:focus {
+    outline: none; }
+
+.sidebar {
+  display: flex;
+  justify-content: center; }
+  .sidebar li {
+    font-size: 1.5em;
+    margin-bottom: 15%;
+    text-align: center; }
+
+.main-nav .main-nav-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: baseline; }
+.main-nav ul {
+  display: flex; }
+  .main-nav ul li {
+    padding-right: 7%;
+    text-align: right;
+    width: 150px;
+    max-width: 150px;
+    border: 5px solid thistle; }
+.main-nav .searchbar input {
+  width: 250px;
+  height: 25px;
+  font-size: 16px; }
+.main-nav .searchbar .search-button {
+  height: 30px;
+  border: none;
+  font-size: 12px; }
+
+.login-wrapper {
+  width: calc(100%);
+  float: left;
+  margin-left: 0;
+  height: 100vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-image: linear-gradient(to left, #f4f7d8, #bfdfca, #66b3ad, #3c887c, #407b81, #2b9ba3); }
+
+.photo-section {
+  width: calc(50%);
+  float: left;
+  margin-left: 0;
+  height: 100%;
+  width: 50%;
+  margin: 0;
+  padding: 0;
+  box-shadow: 3px 2px 2px #407b81;
+  background-image: url(https://github.com/avocadobravado/social-media-project-inspiration/blob/master/background-img01.png?raw=true);
+  background-repeat: no-repeat;
+  background-size: cover; }
+
+.sign-up-section {
+  width: calc(41.66667%);
+  float: left;
+  margin-left: 0;
+  height: 70%;
+  margin: 0 50px;
+  padding: 0;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  justify-content: space-between; }
+
+.sign-in {
+  align-self: flex-end;
+  flex-direction: column; }
+  .sign-in input {
+    width: 200px;
+    margin: 1% 0;
+    height: 30px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: none;
+    color: #407b81; }
+  .sign-in .login-button {
+    background-color: #407b81;
+    border: none;
+    color: #f4f7d8;
+    padding: 5px 15px;
+    font-size: 18px;
+    border-radius: 3px; }
+    .sign-in .login-button:hover {
+      transition: .6s;
+      background-color: #66b3ad;
+      color: white; }
+
+.sign-up-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+  .sign-up-form input {
+    width: 200px;
+    margin: 1% 0;
+    height: 30px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: none;
+    padding: 0.75%;
+    color: #407b81; }
+  .sign-up-form h1 {
+    font-size: 3em; }
+  .sign-up-form h1, .sign-up-form h2 {
+    text-align: center;
+    color: #fff;
+    text-shadow: 1px 1px 1px #407b81;
+    margin-top: -2%; }
+
+@media screen and (max-width: 1400px) {
+  .sign-up-button {
+    line-height: 0;
+    padding: 7%; } }
+
+.sign-up-form input {
+  transition: all 0.3s ease-in-out; }
+  .sign-up-form input:focus {
+    background-color: rgba(255, 255, 255, 0.8);
+    width: 225px;
+    border: 2px solid #66b3ad; }
+.sign-up-form .sign-up-button {
+  margin-top: 1%;
+  font: 100 24px/1.5em sans-serif;
+  text-align: center;
+  background: none;
+  border: 0;
+  box-sizing: border-box;
+  padding: 1em 2em;
+  border-radius: 3px;
+  box-shadow: inset 0 0 0 2px #3c887c, inset 0 0 0 5px #66b3ad;
+  color: #407b81;
+  font-size: inherit;
+  font-weight: 700;
+  position: relative;
+  vertical-align: middle; }
+  .sign-up-form .sign-up-button::before, .sign-up-form .sign-up-button::after {
+    border-radius: 3px;
+    box-sizing: inherit;
+    content: '';
+    position: absolute;
+    border: 2px solid transparent;
+    width: 0;
+    height: 0;
+    top: 0;
+    left: 0; }
+  .sign-up-form .sign-up-button:hover {
+    color: #519ca3;
+    cursor: pointer; }
+  .sign-up-form .sign-up-button:hover::before, .sign-up-form .sign-up-button:hover::after {
+    width: 100%;
+    height: 100%; }
+  .sign-up-form .sign-up-button:hover::before {
+    border-top-color: #386b70;
+    border-right-color: #386b70;
+    transition: width 0.4s ease-out, height 0.4s ease-out 0.4s; }
+  .sign-up-form .sign-up-button:hover::after {
+    border-bottom-color: #386b70;
+    border-left-color: #386b70;
+    transition: height 0.4s ease-out, width 0.4s ease-out 0.4s; }
+
+button:focus {
+  outline: none; }
+
+.main-nav {
+  width: 100%;
+  border-bottom: 1px inset pink; }
+
+.sidebar {
+  width: calc(33.33333%);
+  float: left;
+  margin-left: 0;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  width: 25%;
+  border: 1px solid lightblue; }
+
+.newsfeed-wrapper {
+  width: calc(100%);
+  float: left;
+  margin-left: 0;
+  margin: 0;
+  border: 3px solid green; }
+
+.newsfeed-posts {
+  width: calc(66.66667%);
+  float: left;
+  margin-left: 0;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  height: 100vh;
+  border: 1px solid plum;
+  align-items: center; }
+  .newsfeed-posts .status-input {
+    width: 300px;
+    height: 75px;
+    font-size: 16px; }
+  .newsfeed-posts .update-post {
+    height: 30px; }
+
+.comment-wrapper {
+  border: 1px solid lightgreen;
+  padding: 0 10%; }
+
+.avatar-username {
+  display: flex;
+  align-items: center; }
+  .avatar-username .static-username {
+    padding-left: 2%;
+    max-width: 400px;
+    border: 1px solid olive; }
+
+.static-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: black; }
+
+.message-wrapper {
+  margin-left: 10%;
+  background-color: #f8f9fb;
+  padding: 3%; }
+  .message-wrapper .underneath-message {
+    text-transform: uppercase;
+    font-size: 0.8em;
+    background-color: #e8ebf2;
+    display: flex;
+    justify-content: space-between; }
+
+.comment-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1%;
+  font-size: 0.95em; }
+  .comment-section input, .comment-section .submit-comment {
+    align-self: flex-end; }
+  .comment-section input {
+    width: 400px;
+    height: 50px;
+    font-size: 14px; }
+  .comment-section .submit-comment {
+    height: 30px;
+    width: 75px;
+    font-size: 12px; }
+
+.small-avatar-username {
+  display: flex;
+  align-items: center; }
+  .small-avatar-username .avatar-sm {
+    width: 40px;
+    height: 40px;
+    max-height: 50px;
+    max-width: 50px;
+    border-radius: 50%;
+    background-color: black; }
+  .small-avatar-username .newsfeed-username {
+    margin-left: 2%;
+    width: 20vw; }
+
+.update-post-form {
+  display: flex;
+  flex-direction: row;
+  align-items: center; }
+
+.profile-wrapper {
+  display: flex;
+  margin: 0;
+  border: 3px solid green; }
+
+.profile-container {
+  border: 2px solid hotpink;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column; }
+
+.hero-photo {
+  background-color: mistyrose;
+  height: 300px;
+  width: 100%; }
+
+.profile-newsfeed {
+  width: 70%;
+  border: 2px solid teal; }
+
+.friends-list {
+  width: 30%;
+  border: 2px solid salmon; }
+
+.profile-picture {
+  margin-top: 1%;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: RosyBrown; }
+
+.profile-info {
+  border: 2px solid fuchsia;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  border: 2px solid burlywood; }
+  .profile-info li {
+    margin: 20px;
+    display: inline; }
+  .profile-info span {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 0.75em;
+    color: gray;
+    letter-spacing: 0.03em; }
+
+.profile-friends-wrapper {
+  display: flex; }
+  .profile-friends-wrapper .profile-status {
+    width: 300px;
+    height: 75px; }
+  .profile-friends-wrapper .profile-post-wrapper {
+    margin: 0 auto;
+    width: 40%;
+    min-width: 400px; }
+
+.friends-list {
+  border: 1px solid thistle;
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+  .friends-list li {
+    margin: 5% 0; }
+
+/*# sourceMappingURL=main.css.map */

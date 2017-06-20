@@ -98,9 +98,50 @@ namespace SocialMedia.Objects
       Assert.Equal("Goodbye world", newPost.Content);
     }
 
+    [Fact]
+    public void Post_GetUsersWhoLike_ReturnsListOfUsers()
+    {
+      Post newPost = new Post("Hello world", 1, new DateTime(2017, 06, 19));
+      newPost.Save();
+
+      User user1 = new User("Joshua", "Fairchild", "jfairchild", "password", "mail@mail.com", new DateTime(2017, 06, 19));
+      user1.Save();
+      User user2 = new User("Guy", "Anderson", "ganderson", "password", "mail@mail.com", new DateTime(2017, 06, 19));
+      user2.Save();
+
+      user1.LikePost(newPost);
+      user2.LikePost(newPost);
+
+      List<User> testList = newPost.GetUsersWhoLike();
+      List<User> controlList = new List<User>{user1, user2};
+
+      Assert.Equal(controlList, testList);
+    }
+
+    [Fact]
+    public void Post_GetUsersWhoDislike_ReturnsListOfUsers()
+    {
+      Post newPost = new Post("Hello world", 1, new DateTime(2017, 06, 19));
+      newPost.Save();
+
+      User user1 = new User("Joshua", "Fairchild", "jfairchild", "password", "mail@mail.com", new DateTime(2017, 06, 19));
+      user1.Save();
+      User user2 = new User("Guy", "Anderson", "ganderson", "password", "mail@mail.com", new DateTime(2017, 06, 19));
+      user2.Save();
+
+      user1.DislikePost(newPost);
+      user2.DislikePost(newPost);
+
+      List<User> testList = newPost.GetUsersWhoDislike();
+      List<User> controlList = new List<User>{user1, user2};
+
+      Assert.Equal(controlList, testList);
+    }
+
     public void Dispose()
     {
       Post.DeleteAll();
+      User.DeleteAll();
     }
   }
 }

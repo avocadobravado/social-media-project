@@ -176,7 +176,7 @@ namespace SocialMedia.Objects
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("SELECT * FROM posts WHERE user_id = @UserId", conn);
+      SqlCommand cmd = new SqlCommand("SELECT * FROM posts WHERE user_id = @UserId;", conn);
       cmd.Parameters.Add(new SqlParameter("@UserId", this.Id));
 
       SqlDataReader rdr = cmd.ExecuteReader();
@@ -207,13 +207,322 @@ namespace SocialMedia.Objects
       return posts;
     }
 
-    //THIS METHOD NEEDS TO DELETE FROM THE JOIN TABLE AS WELL
+    public void AddFriend(User userToAdd)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("INSERT INTO user_friendships (user1_id, user2_id, timestamp) VALUES (@User1Id, @User2Id, @Timestamp);", conn);
+      cmd.Parameters.Add(new SqlParameter("@User1Id", this.Id));
+      cmd.Parameters.Add(new SqlParameter("@User2Id", userToAdd.Id));
+      cmd.Parameters.Add(new SqlParameter("@Timestamp", DateTime.Now));
+
+      cmd.ExecuteNonQuery();
+      if(conn != null)
+      {
+        conn.Close();
+      }
+    }
+
+    public List<User> GetFriends()
+    {
+      List<User> friends = new List<User>{};
+
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT users.* FROM users JOIN user_friendships ON (users.id = user_friendships.user2_id) WHERE user1_id = @UserId;", conn);
+      cmd.Parameters.Add(new SqlParameter("@UserId", this.Id));
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while(rdr.Read())
+      {
+        int id = rdr.GetInt32(0);
+        string firstName = rdr.GetString(1);
+        string lastName = rdr.GetString(2);
+        string username = rdr.GetString(3);
+        string password = rdr.GetString(4);
+        string email = rdr.GetString(5);
+        DateTime timestamp = rdr.GetDateTime(6);
+        User newUser = new User(firstName, lastName, username, password, email, timestamp, id);
+        friends.Add(newUser);
+      }
+
+      if(rdr != null)
+      {
+        rdr.Close();
+      }
+
+      SqlCommand cmd2 = new SqlCommand("SELECT users.* FROM users JOIN user_friendships ON (users.id = user_friendships.user1_id) WHERE user2_id = @UserId;", conn);
+      cmd2.Parameters.Add(new SqlParameter("@UserId", this.Id));
+
+      SqlDataReader rdr2 = cmd2.ExecuteReader();
+
+      while(rdr2.Read())
+      {
+        int id = rdr2.GetInt32(0);
+        string firstName = rdr2.GetString(1);
+        string lastName = rdr2.GetString(2);
+        string username = rdr2.GetString(3);
+        string password = rdr2.GetString(4);
+        string email = rdr2.GetString(5);
+        DateTime timestamp = rdr2.GetDateTime(6);
+        User newUser = new User(firstName, lastName, username, password, email, timestamp, id);
+        friends.Add(newUser);
+      }
+
+      if(rdr2 != null)
+      {
+        rdr2.Close();
+      }
+      if(conn != null)
+      {
+        conn.Close();
+      }
+
+      return friends;
+    }
+
+    public bool IsFriendsWith(User userToCheck)
+    {
+      bool result = false;
+      List<User> userFriends = this.GetFriends();
+      foreach(User friend in userFriends)
+      {
+        if(friend.Username == userToCheck.Username)
+        {
+          result = true;
+        }
+      }
+      return result;
+    }
+
+    public static List<User> Search(string searchQuery)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT * FROM users WHERE first_name LIKE @SearchQuery OR last_name LIKE @SearchQuery OR username LIKE @SearchQuery OR email LIKE @SearchQuery", conn);
+      cmd.Parameters.Add(new SqlParameter("@SearchQuery", $"%{searchQuery}%"));
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      List<User> matches = new List<User>{};
+
+      while(rdr.Read())
+      {
+        int id = rdr.GetInt32(0);
+        string firstName = rdr.GetString(1);
+        string lastName = rdr.GetString(2);
+        string username = rdr.GetString(3);
+        string password = rdr.GetString(4);
+        string email = rdr.GetString(5);
+        DateTime timestamp = rdr.GetDateTime(6);
+        User newUser = new User(firstName, lastName, username, password, email, timestamp, id);
+        matches.Add(newUser);
+      }
+
+      if(rdr != null)
+      {
+        rdr.Close();
+      }
+      if(conn != null)
+      {
+        conn.Close();
+      }
+
+      return matches;
+    }
+
+    public void Update(string firstName, string lastName, string username, string password, string email)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("UPDATE users SET first_name = @FirstName, last_name = @LastName, username = @Username, password = @Password, email = @Email OUTPUT INSERTED.first_name, INSERTED.last_name, INSERTED.username, INSERTED.password, INSERTED.email WHERE id = @UserId;", conn);
+      cmd.Parameters.Add(new SqlParameter("@FirstName", firstName));
+      cmd.Parameters.Add(new SqlParameter("@LastName", lastName));
+      cmd.Parameters.Add(new SqlParameter("@Username", username));
+      cmd.Parameters.Add(new SqlParameter("@Password", password));
+      cmd.Parameters.Add(new SqlParameter("@Email", email));
+      cmd.Parameters.Add(new SqlParameter("@UserId", this.Id));
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while(rdr.Read())
+      {
+        this.FirstName = rdr.GetString(0);
+        this.LastName = rdr.GetString(1);
+        this.Username = rdr.GetString(2);
+        this.Password = rdr.GetString(3);
+        this.Email = rdr.GetString(4);
+      }
+
+      if(rdr != null)
+      {
+        rdr.Close();
+      }
+      if(conn != null)
+      {
+        conn.Close();
+      }
+    }
+
+    public void LikePost(Post postToLike)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("INSERT INTO post_likes (post_id, user_id) VALUES (@PostId, @UserId);",conn);
+      cmd.Parameters.Add(new SqlParameter("@PostId", postToLike.Id));
+      cmd.Parameters.Add(new SqlParameter("@UserId", this.Id));
+
+      cmd.ExecuteNonQuery();
+
+      if(conn != null)
+      {
+        conn.Close();
+      }
+
+      postToLike.Like();
+    }
+
+    public void DislikePost(Post postToDislike)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("INSERT INTO post_dislikes (post_id, user_id) VALUES (@PostId, @UserId);",conn);
+      cmd.Parameters.Add(new SqlParameter("@PostId", postToDislike.Id));
+      cmd.Parameters.Add(new SqlParameter("@UserId", this.Id));
+
+      cmd.ExecuteNonQuery();
+
+      if(conn != null)
+      {
+        conn.Close();
+      }
+
+      postToDislike.Dislike();
+    }
+
+    public void LikeComment(Comment commentToLike)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("INSERT INTO comment_likes (comment_id, user_id) VALUES (@CommentId, @UserId);",conn);
+      cmd.Parameters.Add(new SqlParameter("@CommentId", commentToLike.Id));
+      cmd.Parameters.Add(new SqlParameter("@UserId", this.Id));
+
+      cmd.ExecuteNonQuery();
+
+      if(conn != null)
+      {
+        conn.Close();
+      }
+
+      commentToLike.Like();
+    }
+
+    public void DislikeComment(Comment commentToDislike)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("INSERT INTO comment_dislikes (comment_id, user_id) VALUES (@CommentId, @UserId);",conn);
+      cmd.Parameters.Add(new SqlParameter("@CommentId", commentToDislike.Id));
+      cmd.Parameters.Add(new SqlParameter("@UserId", this.Id));
+
+      cmd.ExecuteNonQuery();
+
+      if(conn != null)
+      {
+        conn.Close();
+      }
+
+      commentToDislike.Dislike();
+    }
+
+    public bool HasLikedPost(Post postToCheck)
+    {
+      bool result = false;
+      List<User> usersWhoLiked = postToCheck.GetUsersWhoLike();
+      foreach(User user in usersWhoLiked)
+      {
+        if(user.Username == this.Username)
+        {
+          result = true;
+        }
+      }
+      return result;
+    }
+
+    public bool HasDislikedPost(Post postToCheck)
+    {
+      bool result = false;
+      List<User> usersWhoLiked = postToCheck.GetUsersWhoDislike();
+      foreach(User user in usersWhoLiked)
+      {
+        if(user.Username == this.Username)
+        {
+          result = true;
+        }
+      }
+      return result;
+    }
+
+    public bool HasLikedComment(Comment commentToCheck)
+    {
+      bool result = false;
+      List<User> usersWhoLiked = commentToCheck.GetUsersWhoLike();
+      foreach(User user in usersWhoLiked)
+      {
+        if(user.Username == this.Username)
+        {
+          result = true;
+        }
+      }
+      return result;
+    }
+
+    public bool HasDislikedComment(Comment commentToCheck)
+    {
+      bool result = false;
+      List<User> usersWhoLiked = commentToCheck.GetUsersWhoDislike();
+      foreach(User user in usersWhoLiked)
+      {
+        if(user.Username == this.Username)
+        {
+          result = true;
+        }
+      }
+      return result;
+    }
+
+    public void RemoveFriend(User userToRemove)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("DELETE FROM user_friendships WHERE user1_id = @ThisUserId AND user2_id = @UserToRemoveId; DELETE FROM user_friendships WHERE user2_id = @ThisUserId AND user1_id = @UserToRemoveId;", conn);
+      cmd.Parameters.Add(new SqlParameter("@ThisUserId", this.Id));
+      cmd.Parameters.Add(new SqlParameter("@UserToRemoveId", userToRemove.Id));
+      cmd.ExecuteNonQuery();
+
+      if(conn != null)
+      {
+        conn.Close();
+      }
+    }
+
     public void Delete()
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("DELETE FROM users WHERE id = @UserId; DELETE FROM comments WHERE user_id = @UserId; DELETE FROM posts WHERE user_id = @UserId;", conn);
+      SqlCommand cmd = new SqlCommand("DELETE FROM users WHERE id = @UserId; DELETE FROM comments WHERE user_id = @UserId; DELETE FROM posts WHERE user_id = @UserId; DELETE FROM user_friendships WHERE user1_id = @UserId; DELETE FROM user_friendships WHERE user2_id = @UserId", conn);
       cmd.Parameters.Add(new SqlParameter("@UserId", this.Id));
       cmd.ExecuteNonQuery();
 

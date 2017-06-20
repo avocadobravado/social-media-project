@@ -112,6 +112,300 @@ namespace SocialMedia.Objects
       Assert.Equal(testList, controlList);
     }
 
+    [Fact]
+    public void User_AddFriend_User1FriendsUser2()
+    {
+      User user1 = new User("Joshua", "Fairchild", "jfairchild", "password", "mail@mail.com", new DateTime(2017, 06, 19));
+      user1.Save();
+      User user2 = new User("Guy", "Anderson", "ganderson", "password", "mail@mail.com", new DateTime(2017, 06, 19));
+      user2.Save();
+
+      user1.AddFriend(user2);
+
+      List<User> testList = user1.GetFriends();
+      List<User> controlList = new List<User>{user2};
+
+      Assert.Equal(controlList, testList);
+    }
+
+    [Fact]
+    public void User_AddFriend_User2FriendsUser1()
+    {
+      User user1 = new User("Joshua", "Fairchild", "jfairchild", "password", "mail@mail.com", new DateTime(2017, 06, 19));
+      user1.Save();
+      User user2 = new User("Guy", "Anderson", "ganderson", "password", "mail@mail.com", new DateTime(2017, 06, 19));
+      user2.Save();
+
+      user2.AddFriend(user1);
+
+      List<User> testList = user2.GetFriends();
+      List<User> controlList = new List<User>{user1};
+
+      Assert.Equal(controlList, testList);
+    }
+
+    [Fact]
+    public void User_AddFriend_MultipleFriendsAdd()
+    {
+      User user1 = new User("Joshua", "Fairchild", "jfairchild", "password", "mail@mail.com", new DateTime(2017, 06, 19));
+      user1.Save();
+      User user2 = new User("Guy", "Anderson", "ganderson", "password", "mail@mail.com", new DateTime(2017, 06, 19));
+      user2.Save();
+      User user3 = new User("Tom", "Hanks", "thanks", "password", "mail@mail.com", new DateTime(2017, 06, 19));
+      user3.Save();
+
+      user1.AddFriend(user2);
+      user3.AddFriend(user1);
+
+      List<User> testList = user1.GetFriends();
+      List<User> controlList = new List<User>{user2, user3};
+
+      Assert.Equal(controlList, testList);
+    }
+
+    [Fact]
+    public void User_RemoveFriend_RemovesRelationshipInDB()
+    {
+      User user1 = new User("Joshua", "Fairchild", "jfairchild", "password", "mail@mail.com", new DateTime(2017, 06, 19));
+      user1.Save();
+      User user2 = new User("Guy", "Anderson", "ganderson", "password", "mail@mail.com", new DateTime(2017, 06, 19));
+      user2.Save();
+      User user3 = new User("Tom", "Hanks", "thanks", "password", "mail@mail.com", new DateTime(2017, 06, 19));
+      user3.Save();
+
+      user1.AddFriend(user2);
+      user3.AddFriend(user1);
+      user1.RemoveFriend(user3);
+
+      List<User> testList = user1.GetFriends();
+      List<User> controlList = new List<User>{user2};
+
+      Assert.Equal(controlList, testList);
+    }
+
+    [Fact]
+    public void User_IsFriendsWith_ReturnsTrue()
+    {
+      User user1 = new User("Joshua", "Fairchild", "jfairchild", "password", "mail@mail.com", new DateTime(2017, 06, 19));
+      user1.Save();
+      User user2 = new User("Guy", "Anderson", "ganderson", "password", "mail@mail.com", new DateTime(2017, 06, 19));
+      user2.Save();
+
+      user2.AddFriend(user1);
+
+      bool testBool = user1.IsFriendsWith(user2);
+      bool controlBool = true;
+
+      Assert.Equal(controlBool, testBool);
+    }
+
+    [Fact]
+    public void User_IsFriendsWith_ReturnsFalse()
+    {
+      User user1 = new User("Joshua", "Fairchild", "jfairchild", "password", "mail@mail.com", new DateTime(2017, 06, 19));
+      user1.Save();
+      User user2 = new User("Guy", "Anderson", "ganderson", "password", "mail@mail.com", new DateTime(2017, 06, 19));
+      user2.Save();
+
+      bool testBool = user1.IsFriendsWith(user2);
+      bool controlBool = false;
+
+      Assert.Equal(controlBool, testBool);
+    }
+
+    [Fact]
+    public void User_Search_ReturnsIntendedMatches()
+    {
+      User user1 = new User("Joshua", "Fairchild", "jfairchild", "password", "mail@mail.com", new DateTime(2017, 06, 19));
+      user1.Save();
+      User user2 = new User("Butch", "Fairchild", "fairjosh", "password", "mail@mail.com", new DateTime(2017, 06, 19));
+      user2.Save();
+      User user3 = new User("josh", "Fairchild", "jfair", "password", "joshua@mail.com", new DateTime(2017, 06, 19));
+      user3.Save();
+      User user4 = new User("Tom", "Hanks", "thanks", "password", "tom@mail.com", new DateTime(2017, 06, 19));
+      user4.Save();
+      User user5 = new User("JOSHUA", "Fairchild", "jfair", "password", "mail@mail.com", new DateTime(2017, 06, 19));
+      user5.Save();
+
+      List<User> testList = User.Search("josh");
+      List<User> controlList = new List<User>{user1, user2, user3, user5};
+
+      Assert.Equal(controlList, testList);
+    }
+
+    [Fact]
+    public void User_Update_UpdatesUserInfo()
+    {
+      User testUser = new User("Joshua", "Fairchild", "jfairchild", "password", "mail@mail.com", new DateTime(2017, 06, 19));
+      testUser.Save();
+
+      testUser.Update("Tom", "Hanks", "thanks", "password", "hanks@mail.com");
+
+      User controlUser = new User("Tom", "Hanks", "thanks", "password", "hanks@mail.com", new DateTime(2017, 06, 19), testUser.Id);
+
+      Assert.Equal(controlUser, testUser);
+    }
+
+    [Fact]
+    public void User_LikePost_LikesPost()
+    {
+      User testUser = new User("Joshua", "Fairchild", "jfairchild", "password", "mail@mail.com", new DateTime(2017, 06, 19));
+      testUser.Save();
+
+      Post newPost = new Post("Hello world", 1, new DateTime(2017, 06, 19));
+      newPost.Save();
+
+      testUser.LikePost(newPost);
+
+      Assert.Equal(1, newPost.Likes);
+    }
+
+    [Fact]
+    public void User_DislikePost_DislikesPost()
+    {
+      User testUser = new User("Joshua", "Fairchild", "jfairchild", "password", "mail@mail.com", new DateTime(2017, 06, 19));
+      testUser.Save();
+
+      Post newPost = new Post("Hello world", 1, new DateTime(2017, 06, 19));
+      newPost.Save();
+
+      testUser.DislikePost(newPost);
+
+      Assert.Equal(1, newPost.Dislikes);
+    }
+
+    [Fact]
+    public void User_LikeComment_LikesComment()
+    {
+      User newUser = new User("Joshua", "Fairchild", "jfairchild", "password", "mail@mail.com", new DateTime(2017, 06, 19));
+      newUser.Save();
+
+      Comment newComment = new Comment("Hello world", 1, 1, new DateTime(2017, 06, 19));
+      newComment.Save();
+
+      newUser.LikeComment(newComment);
+
+      Assert.Equal(1, newComment.Likes);
+    }
+
+    [Fact]
+    public void User_DislikeComment_DislikesComment()
+    {
+      User newUser = new User("Joshua", "Fairchild", "jfairchild", "password", "mail@mail.com", new DateTime(2017, 06, 19));
+      newUser.Save();
+
+      Comment newComment = new Comment("Hello world", 1, 1, new DateTime(2017, 06, 19));
+      newComment.Save();
+
+      newUser.DislikeComment(newComment);
+
+      Assert.Equal(1, newComment.Dislikes);
+    }
+
+    [Fact]
+    public void User_HasLikedPost_True()
+    {
+      User testUser = new User("Joshua", "Fairchild", "jfairchild", "password", "mail@mail.com", new DateTime(2017, 06, 19));
+      testUser.Save();
+
+      Post newPost = new Post("Hello world", 1, new DateTime(2017, 06, 19));
+      newPost.Save();
+
+      testUser.LikePost(newPost);
+
+      Assert.Equal(true, testUser.HasLikedPost(newPost));
+    }
+
+    [Fact]
+    public void User_HasLikedPost_False()
+    {
+      User testUser = new User("Joshua", "Fairchild", "jfairchild", "password", "mail@mail.com", new DateTime(2017, 06, 19));
+      testUser.Save();
+
+      Post newPost = new Post("Hello world", 1, new DateTime(2017, 06, 19));
+      newPost.Save();
+
+      Assert.Equal(false, testUser.HasLikedPost(newPost));
+    }
+
+    [Fact]
+    public void User_HasDislikedPost_True()
+    {
+      User testUser = new User("Joshua", "Fairchild", "jfairchild", "password", "mail@mail.com", new DateTime(2017, 06, 19));
+      testUser.Save();
+
+      Post newPost = new Post("Hello world", 1, new DateTime(2017, 06, 19));
+      newPost.Save();
+
+      testUser.DislikePost(newPost);
+
+      Assert.Equal(true, testUser.HasDislikedPost(newPost));
+    }
+
+    [Fact]
+    public void User_HasDislikedPost_False()
+    {
+      User testUser = new User("Joshua", "Fairchild", "jfairchild", "password", "mail@mail.com", new DateTime(2017, 06, 19));
+      testUser.Save();
+
+      Post newPost = new Post("Hello world", 1, new DateTime(2017, 06, 19));
+      newPost.Save();
+
+      Assert.Equal(false, testUser.HasDislikedPost(newPost));
+    }
+
+    [Fact]
+    public void User_HasLikedComment_True()
+    {
+      User testUser = new User("Joshua", "Fairchild", "jfairchild", "password", "mail@mail.com", new DateTime(2017, 06, 19));
+      testUser.Save();
+
+      Comment newComment = new Comment("Hello world", 1, 1, new DateTime(2017, 06, 19));
+      newComment.Save();
+
+      testUser.LikeComment(newComment);
+
+      Assert.Equal(true, testUser.HasLikedComment(newComment));
+    }
+
+    [Fact]
+    public void User_HasLikedComment_False()
+    {
+      User testUser = new User("Joshua", "Fairchild", "jfairchild", "password", "mail@mail.com", new DateTime(2017, 06, 19));
+      testUser.Save();
+
+      Comment newComment = new Comment("Hello world", 1, 1, new DateTime(2017, 06, 19));
+      newComment.Save();
+
+      Assert.Equal(false, testUser.HasLikedComment(newComment));
+    }
+
+    [Fact]
+    public void User_HasDislikedComment_True()
+    {
+      User testUser = new User("Joshua", "Fairchild", "jfairchild", "password", "mail@mail.com", new DateTime(2017, 06, 19));
+      testUser.Save();
+
+      Comment newComment = new Comment("Hello world", 1, 1, new DateTime(2017, 06, 19));
+      newComment.Save();
+
+      testUser.DislikeComment(newComment);
+
+      Assert.Equal(true, testUser.HasDislikedComment(newComment));
+    }
+
+    [Fact]
+    public void User_HasDislikedComment_False()
+    {
+      User testUser = new User("Joshua", "Fairchild", "jfairchild", "password", "mail@mail.com", new DateTime(2017, 06, 19));
+      testUser.Save();
+
+      Comment newComment = new Comment("Hello world", 1, 1, new DateTime(2017, 06, 19));
+      newComment.Save();
+
+      Assert.Equal(false, testUser.HasDislikedComment(newComment));
+    }
+
     public void Dispose()
     {
       User.DeleteAll();

@@ -14,6 +14,16 @@ namespace SocialMedia.Objects
     public int Dislikes {get;set;}
     public DateTime Timestamp {get;set;}
 
+    public void Like()
+    {
+      this.Likes++;
+    }
+
+    public void Dislike()
+    {
+      this.Dislikes++;
+    }
+
     public Comment()
     {
       Id = 0;
@@ -179,6 +189,78 @@ namespace SocialMedia.Objects
       {
         conn.Close();
       }
+    }
+
+    public List<User> GetUsersWhoLike()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT users.* FROM comments JOIN comment_likes ON (comments.id = comment_likes.comment_id) JOIN users ON (users.id = comment_likes.user_id) WHERE comment_id = @CommentId;", conn);
+      cmd.Parameters.Add(new SqlParameter("@CommentId", this.Id));
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      List<User> users = new List<User>{};
+      while(rdr.Read())
+      {
+        int id = rdr.GetInt32(0);
+        string firstName = rdr.GetString(1);
+        string lastName = rdr.GetString(2);
+        string username = rdr.GetString(3);
+        string password = rdr.GetString(4);
+        string email = rdr.GetString(5);
+        DateTime timestamp = rdr.GetDateTime(6);
+        User newUser = new User(firstName, lastName, username, password, email, timestamp, id);
+        users.Add(newUser);
+      }
+
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if(conn != null)
+      {
+        conn.Close();
+      }
+
+      return users;
+    }
+
+    public List<User> GetUsersWhoDislike()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT users.* FROM comments JOIN comment_dislikes ON (comments.id = comment_dislikes.comment_id) JOIN users ON (users.id = comment_dislikes.user_id) WHERE comment_id = @CommentId;", conn);
+      cmd.Parameters.Add(new SqlParameter("@CommentId", this.Id));
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      List<User> users = new List<User>{};
+      while(rdr.Read())
+      {
+        int id = rdr.GetInt32(0);
+        string firstName = rdr.GetString(1);
+        string lastName = rdr.GetString(2);
+        string username = rdr.GetString(3);
+        string password = rdr.GetString(4);
+        string email = rdr.GetString(5);
+        DateTime timestamp = rdr.GetDateTime(6);
+        User newUser = new User(firstName, lastName, username, password, email, timestamp, id);
+        users.Add(newUser);
+      }
+
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if(conn != null)
+      {
+        conn.Close();
+      }
+
+      return users;
     }
 
     public void Delete()

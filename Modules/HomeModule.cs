@@ -11,9 +11,7 @@ namespace SocialMedia
     public HomeModule()
     {
       Get["/"] = _ => {
-        Post newPost = new Post("Hello world", 1, DateTime.Now);
-        newPost.Save();
-        return View["index.cshtml", newPost];
+        return View["index.cshtml"];
       };
     }
   }

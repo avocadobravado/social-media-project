@@ -13,6 +13,16 @@ namespace SocialMedia.Objects
     public int Dislikes {get;set;}
     public DateTime Timestamp {get;set;}
 
+    public void Like()
+    {
+      this.Likes++;
+    }
+
+    public void Dislike()
+    {
+      this.Dislikes++;
+    }
+
     public Post()
     {
       Id = 0;

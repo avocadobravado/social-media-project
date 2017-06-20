@@ -246,6 +246,34 @@ namespace SocialMedia.Objects
       Assert.Equal(controlUser, testUser);
     }
 
+    [Fact]
+    public void User_LikePost_LikesPost()
+    {
+      User testUser = new User("Joshua", "Fairchild", "jfairchild", "password", "mail@mail.com", new DateTime(2017, 06, 19));
+      testUser.Save();
+
+      Post newPost = new Post("Hello world", 1, new DateTime(2017, 06, 19));
+      newPost.Save();
+
+      testUser.LikePost(newPost);
+
+      Assert.Equal(1, newPost.Likes);
+    }
+
+    [Fact]
+    public void User_DislikePost_DislikesPost()
+    {
+      User testUser = new User("Joshua", "Fairchild", "jfairchild", "password", "mail@mail.com", new DateTime(2017, 06, 19));
+      testUser.Save();
+
+      Post newPost = new Post("Hello world", 1, new DateTime(2017, 06, 19));
+      newPost.Save();
+
+      testUser.DislikePost(newPost);
+
+      Assert.Equal(1, newPost.Dislikes);
+    }
+
     public void Dispose()
     {
       User.DeleteAll();

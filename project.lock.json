@@ -204,13 +204,13 @@
           "lib/net451/Microsoft.AspNet.Owin.dll": {}
         }
       },
-      "Microsoft.AspNet.Razor/2.0.30506": {
+      "Microsoft.AspNet.Razor/3.2.3": {
         "type": "package",
         "compile": {
-          "lib/net40/System.Web.Razor.dll": {}
+          "lib/net45/System.Web.Razor.dll": {}
         },
         "runtime": {
-          "lib/net40/System.Web.Razor.dll": {}
+          "lib/net45/System.Web.Razor.dll": {}
         }
       },
       "Microsoft.AspNet.Server.Kestrel/1.0.0-rc1-final": {
@@ -249,6 +249,59 @@
             "assetType": "native",
             "rid": "win7-x86"
           }
+        }
+      },
+      "Microsoft.AspNet.WebHelpers/3.2.3": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNet.WebPages": "[3.2.3, 3.3.0)",
+          "Microsoft.AspNet.WebPages.WebData": "[3.2.3, 3.3.0)"
+        },
+        "compile": {
+          "lib/net45/Microsoft.Web.Helpers.dll": {}
+        },
+        "runtime": {
+          "lib/net45/Microsoft.Web.Helpers.dll": {}
+        }
+      },
+      "Microsoft.AspNet.WebPages/3.2.3": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNet.Razor": "[3.2.3, 3.3.0)",
+          "Microsoft.Web.Infrastructure": "1.0.0"
+        },
+        "compile": {
+          "lib/net45/System.Web.Helpers.dll": {},
+          "lib/net45/System.Web.WebPages.Deployment.dll": {},
+          "lib/net45/System.Web.WebPages.Razor.dll": {},
+          "lib/net45/System.Web.WebPages.dll": {}
+        },
+        "runtime": {
+          "lib/net45/System.Web.Helpers.dll": {},
+          "lib/net45/System.Web.WebPages.Deployment.dll": {},
+          "lib/net45/System.Web.WebPages.Razor.dll": {},
+          "lib/net45/System.Web.WebPages.dll": {}
+        }
+      },
+      "Microsoft.AspNet.WebPages.Data/3.2.3": {
+        "type": "package",
+        "compile": {
+          "lib/net45/WebMatrix.Data.dll": {}
+        },
+        "runtime": {
+          "lib/net45/WebMatrix.Data.dll": {}
+        }
+      },
+      "Microsoft.AspNet.WebPages.WebData/3.2.3": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNet.WebPages.Data": "(, )"
+        },
+        "compile": {
+          "lib/net45/WebMatrix.WebData.dll": {}
+        },
+        "runtime": {
+          "lib/net45/WebMatrix.WebData.dll": {}
         }
       },
       "Microsoft.AspNet.WebUtilities/1.0.0-rc1-final": {
@@ -564,6 +617,15 @@
           "lib/net451/Microsoft.Net.Http.Headers.dll": {}
         }
       },
+      "Microsoft.Web.Infrastructure/1.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net40/Microsoft.Web.Infrastructure.dll": {}
+        },
+        "runtime": {
+          "lib/net40/Microsoft.Web.Infrastructure.dll": {}
+        }
+      },
       "Nancy/1.3.0": {
         "type": "package",
         "compile": {
@@ -758,8 +820,8 @@
     "Microsoft.AspNet.FileProviders.Abstractions/1.0.0-rc1-final": {
       "sha512": "Tv6YJk78cH+gFipRNjeMpzzUg3t4BQiS0xYVlv/8gVNl4sI6ytAMYYfIbx8pCacIRH5Nx/Tw9GVn28eyw+JZfA==",
       "type": "package",
+      "path": "Microsoft.AspNet.FileProviders.Abstractions/1.0.0-rc1-final",
       "files": [
-        "Microsoft.AspNet.FileProviders.Abstractions.1.0.0-rc1-final.nupkg",
         "Microsoft.AspNet.FileProviders.Abstractions.1.0.0-rc1-final.nupkg.sha512",
         "Microsoft.AspNet.FileProviders.Abstractions.nuspec",
         "lib/dotnet5.4/Microsoft.AspNet.FileProviders.Abstractions.dll",
@@ -771,8 +833,8 @@
     "Microsoft.AspNet.FileProviders.Physical/1.0.0-rc1-final": {
       "sha512": "Ni5o7X21cN97krdkg3F77F5app0KpLwdpHbxdpwqaMjhMKYcmNDcyZB8Ke/qgbSMqHRwT3aQVhgEp/iJTbgl6g==",
       "type": "package",
+      "path": "Microsoft.AspNet.FileProviders.Physical/1.0.0-rc1-final",
       "files": [
-        "Microsoft.AspNet.FileProviders.Physical.1.0.0-rc1-final.nupkg",
         "Microsoft.AspNet.FileProviders.Physical.1.0.0-rc1-final.nupkg.sha512",
         "Microsoft.AspNet.FileProviders.Physical.nuspec",
         "lib/dotnet5.4/Microsoft.AspNet.FileProviders.Physical.dll",
@@ -784,8 +846,8 @@
     "Microsoft.AspNet.Hosting/1.0.0-rc1-final": {
       "sha512": "6ZVZK5Ql+z6UeVOBcXCRLahcAd/NKdMAK17JBZWGZqqmxKO0LtQMdb6drb9H4nBM3/a8vbhd+23wxzyIfoCLQQ==",
       "type": "package",
+      "path": "Microsoft.AspNet.Hosting/1.0.0-rc1-final",
       "files": [
-        "Microsoft.AspNet.Hosting.1.0.0-rc1-final.nupkg",
         "Microsoft.AspNet.Hosting.1.0.0-rc1-final.nupkg.sha512",
         "Microsoft.AspNet.Hosting.nuspec",
         "lib/dnx451/Microsoft.AspNet.Hosting.dll",
@@ -801,8 +863,8 @@
     "Microsoft.AspNet.Hosting.Abstractions/1.0.0-rc1-final": {
       "sha512": "07N5rzYcsjkLgwoI923FcAvvf7167qhLgCExXwYYkdZUIJQzneRG0DqZJTm6qpnaD5igf4FM9F+eh2m7y5NFbg==",
       "type": "package",
+      "path": "Microsoft.AspNet.Hosting.Abstractions/1.0.0-rc1-final",
       "files": [
-        "Microsoft.AspNet.Hosting.Abstractions.1.0.0-rc1-final.nupkg",
         "Microsoft.AspNet.Hosting.Abstractions.1.0.0-rc1-final.nupkg.sha512",
         "Microsoft.AspNet.Hosting.Abstractions.nuspec",
         "lib/dotnet5.4/Microsoft.AspNet.Hosting.Abstractions.dll",
@@ -814,8 +876,8 @@
     "Microsoft.AspNet.Hosting.Server.Abstractions/1.0.0-rc1-final": {
       "sha512": "55ovPKPLsLvXsZ2xxtCOkQXmLwrE5iMUXe1y3A3Y/DCcI2u9VBJezu1y2EPYmZCM+uP/Y/BaQm68AWg2r8RV5w==",
       "type": "package",
+      "path": "Microsoft.AspNet.Hosting.Server.Abstractions/1.0.0-rc1-final",
       "files": [
-        "Microsoft.AspNet.Hosting.Server.Abstractions.1.0.0-rc1-final.nupkg",
         "Microsoft.AspNet.Hosting.Server.Abstractions.1.0.0-rc1-final.nupkg.sha512",
         "Microsoft.AspNet.Hosting.Server.Abstractions.nuspec",
         "lib/dotnet5.4/Microsoft.AspNet.Hosting.Server.Abstractions.dll",
@@ -827,8 +889,8 @@
     "Microsoft.AspNet.Http/1.0.0-rc1-final": {
       "sha512": "2vVd6xlfDKxl7pln5VOSczVo5bdJK6VLF6LR62Tb+le6e0COju7diAPHujFcXQlX/eLq2GrctN5vbIMeQ6vRTg==",
       "type": "package",
+      "path": "Microsoft.AspNet.Http/1.0.0-rc1-final",
       "files": [
-        "Microsoft.AspNet.Http.1.0.0-rc1-final.nupkg",
         "Microsoft.AspNet.Http.1.0.0-rc1-final.nupkg.sha512",
         "Microsoft.AspNet.Http.nuspec",
         "lib/dotnet5.4/Microsoft.AspNet.Http.dll",
@@ -840,8 +902,8 @@
     "Microsoft.AspNet.Http.Abstractions/1.0.0-rc1-final": {
       "sha512": "sfzc1WJMl8wGCF+rChVfJ7otT6tTv24RNXUej2r8tlQ2RDNnAozYyGb0SCW2mxpHrC31On99Wt0rksgF0c2WUw==",
       "type": "package",
+      "path": "Microsoft.AspNet.Http.Abstractions/1.0.0-rc1-final",
       "files": [
-        "Microsoft.AspNet.Http.Abstractions.1.0.0-rc1-final.nupkg",
         "Microsoft.AspNet.Http.Abstractions.1.0.0-rc1-final.nupkg.sha512",
         "Microsoft.AspNet.Http.Abstractions.nuspec",
         "lib/dotnet5.4/Microsoft.AspNet.Http.Abstractions.dll",
@@ -853,8 +915,8 @@
     "Microsoft.AspNet.Http.Extensions/1.0.0-rc1-final": {
       "sha512": "rsjbxD9W6NfqP0WNHMRyetIh6ZoKRbK1ea0V5xWdVAx53WdvgBy0HmkSwXt506+xU65jjZP19F4Ua4YjZdPHfQ==",
       "type": "package",
+      "path": "Microsoft.AspNet.Http.Extensions/1.0.0-rc1-final",
       "files": [
-        "Microsoft.AspNet.Http.Extensions.1.0.0-rc1-final.nupkg",
         "Microsoft.AspNet.Http.Extensions.1.0.0-rc1-final.nupkg.sha512",
         "Microsoft.AspNet.Http.Extensions.nuspec",
         "lib/dotnet5.4/Microsoft.AspNet.Http.Extensions.dll",
@@ -866,8 +928,8 @@
     "Microsoft.AspNet.Http.Features/1.0.0-rc1-final": {
       "sha512": "WlscfdAvN8XaaK1iv1Iewp5emei7+0SlXNkUh7kMJpeaS6K0GhwNmwqZR6VrT1oN+Maw98nEONHS34/suqQwOA==",
       "type": "package",
+      "path": "Microsoft.AspNet.Http.Features/1.0.0-rc1-final",
       "files": [
-        "Microsoft.AspNet.Http.Features.1.0.0-rc1-final.nupkg",
         "Microsoft.AspNet.Http.Features.1.0.0-rc1-final.nupkg.sha512",
         "Microsoft.AspNet.Http.Features.nuspec",
         "lib/dotnet5.4/Microsoft.AspNet.Http.Features.dll",
@@ -879,8 +941,8 @@
     "Microsoft.AspNet.Owin/1.0.0-rc1-final": {
       "sha512": "6lkzV/uEYORT1GQDddWVjsm/zRtEZHnIcWmBR4H6tqjsv1q2rWFmDy8rEckPvxUVn1iNTWKpn6s4UJglbdTgtg==",
       "type": "package",
+      "path": "Microsoft.AspNet.Owin/1.0.0-rc1-final",
       "files": [
-        "Microsoft.AspNet.Owin.1.0.0-rc1-final.nupkg",
         "Microsoft.AspNet.Owin.1.0.0-rc1-final.nupkg.sha512",
         "Microsoft.AspNet.Owin.nuspec",
         "lib/dotnet5.4/Microsoft.AspNet.Owin.dll",
@@ -889,22 +951,22 @@
         "lib/net451/Microsoft.AspNet.Owin.xml"
       ]
     },
-    "Microsoft.AspNet.Razor/2.0.30506": {
-      "sha512": "mYb3z3NZpD9ucG+UVQFSWGXDfcbL+02BxmPhiZTImm152aL/NpVVvA1FXhFaNxSj7AZN8Ij7gwStUe/9twrPhA==",
+    "Microsoft.AspNet.Razor/3.2.3": {
+      "sha512": "leta+Q73O7+pR8ThTqXmwaNMSqwZQQ3BHfpUHd8S1XaUWe1jRVLitMHqo1AmY7wPNLyankPA1beiUKEGj8Q3Dw==",
       "type": "package",
+      "path": "Microsoft.AspNet.Razor/3.2.3",
       "files": [
-        "Microsoft.AspNet.Razor.2.0.30506.nupkg",
-        "Microsoft.AspNet.Razor.2.0.30506.nupkg.sha512",
+        "Microsoft.AspNet.Razor.3.2.3.nupkg.sha512",
         "Microsoft.AspNet.Razor.nuspec",
-        "lib/net40/System.Web.Razor.dll",
-        "lib/net40/System.Web.Razor.xml"
+        "lib/net45/System.Web.Razor.dll",
+        "lib/net45/System.Web.Razor.xml"
       ]
     },
     "Microsoft.AspNet.Server.Kestrel/1.0.0-rc1-final": {
       "sha512": "4fuGqW9K2PaxLwQsyRZaoO2Eu+GT5nv8WeYWpD8EqHLzY9GVEW25jy1iW2+1Tf5BwQJLN2e9QxY2K7OPlM9iRg==",
       "type": "package",
+      "path": "Microsoft.AspNet.Server.Kestrel/1.0.0-rc1-final",
       "files": [
-        "Microsoft.AspNet.Server.Kestrel.1.0.0-rc1-final.nupkg",
         "Microsoft.AspNet.Server.Kestrel.1.0.0-rc1-final.nupkg.sha512",
         "Microsoft.AspNet.Server.Kestrel.nuspec",
         "lib/dnx451/Microsoft.AspNet.Server.Kestrel.dll",
@@ -922,11 +984,62 @@
         "thirdpartynotices.txt"
       ]
     },
+    "Microsoft.AspNet.WebHelpers/3.2.3": {
+      "sha512": "vGWL9M4UIzgEUoy8ErNc6B9VtKGNDNEFJaJRRzQMfxLLFi+zGGgvh3SEz8iP1Xgt52zJkcGrJuQl4CyxDuP2uA==",
+      "type": "package",
+      "path": "Microsoft.AspNet.WebHelpers/3.2.3",
+      "files": [
+        "Microsoft.AspNet.WebHelpers.3.2.3.nupkg.sha512",
+        "Microsoft.AspNet.WebHelpers.nuspec",
+        "lib/net45/Microsoft.Web.Helpers.dll"
+      ]
+    },
+    "Microsoft.AspNet.WebPages/3.2.3": {
+      "sha512": "zbtxBERla5RE/mhftwbrXOzc0r6lh8WcnjpGW7QQe+PvSDDx1BgsTUGzfCXO/vJznHNpY5oCSYLt8Q5vUu7F0g==",
+      "type": "package",
+      "path": "Microsoft.AspNet.WebPages/3.2.3",
+      "files": [
+        "Content/Web.config.install.xdt",
+        "Content/Web.config.uninstall.xdt",
+        "Microsoft.AspNet.WebPages.3.2.3.nupkg.sha512",
+        "Microsoft.AspNet.WebPages.nuspec",
+        "lib/net45/System.Web.Helpers.dll",
+        "lib/net45/System.Web.Helpers.xml",
+        "lib/net45/System.Web.WebPages.Deployment.dll",
+        "lib/net45/System.Web.WebPages.Deployment.xml",
+        "lib/net45/System.Web.WebPages.Razor.dll",
+        "lib/net45/System.Web.WebPages.Razor.xml",
+        "lib/net45/System.Web.WebPages.dll",
+        "lib/net45/System.Web.WebPages.xml"
+      ]
+    },
+    "Microsoft.AspNet.WebPages.Data/3.2.3": {
+      "sha512": "zToIPCRIo5CHGHqIXmR9Po5hzyuXQy7eDSdougxDrEM6aqIK5bFE6/ZWNeY+KfGLmjmGGcv+J7BwCn74vYvxGw==",
+      "type": "package",
+      "path": "Microsoft.AspNet.WebPages.Data/3.2.3",
+      "files": [
+        "Microsoft.AspNet.WebPages.Data.3.2.3.nupkg.sha512",
+        "Microsoft.AspNet.WebPages.Data.nuspec",
+        "lib/net45/WebMatrix.Data.dll",
+        "lib/net45/WebMatrix.Data.xml"
+      ]
+    },
+    "Microsoft.AspNet.WebPages.WebData/3.2.3": {
+      "sha512": "yCmVtepryxxHdb7r4E4sfINS8mmyGTwSZriZrxdhsJUOmx3KwT6GbdMkQJjbd3mJXspu8liiwCfT5TcyOS3Fqg==",
+      "type": "package",
+      "path": "Microsoft.AspNet.WebPages.WebData/3.2.3",
+      "files": [
+        "Microsoft.AspNet.WebPages.WebData.3.2.3.nupkg.sha512",
+        "Microsoft.AspNet.WebPages.WebData.nuspec",
+        "lib/net45/WebMatrix.WebData.dll",
+        "lib/net45/WebMatrix.WebData.xml"
+      ]
+    },
     "Microsoft.AspNet.WebUtilities/1.0.0-rc1-final": {
       "sha512": "0D80xroAEiWlB9X5eR/JUya1H2saIYnt4d7bPru5RRf5L/66X+9WWhf3hFkLUF3W13K6g6K9Is9dCTaEfFFKTA==",
       "type": "package",
+      "path": "Microsoft.AspNet.WebUtilities/1.0.0-rc1-final",
       "files": [
-        "Microsoft.AspNet.WebUtilities.1.0.0-rc1-final.nupkg",
         "Microsoft.AspNet.WebUtilities.1.0.0-rc1-final.nupkg.sha512",
         "Microsoft.AspNet.WebUtilities.nuspec",
         "lib/dotnet5.4/Microsoft.AspNet.WebUtilities.dll",
@@ -938,8 +1051,8 @@
     "Microsoft.Dnx.Compilation.Abstractions/1.0.0-rc1-final": {
       "sha512": "kg3kR7H12Bs46TiuF7YT8A3SNXehhBcwsArIMQIH2ecXGkg5MPWDl2OR6bnQu6k0OMu9QUiv1oiwC9yU7rHWfw==",
       "type": "package",
+      "path": "Microsoft.Dnx.Compilation.Abstractions/1.0.0-rc1-final",
       "files": [
-        "Microsoft.Dnx.Compilation.Abstractions.1.0.0-rc1-final.nupkg",
         "Microsoft.Dnx.Compilation.Abstractions.1.0.0-rc1-final.nupkg.sha512",
         "Microsoft.Dnx.Compilation.Abstractions.nuspec",
         "lib/dotnet5.4/Microsoft.Dnx.Compilation.Abstractions.dll",
@@ -951,8 +1064,8 @@
     "Microsoft.Dnx.TestHost/1.0.0-rc1-final": {
       "sha512": "f5lDXCh4tLXXWHcuNpiyQLiOuV8HB+UjWeL70hrHyaBcssA6Oxa7KB3R/arddVwXuaXeBuGm+HVheuyhQCYGig==",
       "type": "package",
+      "path": "Microsoft.Dnx.TestHost/1.0.0-rc1-final",
       "files": [
-        "Microsoft.Dnx.TestHost.1.0.0-rc1-final.nupkg",
         "Microsoft.Dnx.TestHost.1.0.0-rc1-final.nupkg.sha512",
         "Microsoft.Dnx.TestHost.nuspec",
         "app/project.json",
@@ -965,8 +1078,8 @@
     "Microsoft.Dnx.Testing.Abstractions/1.0.0-rc1-final": {
       "sha512": "AKeTdr5IdJQaXWw5jMyFOmmWicXt6V6WNQ7l67yBpSLsrJwYjtPg++XMmDGZVTd2CHcjzgMwz3iQfhCtMR76NQ==",
       "type": "package",
+      "path": "Microsoft.Dnx.Testing.Abstractions/1.0.0-rc1-final",
       "files": [
-        "Microsoft.Dnx.Testing.Abstractions.1.0.0-rc1-final.nupkg",
         "Microsoft.Dnx.Testing.Abstractions.1.0.0-rc1-final.nupkg.sha512",
         "Microsoft.Dnx.Testing.Abstractions.nuspec",
         "lib/dotnet5.4/Microsoft.Dnx.Testing.Abstractions.dll",
@@ -978,8 +1091,8 @@
     "Microsoft.Extensions.Configuration/1.0.0-rc1-final": {
       "sha512": "2ayWzqMVGWjr8o8bOSnIsyQbi9sLz9Ya8+YM+9tM/ivSnLHuN7TNHNfJv4jTyRZvoOafdh5Ivlc/OdmsZPXlQQ==",
       "type": "package",
+      "path": "Microsoft.Extensions.Configuration/1.0.0-rc1-final",
       "files": [
-        "Microsoft.Extensions.Configuration.1.0.0-rc1-final.nupkg",
         "Microsoft.Extensions.Configuration.1.0.0-rc1-final.nupkg.sha512",
         "Microsoft.Extensions.Configuration.nuspec",
         "lib/dotnet5.4/Microsoft.Extensions.Configuration.dll",
@@ -993,8 +1106,8 @@
     "Microsoft.Extensions.Configuration.Abstractions/1.0.0-rc1-final": {
       "sha512": "xA7ObOlIswcx2qakv69kz0pnBizFJrmwxRxJyjPOHWfevF4W+OdolZsbKOc12kY7y5upqhAvNGWTblffMvADHA==",
       "type": "package",
+      "path": "Microsoft.Extensions.Configuration.Abstractions/1.0.0-rc1-final",
       "files": [
-        "Microsoft.Extensions.Configuration.Abstractions.1.0.0-rc1-final.nupkg",
         "Microsoft.Extensions.Configuration.Abstractions.1.0.0-rc1-final.nupkg.sha512",
         "Microsoft.Extensions.Configuration.Abstractions.nuspec",
         "lib/dotnet5.4/Microsoft.Extensions.Configuration.Abstractions.dll",
@@ -1008,8 +1121,8 @@
     "Microsoft.Extensions.Configuration.CommandLine/1.0.0-rc1-final": {
       "sha512": "k+kXsefuLV5WkkG6X8GFn9zf9ZrMyC3dddgm6I6scpbanDyoKUYrRUP2VhW0ViO6TIva0soh6jJy3pFPCrNx9Q==",
       "type": "package",
+      "path": "Microsoft.Extensions.Configuration.CommandLine/1.0.0-rc1-final",
       "files": [
-        "Microsoft.Extensions.Configuration.CommandLine.1.0.0-rc1-final.nupkg",
         "Microsoft.Extensions.Configuration.CommandLine.1.0.0-rc1-final.nupkg.sha512",
         "Microsoft.Extensions.Configuration.CommandLine.nuspec",
         "lib/dotnet5.4/Microsoft.Extensions.Configuration.CommandLine.dll",
@@ -1023,8 +1136,8 @@
     "Microsoft.Extensions.Configuration.EnvironmentVariables/1.0.0-rc1-final": {
       "sha512": "CaNirkiOycy0L6ptGxmpDkHZ2lzqcHKDbQJBfEhobnEt43pqKGKgAPC5dW3DfnsMpuK+inypm5iht9t6tq4vjg==",
       "type": "package",
+      "path": "Microsoft.Extensions.Configuration.EnvironmentVariables/1.0.0-rc1-final",
       "files": [
-        "Microsoft.Extensions.Configuration.EnvironmentVariables.1.0.0-rc1-final.nupkg",
         "Microsoft.Extensions.Configuration.EnvironmentVariables.1.0.0-rc1-final.nupkg.sha512",
         "Microsoft.Extensions.Configuration.EnvironmentVariables.nuspec",
         "lib/dotnet5.4/Microsoft.Extensions.Configuration.EnvironmentVariables.dll",
@@ -1038,8 +1151,8 @@
     "Microsoft.Extensions.Configuration.FileExtensions/1.0.0-rc1-final": {
       "sha512": "w2x8nqrp2YUgNBJuZ3SUmexBtjaoZFzCQtObRTjrE4GWceFEmaLZtXFvs4n9IgRQkOqqCza7Fv7NXnD9m2emjQ==",
       "type": "package",
+      "path": "Microsoft.Extensions.Configuration.FileExtensions/1.0.0-rc1-final",
       "files": [
-        "Microsoft.Extensions.Configuration.FileExtensions.1.0.0-rc1-final.nupkg",
         "Microsoft.Extensions.Configuration.FileExtensions.1.0.0-rc1-final.nupkg.sha512",
         "Microsoft.Extensions.Configuration.FileExtensions.nuspec",
         "lib/dotnet5.4/Microsoft.Extensions.Configuration.FileExtensions.dll",
@@ -1053,8 +1166,8 @@
     "Microsoft.Extensions.Configuration.Json/1.0.0-rc1-final": {
       "sha512": "9v+RpswnXEpAP5mx8J1w1yZZT2pPtMBTnOAauNh2c9ju5Dhq3ljxvbm0S9j6o5F/EFSLlbfN/brxTJN3qa/upw==",
       "type": "package",
+      "path": "Microsoft.Extensions.Configuration.Json/1.0.0-rc1-final",
       "files": [
-        "Microsoft.Extensions.Configuration.Json.1.0.0-rc1-final.nupkg",
         "Microsoft.Extensions.Configuration.Json.1.0.0-rc1-final.nupkg.sha512",
         "Microsoft.Extensions.Configuration.Json.nuspec",
         "lib/dotnet5.4/Microsoft.Extensions.Configuration.Json.dll",
@@ -1068,8 +1181,8 @@
     "Microsoft.Extensions.DependencyInjection/1.0.0-rc1-final": {
       "sha512": "S/+s3fq85j21H5nYOvh1fIt1arl8F5lZ7Ryiw/qend83yHQwIQbBs+dip9FhqiPmAn6Dz3UhW0likQQurfEsLQ==",
       "type": "package",
+      "path": "Microsoft.Extensions.DependencyInjection/1.0.0-rc1-final",
       "files": [
-        "Microsoft.Extensions.DependencyInjection.1.0.0-rc1-final.nupkg",
         "Microsoft.Extensions.DependencyInjection.1.0.0-rc1-final.nupkg.sha512",
         "Microsoft.Extensions.DependencyInjection.nuspec",
         "lib/dotnet5.4/Microsoft.Extensions.DependencyInjection.dll",
@@ -1083,8 +1196,8 @@
     "Microsoft.Extensions.DependencyInjection.Abstractions/1.0.0-rc1-final": {
       "sha512": "MUKexXAsRZ55C7YZ26ShePZgBeW+6FbasxeIVmZ/BZIgiG4uw6yPOdfl9WvTaUL9SFK2sEPcYLatWmLfTpsOAA==",
       "type": "package",
+      "path": "Microsoft.Extensions.DependencyInjection.Abstractions/1.0.0-rc1-final",
       "files": [
-        "Microsoft.Extensions.DependencyInjection.Abstractions.1.0.0-rc1-final.nupkg",
         "Microsoft.Extensions.DependencyInjection.Abstractions.1.0.0-rc1-final.nupkg.sha512",
         "Microsoft.Extensions.DependencyInjection.Abstractions.nuspec",
         "lib/dotnet5.4/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
@@ -1098,8 +1211,8 @@
     "Microsoft.Extensions.Logging/1.0.0-rc1-final": {
       "sha512": "anegHH4XHjaCmC557A0uvnJzprT44MOKr669yfiQLtITA+lQrM3aMijxjjdCREnxE8ftXuSz+6wViCvkgcAOhA==",
       "type": "package",
+      "path": "Microsoft.Extensions.Logging/1.0.0-rc1-final",
       "files": [
-        "Microsoft.Extensions.Logging.1.0.0-rc1-final.nupkg",
         "Microsoft.Extensions.Logging.1.0.0-rc1-final.nupkg.sha512",
         "Microsoft.Extensions.Logging.nuspec",
         "lib/dotnet5.4/Microsoft.Extensions.Logging.dll",
@@ -1113,8 +1226,8 @@
     "Microsoft.Extensions.Logging.Abstractions/1.0.0-rc1-final": {
       "sha512": "ejGO1JhPXMsCCSyH12xwkOYsb9oBv2gHc3LLaT2jevrD//xuQizWaxpVk0/rHGdORkWdp+kT2Qmuz/sLyNWW/g==",
       "type": "package",
+      "path": "Microsoft.Extensions.Logging.Abstractions/1.0.0-rc1-final",
       "files": [
-        "Microsoft.Extensions.Logging.Abstractions.1.0.0-rc1-final.nupkg",
         "Microsoft.Extensions.Logging.Abstractions.1.0.0-rc1-final.nupkg.sha512",
         "Microsoft.Extensions.Logging.Abstractions.nuspec",
         "lib/dotnet5.4/Microsoft.Extensions.Logging.Abstractions.dll",
@@ -1128,8 +1241,8 @@
     "Microsoft.Extensions.PlatformAbstractions/1.0.0-rc1-final": {
       "sha512": "26HS4c6MBisN+D7XUr8HObOI/JJvSJQYQR//Bfw/hi9UqhqK3lFpNKjOuYHI+gTxYdXT46HqZiz4D+k7d+ob3A==",
       "type": "package",
+      "path": "Microsoft.Extensions.PlatformAbstractions/1.0.0-rc1-final",
       "files": [
-        "Microsoft.Extensions.PlatformAbstractions.1.0.0-rc1-final.nupkg",
         "Microsoft.Extensions.PlatformAbstractions.1.0.0-rc1-final.nupkg.sha512",
         "Microsoft.Extensions.PlatformAbstractions.nuspec",
         "lib/dotnet5.4/Microsoft.Extensions.PlatformAbstractions.dll",
@@ -1141,8 +1254,8 @@
     "Microsoft.Extensions.Primitives/1.0.0-rc1-final": {
       "sha512": "oHWqBARJveyM7LctuqQqvsTC58hxoq0gGnHr6Qsxie71LIkZpfE21IklhSLOsqmv4QIpes/G6k1vZbAQ+cC/nw==",
       "type": "package",
+      "path": "Microsoft.Extensions.Primitives/1.0.0-rc1-final",
       "files": [
-        "Microsoft.Extensions.Primitives.1.0.0-rc1-final.nupkg",
         "Microsoft.Extensions.Primitives.1.0.0-rc1-final.nupkg.sha512",
         "Microsoft.Extensions.Primitives.nuspec",
         "lib/dotnet5.4/Microsoft.Extensions.Primitives.dll",
@@ -1156,8 +1269,8 @@
     "Microsoft.Extensions.WebEncoders.Core/1.0.0-rc1-final": {
       "sha512": "wt47w3Zu7JvuD7CfRSCaz0IZL5EzpuzicRm6Qcidteb2TVeB98Psg7YGiwIBeYB1b52YFTBgqC+ySKk/GRhy2A==",
       "type": "package",
+      "path": "Microsoft.Extensions.WebEncoders.Core/1.0.0-rc1-final",
       "files": [
-        "Microsoft.Extensions.WebEncoders.Core.1.0.0-rc1-final.nupkg",
         "Microsoft.Extensions.WebEncoders.Core.1.0.0-rc1-final.nupkg.sha512",
         "Microsoft.Extensions.WebEncoders.Core.nuspec",
         "lib/dotnet5.4/Microsoft.Extensions.WebEncoders.Core.dll",
@@ -1169,8 +1282,8 @@
     "Microsoft.Net.Http.Headers/1.0.0-rc1-final": {
       "sha512": "Y10hkmHQZLieW3J6J+vTiq86vifmJ7Vc2zrwNR349oAaUGjTHL0ws6rqHn0JDIcawBna4AE3OBNsL9vuZuE8bw==",
       "type": "package",
+      "path": "Microsoft.Net.Http.Headers/1.0.0-rc1-final",
       "files": [
-        "Microsoft.Net.Http.Headers.1.0.0-rc1-final.nupkg",
         "Microsoft.Net.Http.Headers.1.0.0-rc1-final.nupkg.sha512",
         "Microsoft.Net.Http.Headers.nuspec",
         "lib/dotnet5.4/Microsoft.Net.Http.Headers.dll",
@@ -1179,11 +1292,21 @@
         "lib/net451/Microsoft.Net.Http.Headers.xml"
       ]
     },
+    "Microsoft.Web.Infrastructure/1.0.0": {
+      "sha512": "FNmvLn5m2LTU/Rs2KWVo0SIIh9Ek+U0ojex7xeDaSHw/zgEP77A8vY5cVWgUtBGS8MJfDGNn8rpXJWEIQaPwTg==",
+      "type": "package",
+      "path": "Microsoft.Web.Infrastructure/1.0.0",
+      "files": [
+        "Microsoft.Web.Infrastructure.1.0.0.nupkg.sha512",
+        "Microsoft.Web.Infrastructure.nuspec",
+        "lib/net40/Microsoft.Web.Infrastructure.dll"
+      ]
+    },
     "Nancy/1.3.0": {
       "sha512": "RTh9rOhvWvhwhh2NihfliP/3GUcVTrWbG4HkY6NGTuhZ39iguaCEU6pwZsO5IDq2HR+yErxTLVVYSmehw9CC3g==",
       "type": "package",
+      "path": "Nancy/1.3.0",
       "files": [
-        "Nancy.1.3.0.nupkg",
         "Nancy.1.3.0.nupkg.sha512",
         "Nancy.nuspec",
         "lib/net40/Nancy.dll",
@@ -1193,10 +1316,10 @@
     "Nancy.ViewEngines.Razor/1.3.0": {
       "sha512": "uMeEx7Dy2Z69j1Iei4fgQxrA7ZyoHrO1ri3XIs0tGcSjDjRuIgft4NHQzAL371JrhhmIsGYYmK+kcSzJQhFwlQ==",
       "type": "package",
+      "path": "Nancy.ViewEngines.Razor/1.3.0",
       "files": [
         "BuildProviders/Nancy.ViewEngines.Razor.BuildProviders.XML",
         "BuildProviders/Nancy.ViewEngines.Razor.BuildProviders.dll",
-        "Nancy.ViewEngines.Razor.1.3.0.nupkg",
         "Nancy.ViewEngines.Razor.1.3.0.nupkg.sha512",
         "Nancy.ViewEngines.Razor.nuspec",
         "Tools/GetNancyRazorBuildProviderPostBuildCmd.ps1",
@@ -1211,8 +1334,8 @@
     "Newtonsoft.Json/7.0.1": {
       "sha512": "q3V4KLetMLnt1gpAVWgtXnHjKs0UG/RalBc29u2ZKxd5t5Ze4JBL5WiiYIklJyK/5CRiIiNwigVQUo0FgbsuWA==",
       "type": "package",
+      "path": "Newtonsoft.Json/7.0.1",
       "files": [
-        "Newtonsoft.Json.7.0.1.nupkg",
         "Newtonsoft.Json.7.0.1.nupkg.sha512",
         "Newtonsoft.Json.nuspec",
         "lib/net20/Newtonsoft.Json.dll",
@@ -1233,8 +1356,8 @@
     "System.Diagnostics.DiagnosticSource/4.0.0-beta-23516": {
       "sha512": "0uDR/UOmFCNPDCyHEPHhCrk6c1iRnDp00YqwSZ8Qf5aaaJjm4WXnf4Q9xZw4OoApsSiODSypDMdpQU24IxR16A==",
       "type": "package",
+      "path": "System.Diagnostics.DiagnosticSource/4.0.0-beta-23516",
       "files": [
-        "System.Diagnostics.DiagnosticSource.4.0.0-beta-23516.nupkg",
         "System.Diagnostics.DiagnosticSource.4.0.0-beta-23516.nupkg.sha512",
         "System.Diagnostics.DiagnosticSource.nuspec",
         "lib/dotnet5.2/System.Diagnostics.DiagnosticSource.dll",
@@ -1246,9 +1369,9 @@
     "System.Diagnostics.Tracing/4.0.0": {
       "sha512": "tzqQJPgD4bKs0eE5Gx9HEsxiHSBGcL42PImkjhwXTQK6iQbLTTB9mi+G7mUyEjlH8LUcm7F5QHEs+O+LpruOrQ==",
       "type": "package",
+      "path": "System.Diagnostics.Tracing/4.0.0",
       "files": [
         "License.rtf",
-        "System.Diagnostics.Tracing.4.0.0.nupkg",
         "System.Diagnostics.Tracing.4.0.0.nupkg.sha512",
         "System.Diagnostics.Tracing.nuspec",
         "lib/MonoAndroid10/_._",
@@ -1292,8 +1415,8 @@
     "System.Numerics.Vectors/4.1.1-beta-23516": {
       "sha512": "FCYCEjc3BXBTpVZTxMqf2m/sGYyDzLwICy5lNKgZzT8WfshJhsTGjJuETwsh1Cwi6bksw9YiTB6yeeWBBJDnTA==",
       "type": "package",
+      "path": "System.Numerics.Vectors/4.1.1-beta-23516",
       "files": [
-        "System.Numerics.Vectors.4.1.1-beta-23516.nupkg",
         "System.Numerics.Vectors.4.1.1-beta-23516.nupkg.sha512",
         "System.Numerics.Vectors.nuspec",
         "lib/MonoAndroid10/_._",
@@ -1316,9 +1439,9 @@
     "System.Runtime/4.0.0": {
       "sha512": "Uq9epame8hEqJlj4KaWb67dDJvj4IM37jRFGVeFbugRdPz48bR0voyBhrbf3iSa2tAmlkg4lsa6BUOL9iwlMew==",
       "type": "package",
+      "path": "System.Runtime/4.0.0",
       "files": [
         "License.rtf",
-        "System.Runtime.4.0.0.nupkg",
         "System.Runtime.4.0.0.nupkg.sha512",
         "System.Runtime.nuspec",
         "lib/MonoAndroid10/_._",
@@ -1364,9 +1487,9 @@
     "System.Threading/4.0.0": {
       "sha512": "H6O/9gUrjPDNYanh/7OFGAZHjVXvEuITD0RcnjfvIV04HOGrOPqUBU0kmz9RIX/7YGgCQn1o1S2DX6Cuv8kVGQ==",
       "type": "package",
+      "path": "System.Threading/4.0.0",
       "files": [
         "License.rtf",
-        "System.Threading.4.0.0.nupkg",
         "System.Threading.4.0.0.nupkg.sha512",
         "System.Threading.nuspec",
         "lib/MonoAndroid10/_._",
@@ -1412,8 +1535,8 @@
     "xunit/2.1.0": {
       "sha512": "u/7VQSOSXa7kSG4iK6Lcn7RqKZQ3hk7cnyMNVMpXHSP0RI5VQEtc44hvkG3LyWOVsx1dhUDD3rPAHAxyOUDQJw==",
       "type": "package",
+      "path": "xunit/2.1.0",
       "files": [
-        "xunit.2.1.0.nupkg",
         "xunit.2.1.0.nupkg.sha512",
         "xunit.nuspec"
       ]
@@ -1421,12 +1544,12 @@
     "xunit.abstractions/2.0.0": {
       "sha512": "NAdxKQRzuLnCZ0g++x6i87/8rMBpQoRiRlRNLAqfODm2zJPbteHRoSER3DXfxnqrHXyBJT8rFaZ8uveBeQyaMA==",
       "type": "package",
+      "path": "xunit.abstractions/2.0.0",
       "files": [
         "lib/net35/xunit.abstractions.dll",
         "lib/net35/xunit.abstractions.xml",
         "lib/portable-net45+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS/xunit.abstractions.dll",
         "lib/portable-net45+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS/xunit.abstractions.xml",
-        "xunit.abstractions.2.0.0.nupkg",
         "xunit.abstractions.2.0.0.nupkg.sha512",
         "xunit.abstractions.nuspec"
       ]
@@ -1434,6 +1557,7 @@
     "xunit.assert/2.1.0": {
       "sha512": "Hhhw+YaTe+BGhbr57dxVE+6VJk8BfThqFFii1XIsSZ4qx+SSCixprJC10JkiLRVSTfWyT8W/4nAf6NQgIrmBxA==",
       "type": "package",
+      "path": "xunit.assert/2.1.0",
       "files": [
         "lib/dotnet/xunit.assert.dll",
         "lib/dotnet/xunit.assert.pdb",
@@ -1441,7 +1565,6 @@
         "lib/portable-net45+win8+wp8+wpa81/xunit.assert.dll",
         "lib/portable-net45+win8+wp8+wpa81/xunit.assert.pdb",
         "lib/portable-net45+win8+wp8+wpa81/xunit.assert.xml",
-        "xunit.assert.2.1.0.nupkg",
         "xunit.assert.2.1.0.nupkg.sha512",
         "xunit.assert.nuspec"
       ]
@@ -1449,6 +1572,7 @@
     "xunit.core/2.1.0": {
       "sha512": "jlbYdPbnkPIRwJllcT/tQZCNsSElVDEymdpJfH79uTUrPARkELVYw9o/zhAjKZXmeikGqGK5C2Yny4gTNoEu0Q==",
       "type": "package",
+      "path": "xunit.core/2.1.0",
       "files": [
         "build/_desktop/xunit.execution.desktop.dll",
         "build/dnx451/_._",
@@ -1461,7 +1585,6 @@
         "build/wp8/_._",
         "build/wpa81/xunit.core.props",
         "build/xamarinios/_._",
-        "xunit.core.2.1.0.nupkg",
         "xunit.core.2.1.0.nupkg.sha512",
         "xunit.core.nuspec"
       ]
@@ -1469,6 +1592,7 @@
     "xunit.extensibility.core/2.1.0": {
       "sha512": "ANWM3WxeaeHjACLRlmrv+xOc0WAcr3cvIiJE+gqbdzTv1NCH4p1VDyT+8WmmdCc9db0WFiJLaDy4YTYsL1wWXw==",
       "type": "package",
+      "path": "xunit.extensibility.core/2.1.0",
       "files": [
         "lib/dotnet/xunit.core.dll",
         "lib/dotnet/xunit.core.dll.tdnet",
@@ -1482,7 +1606,6 @@
         "lib/portable-net45+win8+wp8+wpa81/xunit.core.xml",
         "lib/portable-net45+win8+wp8+wpa81/xunit.runner.tdnet.dll",
         "lib/portable-net45+win8+wp8+wpa81/xunit.runner.utility.desktop.dll",
-        "xunit.extensibility.core.2.1.0.nupkg",
         "xunit.extensibility.core.2.1.0.nupkg.sha512",
         "xunit.extensibility.core.nuspec"
       ]
@@ -1490,6 +1613,7 @@
     "xunit.extensibility.execution/2.1.0": {
       "sha512": "tAoNafoVknKa3sZJPMvtZRnhOSk3gasEGeceSm7w/gyGwsR/OXFxndWJB1xSHeoy33d3Z6jFqn4A3j+pWCF0Ew==",
       "type": "package",
+      "path": "xunit.extensibility.execution/2.1.0",
       "files": [
         "lib/dnx451/xunit.execution.dotnet.dll",
         "lib/dnx451/xunit.execution.dotnet.pdb",
@@ -1521,7 +1645,6 @@
         "lib/xamarinios/xunit.execution.dotnet.dll",
         "lib/xamarinios/xunit.execution.dotnet.pdb",
         "lib/xamarinios/xunit.execution.dotnet.xml",
-        "xunit.extensibility.execution.2.1.0.nupkg",
         "xunit.extensibility.execution.2.1.0.nupkg.sha512",
         "xunit.extensibility.execution.nuspec"
       ]
@@ -1529,12 +1652,12 @@
     "xunit.runner.dnx/2.1.0-rc1-build204": {
       "sha512": "GUtWIQN3h7QGJdp5RTgvbPVjdWC7tXIRZhzpW8txNDC9nbMph4/TWbVEZKCGUOsLvE5BZg3icRGb6JR3ZwBADA==",
       "type": "package",
+      "path": "xunit.runner.dnx/2.1.0-rc1-build204",
       "files": [
         "lib/dnx451/xunit.runner.dnx.dll",
         "lib/dnx451/xunit.runner.dnx.xml",
         "lib/dnxcore50/xunit.runner.dnx.dll",
         "lib/dnxcore50/xunit.runner.dnx.xml",
-        "xunit.runner.dnx.2.1.0-rc1-build204.nupkg",
         "xunit.runner.dnx.2.1.0-rc1-build204.nupkg.sha512",
         "xunit.runner.dnx.nuspec"
       ]
@@ -1542,11 +1665,11 @@
     "xunit.runner.reporters/2.1.0": {
       "sha512": "ja0kJrvwSiho2TRFpfHfa+6tGJI5edcyD8fdekTkjn7Us17PbGqglIihRe8sR9YFAmS4ipEC8+7CXOM/b69ENQ==",
       "type": "package",
+      "path": "xunit.runner.reporters/2.1.0",
       "files": [
         "lib/dnx451/xunit.runner.reporters.dotnet.dll",
         "lib/dotnet/xunit.runner.reporters.dotnet.dll",
         "lib/net45/xunit.runner.reporters.desktop.dll",
-        "xunit.runner.reporters.2.1.0.nupkg",
         "xunit.runner.reporters.2.1.0.nupkg.sha512",
         "xunit.runner.reporters.nuspec"
       ]
@@ -1554,6 +1677,7 @@
     "xunit.runner.utility/2.1.0": {
       "sha512": "jJJHROwskIhdQuYw7exe7KaW20dOCa+lzV/lY7Zdh1ZZzdUPpScMi9ReJIutqiyjhemGF8V/GaMIPrcjyZ4ioQ==",
       "type": "package",
+      "path": "xunit.runner.utility/2.1.0",
       "files": [
         "lib/dnx451/xunit.runner.utility.dotnet.dll",
         "lib/dnx451/xunit.runner.utility.dotnet.pdb",
@@ -1567,7 +1691,6 @@
         "lib/portable-net45+win8+wp8+wpa81/xunit.runner.utility.dotnet.dll",
         "lib/portable-net45+win8+wp8+wpa81/xunit.runner.utility.dotnet.pdb",
         "lib/portable-net45+win8+wp8+wpa81/xunit.runner.utility.dotnet.xml",
-        "xunit.runner.utility.2.1.0.nupkg",
         "xunit.runner.utility.2.1.0.nupkg.sha512",
         "xunit.runner.utility.nuspec"
       ]
@@ -1577,6 +1700,8 @@
     "": [
       "Microsoft.AspNet.Owin >= 1.0.0-*",
       "Microsoft.AspNet.Server.Kestrel >= 1.0.0-*",
+      "Microsoft.AspNet.WebHelpers >= 3.2.3",
+      "Microsoft.AspNet.WebPages.Data >= 3.2.3",
       "Nancy >= 1.3.0",
       "Nancy.ViewEngines.Razor >= 1.3.0",
       "xunit >= 2.1.0",

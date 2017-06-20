@@ -23,10 +23,21 @@
       <nav class="sign-in">
         <div class="sign-in-section">
           <form action="/login" method="post">
-            <input type="email" name="email" placeholder="Email" required>
+            <input type="username" name="username" placeholder="Username" required>
             <input type="password" name="password" placeholder="Password" required>
             <button type="submit" name="button" class="login-button">Log in</button>
           </form>
+          @if(Model != null)
+          {
+            @if(Model.ContainsKey("bad-login"))
+            {
+              <p>No account with that username exists.</p>
+            }
+            @if(Model.ContainsKey("bad-password"))
+            {
+              <p>Invalid password.</p>
+            }
+          }
         </div><!--SIGN IN SECTION ENDS-->
       </nav><!--NAV ENDS-->
       <div class="sign-up-form">
@@ -43,7 +54,7 @@
         </form>
         @if(@Model != null)
         {
-          @if(@Model.ContainsKey("bad-login"))
+          @if(@Model.ContainsKey("password-mismatch"))
           {
             <p>Both passwords must match.</p>
           }

@@ -432,6 +432,27 @@ namespace SocialMedia.Objects
       Assert.Equal(controlList, testList);
     }
 
+    public void User_AccountExists_True()
+    {
+      User user1 = new User("Joshua", "Fairchild", "jfairchild", "password", "mail@mail.com", new DateTime(2017, 06, 01));
+      user1.Save();
+
+      bool testBool = User.AccountExists("jfairchild");
+
+      Assert.Equal(true, testBool);
+    }
+
+    [Fact]
+    public void User_LookupByUsername_ReturnsUser()
+    {
+      User user1 = new User("Joshua", "Fairchild", "jfairchild", "password", "mail@mail.com", new DateTime(2017, 06, 01));
+      user1.Save();
+
+      User foundUser = User.LookupByUsername("jfairchild");
+
+      Assert.Equal(user1, foundUser);
+    }
+
     public void Dispose()
     {
       User.DeleteAll();

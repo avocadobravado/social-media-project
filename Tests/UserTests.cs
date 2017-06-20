@@ -354,6 +354,58 @@ namespace SocialMedia.Objects
       Assert.Equal(false, testUser.HasDislikedPost(newPost));
     }
 
+    [Fact]
+    public void User_HasLikedComment_True()
+    {
+      User testUser = new User("Joshua", "Fairchild", "jfairchild", "password", "mail@mail.com", new DateTime(2017, 06, 19));
+      testUser.Save();
+
+      Comment newComment = new Comment("Hello world", 1, 1, new DateTime(2017, 06, 19));
+      newComment.Save();
+
+      testUser.LikeComment(newComment);
+
+      Assert.Equal(true, testUser.HasLikedComment(newComment));
+    }
+
+    [Fact]
+    public void User_HasLikedComment_False()
+    {
+      User testUser = new User("Joshua", "Fairchild", "jfairchild", "password", "mail@mail.com", new DateTime(2017, 06, 19));
+      testUser.Save();
+
+      Comment newComment = new Comment("Hello world", 1, 1, new DateTime(2017, 06, 19));
+      newComment.Save();
+
+      Assert.Equal(false, testUser.HasLikedComment(newComment));
+    }
+
+    [Fact]
+    public void User_HasDislikedComment_True()
+    {
+      User testUser = new User("Joshua", "Fairchild", "jfairchild", "password", "mail@mail.com", new DateTime(2017, 06, 19));
+      testUser.Save();
+
+      Comment newComment = new Comment("Hello world", 1, 1, new DateTime(2017, 06, 19));
+      newComment.Save();
+
+      testUser.DislikeComment(newComment);
+
+      Assert.Equal(true, testUser.HasDislikedComment(newComment));
+    }
+
+    [Fact]
+    public void User_HasDislikedComment_False()
+    {
+      User testUser = new User("Joshua", "Fairchild", "jfairchild", "password", "mail@mail.com", new DateTime(2017, 06, 19));
+      testUser.Save();
+
+      Comment newComment = new Comment("Hello world", 1, 1, new DateTime(2017, 06, 19));
+      newComment.Save();
+
+      Assert.Equal(false, testUser.HasDislikedComment(newComment));
+    }
+
     public void Dispose()
     {
       User.DeleteAll();

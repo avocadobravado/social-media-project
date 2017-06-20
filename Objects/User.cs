@@ -473,6 +473,34 @@ namespace SocialMedia.Objects
       return result;
     }
 
+    public bool HasLikedComment(Comment commentToCheck)
+    {
+      bool result = false;
+      List<User> usersWhoLiked = commentToCheck.GetUsersWhoLike();
+      foreach(User user in usersWhoLiked)
+      {
+        if(user.Username == this.Username)
+        {
+          result = true;
+        }
+      }
+      return result;
+    }
+
+    public bool HasDislikedComment(Comment commentToCheck)
+    {
+      bool result = false;
+      List<User> usersWhoLiked = commentToCheck.GetUsersWhoDislike();
+      foreach(User user in usersWhoLiked)
+      {
+        if(user.Username == this.Username)
+        {
+          result = true;
+        }
+      }
+      return result;
+    }
+
     public void RemoveFriend(User userToRemove)
     {
       SqlConnection conn = DB.Connection();

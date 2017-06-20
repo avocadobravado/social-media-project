@@ -176,7 +176,7 @@ namespace SocialMedia.Objects
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("SELECT * FROM posts WHERE user_id = @UserId", conn);
+      SqlCommand cmd = new SqlCommand("SELECT * FROM posts WHERE user_id = @UserId;", conn);
       cmd.Parameters.Add(new SqlParameter("@UserId", this.Id));
 
       SqlDataReader rdr = cmd.ExecuteReader();
@@ -207,13 +207,89 @@ namespace SocialMedia.Objects
       return posts;
     }
 
-    //THIS METHOD NEEDS TO DELETE FROM THE JOIN TABLE AS WELL
+    public void AddFriend(User userToAdd)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("INSERT INTO user_friendships (user1_id, user2_id, timestamp) VALUES (@User1Id, @User2Id, @Timestamp);", conn);
+      cmd.Parameters.Add(new SqlParameter("@User1Id", this.Id));
+      cmd.Parameters.Add(new SqlParameter("@User2Id", userToAdd.Id));
+      cmd.Parameters.Add(new SqlParameter("@Timestamp", DateTime.Now));
+
+      cmd.ExecuteNonQuery();
+      if(conn != null)
+      {
+        conn.Close();
+      }
+    }
+
+    public List<User> GetFriends()
+    {
+      List<User> friends = new List<User>{};
+
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT users.* FROM users JOIN user_friendships ON (users.id = user_friendships.user2_id) WHERE user1_id = @UserId;", conn);
+      cmd.Parameters.Add(new SqlParameter("@UserId", this.Id));
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while(rdr.Read())
+      {
+        int id = rdr.GetInt32(0);
+        string firstName = rdr.GetString(1);
+        string lastName = rdr.GetString(2);
+        string username = rdr.GetString(3);
+        string password = rdr.GetString(4);
+        string email = rdr.GetString(5);
+        DateTime timestamp = rdr.GetDateTime(6);
+        User newUser = new User(firstName, lastName, username, password, email, timestamp, id);
+        friends.Add(newUser);
+      }
+
+      if(rdr != null)
+      {
+        rdr.Close();
+      }
+
+      SqlCommand cmd2 = new SqlCommand("SELECT users.* FROM users JOIN user_friendships ON (users.id = user_friendships.user1_id) WHERE user2_id = @UserId;", conn);
+      cmd2.Parameters.Add(new SqlParameter("@UserId", this.Id));
+
+      SqlDataReader rdr2 = cmd2.ExecuteReader();
+
+      while(rdr2.Read())
+      {
+        int id = rdr2.GetInt32(0);
+        string firstName = rdr2.GetString(1);
+        string lastName = rdr2.GetString(2);
+        string username = rdr2.GetString(3);
+        string password = rdr2.GetString(4);
+        string email = rdr2.GetString(5);
+        DateTime timestamp = rdr2.GetDateTime(6);
+        User newUser = new User(firstName, lastName, username, password, email, timestamp, id);
+        friends.Add(newUser);
+      }
+
+      if(rdr2 != null)
+      {
+        rdr2.Close();
+      }
+      if(conn != null)
+      {
+        conn.Close();
+      }
+
+      return friends;
+    }
+
     public void Delete()
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("DELETE FROM users WHERE id = @UserId; DELETE FROM comments WHERE user_id = @UserId; DELETE FROM posts WHERE user_id = @UserId;", conn);
+      SqlCommand cmd = new SqlCommand("DELETE FROM users WHERE id = @UserId; DELETE FROM comments WHERE user_id = @UserId; DELETE FROM posts WHERE user_id = @UserId; DELETE FROM user_friendships WHERE user1_id = @UserId; DELETE FROM user_friendships WHERE user2_id = @UserId", conn);
       cmd.Parameters.Add(new SqlParameter("@UserId", this.Id));
       cmd.ExecuteNonQuery();
 

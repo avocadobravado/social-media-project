@@ -112,6 +112,57 @@ namespace SocialMedia.Objects
       Assert.Equal(testList, controlList);
     }
 
+    [Fact]
+    public void User_AddFriend_User1FriendsUser2()
+    {
+      User user1 = new User("Joshua", "Fairchild", "jfairchild", "password", "mail@mail.com", new DateTime(2017, 06, 19));
+      user1.Save();
+      User user2 = new User("Guy", "Anderson", "ganderson", "password", "mail@mail.com", new DateTime(2017, 06, 19));
+      user2.Save();
+
+      user1.AddFriend(user2);
+
+      List<User> testList = user1.GetFriends();
+      List<User> controlList = new List<User>{user2};
+
+      Assert.Equal(controlList, testList);
+    }
+
+    [Fact]
+    public void User_AddFriend_User2FriendsUser1()
+    {
+      User user1 = new User("Joshua", "Fairchild", "jfairchild", "password", "mail@mail.com", new DateTime(2017, 06, 19));
+      user1.Save();
+      User user2 = new User("Guy", "Anderson", "ganderson", "password", "mail@mail.com", new DateTime(2017, 06, 19));
+      user2.Save();
+
+      user2.AddFriend(user1);
+
+      List<User> testList = user2.GetFriends();
+      List<User> controlList = new List<User>{user1};
+
+      Assert.Equal(controlList, testList);
+    }
+
+    [Fact]
+    public void User_AddFriend_MultipleFriendsAdd()
+    {
+      User user1 = new User("Joshua", "Fairchild", "jfairchild", "password", "mail@mail.com", new DateTime(2017, 06, 19));
+      user1.Save();
+      User user2 = new User("Guy", "Anderson", "ganderson", "password", "mail@mail.com", new DateTime(2017, 06, 19));
+      user2.Save();
+      User user3 = new User("Tom", "Hanks", "thanks", "password", "mail@mail.com", new DateTime(2017, 06, 19));
+      user3.Save();
+
+      user1.AddFriend(user2);
+      user3.AddFriend(user1);
+
+      List<User> testList = user1.GetFriends();
+      List<User> controlList = new List<User>{user2, user3};
+
+      Assert.Equal(controlList, testList);
+    }
+
     public void Dispose()
     {
       User.DeleteAll();

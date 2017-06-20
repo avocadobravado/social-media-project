@@ -164,6 +164,42 @@ namespace SocialMedia.Objects
       }
     }
 
+    public List<Comment> GetComments()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT * FROM comments WHERE post_id = @PostId;", conn);
+      cmd.Parameters.Add(new SqlParameter("@PostId", this.Id));
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      List<Comment> comments = new List<Comment>{};
+      while(rdr.Read())
+      {
+        int id = rdr.GetInt32(0);
+        string content = rdr.GetString(1);
+        int postId = rdr.GetInt32(2);
+        int userId = rdr.GetInt32(3);
+        int likes = rdr.GetInt32(4);
+        int dislikes = rdr.GetInt32(5);
+        DateTime timestamp = rdr.GetDateTime(6);
+        Comment newComment = new Comment(content, postId, userId, timestamp, likes, dislikes, id);
+        comments.Add(newComment);
+      }
+
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if(conn != null)
+      {
+        conn.Close();
+      }
+
+      return comments;
+    }
+
     public static void DeleteAll()
     {
       SqlConnection conn = DB.Connection();

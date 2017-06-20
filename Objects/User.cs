@@ -524,6 +524,53 @@ namespace SocialMedia.Objects
       return timeline;
     }
 
+    public static bool AccountExists(string usernameToCheck)
+    {
+      bool result = false;
+      List<User> allUsers = User.GetAll();
+      foreach(User user in allUsers)
+      {
+        if(user.Username == usernameToCheck)
+        {
+          result = true;
+        }
+      }
+      return result;
+    }
+
+    public static User LookupByUsername(string searchQuery)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT * FROM users WHERE username = @SearchQuery", conn);
+      cmd.Parameters.Add(new SqlParameter("@SearchQuery", searchQuery));
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+      User newUser = new User();
+      while(rdr.Read())
+      {
+        newUser.Id = rdr.GetInt32(0);
+        newUser.FirstName = rdr.GetString(1);
+        newUser.LastName = rdr.GetString(2);
+        newUser.Username = rdr.GetString(3);
+        newUser.Password = rdr.GetString(4);
+        newUser.Email = rdr.GetString(5);
+        newUser.Timestamp = rdr.GetDateTime(6);
+      }
+
+      if(rdr != null)
+      {
+        rdr.Close();
+      }
+      if(conn != null)
+      {
+        conn.Close();
+      }
+
+      return newUser;
+    }
+
     public void RemoveFriend(User userToRemove)
     {
       SqlConnection conn = DB.Connection();

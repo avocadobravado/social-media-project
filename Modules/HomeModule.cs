@@ -13,11 +13,33 @@ namespace SocialMedia
       Get["/"] = _ => {
         return View["index.cshtml"];
       };
-      // Post["/login"] = _ => {
-      //
-      //
-      //   return View["news.cshtml"];
-      // };
+      Post["/login"] = _ => {
+        Dictionary <string, object> model = new Dictionary<string, object>{};
+
+        string username = Request.Form["username"];
+        string password = Request.Form["password"];
+        if(!(User.AccountExists(username)))
+        {
+          model.Add("bad-login", true);
+          return View["index.cshtml", model];
+        }
+        else
+        {
+          User loggedInUser = User.LookupByUsername(username);
+          if(password != loggedInUser.Password)
+          {
+            model.Add("bad-password", true);
+            return View["index.cshtml", model];
+          }
+          else
+          {
+            List<Post> timeline = loggedInUser.GetTimeline();
+            model.Add("user", loggedInUser);
+            model.Add("timeline", timeline);
+            return View["news.cshtml"];
+          }
+        }
+      };
       Post["/account_created"] = _ => {
         Dictionary <string, object> model = new Dictionary<string, object>{};
         string firstName = Request.Form["first-name"];
@@ -28,7 +50,7 @@ namespace SocialMedia
         string email = Request.Form["email"];
         if(password != passwordConfirm)
         {
-          model.Add("bad-login", true);
+          model.Add("password-mismatch", true);
           return View["index.cshtml", model];
         }
         else

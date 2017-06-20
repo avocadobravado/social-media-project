@@ -1,8 +1,16 @@
 body {
   font-size: 1.2em;
-  font-family: sans-serif;
+  font-family: $primary-font;
 }
 
 a, li a {
   text-decoration: none;
+}
+
+button {
+  font-family: $primary-font;
+}
+
+input {
+  font-family: $primary-font;
 }

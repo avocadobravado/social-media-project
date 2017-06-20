@@ -55,6 +55,22 @@ namespace SocialMedia.Objects
       Assert.Equal(controlUser, testUser);
     }
 
+    [Fact]
+    public void User_Delete_DeletesIndividualUser()
+    {
+      User user1 = new User("Joshua", "Fairchild", "jfairchild", "password", "mail@mail.com", new DateTime(2017, 06, 19));
+      user1.Save();
+      User user2 = new User("Jennifer", "Fairchild", "jenfairchild", "password", "mail@mail.com", new DateTime(2017, 06, 19));
+      user2.Save();
+
+      user2.Delete();
+
+      List<User> testList = User.GetAll();
+      List<User> controlList = new List<User>{user1};
+
+      Assert.Equal(controlList, testList);
+    }
+
     public void Dispose()
     {
       User.DeleteAll();

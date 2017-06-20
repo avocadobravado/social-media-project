@@ -155,12 +155,28 @@ namespace SocialMedia.Objects
       return foundUser;
     }
 
+    //THIS METHOD NEEDS TO DELETE FROM THE JOIN TABLE AS WELL
+    public void Delete()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("DELETE FROM users WHERE id = @UserId; DELETE FROM comments WHERE user_id = @UserId; DELETE FROM posts WHERE user_id = @UserId;", conn);
+      cmd.Parameters.Add(new SqlParameter("@UserId", this.Id));
+      cmd.ExecuteNonQuery();
+
+      if(conn != null)
+      {
+        conn.Close();
+      }
+    }
+
     public static void DeleteAll()
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("DELETE FROM users", conn);
+      SqlCommand cmd = new SqlCommand("DELETE FROM users; DELETE FROM comments; DELETE FROM posts; DELETE FROM user_friendships;", conn);
       cmd.ExecuteNonQuery();
 
       if(conn != null)

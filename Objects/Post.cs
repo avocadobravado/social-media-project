@@ -148,22 +148,6 @@ namespace SocialMedia.Objects
       return foundPost;
     }
 
-    public void Delete()
-    {
-      SqlConnection conn = DB.Connection();
-      conn.Open();
-
-      SqlCommand cmd = new SqlCommand("DELETE FROM posts WHERE id = @PostId; DELETE FROM comments WHERE post_id = @PostId;", conn);
-      cmd.Parameters.Add(new SqlParameter("@PostId", this.Id));
-
-      cmd.ExecuteNonQuery();
-
-      if(conn != null)
-      {
-        conn.Close();
-      }
-    }
-
     public List<Comment> GetComments()
     {
       SqlConnection conn = DB.Connection();
@@ -220,6 +204,22 @@ namespace SocialMedia.Objects
       {
         rdr.Close();
       }
+      if(conn != null)
+      {
+        conn.Close();
+      }
+    }
+
+    public void Delete()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("DELETE FROM posts WHERE id = @PostId; DELETE FROM comments WHERE post_id = @PostId;", conn);
+      cmd.Parameters.Add(new SqlParameter("@PostId", this.Id));
+
+      cmd.ExecuteNonQuery();
+
       if(conn != null)
       {
         conn.Close();

@@ -155,12 +155,28 @@ namespace SocialMedia.Objects
       return foundComment;
     }
 
+    public void Delete()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("DELETE FROM comments WHERE id = @CommentId;", conn);
+      cmd.Parameters.Add(new SqlParameter("@CommentId", this.Id));
+
+      cmd.ExecuteNonQuery();
+
+      if(conn != null)
+      {
+        conn.Close();
+      }
+    }
+
     public static void DeleteAll()
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("DELETE FROM comments", conn);
+      SqlCommand cmd = new SqlCommand("DELETE FROM comments;", conn);
       cmd.ExecuteNonQuery();
 
       if(conn != null)

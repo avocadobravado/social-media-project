@@ -55,6 +55,22 @@ namespace SocialMedia.Objects
       Assert.Equal(controlComment, testComment);
     }
 
+    [Fact]
+    public void Comment_Delete_DeletesIndividualComment()
+    {
+      Comment comment1 = new Comment("Hello world", 1, 1, new DateTime(2017, 06, 19));
+      comment1.Save();
+      Comment comment2 = new Comment("Goodbye world", 1, 1, new DateTime(2017, 06, 20));
+      comment2.Save();
+
+      comment2.Delete();
+
+      List<Comment> testList = Comment.GetAll();
+      List<Comment> controlList = new List<Comment>{comment1};
+
+      Assert.Equal(controlList, testList);
+    }
+
     public void Dispose()
     {
       Comment.DeleteAll();

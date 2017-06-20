@@ -14,7 +14,7 @@
   margin: 0;
   padding: 0;
   box-shadow: 3px 2px 2px #407b81;
-  background-image: url(https://github.com/avocadobravado/social-media-project-inspiration/blob/master/background.png?raw=true);
+  background-image: url(https://github.com/avocadobravado/social-media-project-inspiration/blob/master/background-img01.png?raw=true);
   background-repeat: no-repeat;
   background-size: cover;
 
@@ -34,6 +34,28 @@
  .sign-in {
    align-self: flex-end;
    flex-direction: column;
+   input {
+     width: 200px;
+     margin: 1% 0;
+     height: 30px;
+     background-color: rgba(255, 255, 255, 0.5);
+     border: none;
+     color: $dark-blue;
+   }
+   .login-button {
+     background-color: $dark-blue;
+     border: none;
+     color: $yellow-green;
+     padding: 5px 15px;
+     font-size: 18px;
+     border-radius: 3px;
+
+     &:hover {
+      transition:.6s;
+      background-color: $teal;
+      color: white;
+     }
+   }
    // @media screen and (max-width: 900px) {
    //   flex-direction: column;
    // }
@@ -49,6 +71,7 @@
       background-color: rgba(255, 255, 255, 0.5);
       border: none;
       padding: 0.75%;
+      color: $dark-blue;
     }
     h1 {
       font-size: 3em;
@@ -78,85 +101,74 @@
     &:focus {
       background-color: rgba(255, 255, 255, 0.8);
       width: 225px;
-      border: 1px solid #66b3ad;
+      border: 2px solid $teal;
     }
   }
-
   // SIGN UP BUTTON BEGINS
   .sign-up-button {
-    //Colors
-$background: #fefefe;
-#3FB8AF: #3FB8AF; // this is the hover color right now
-$secondary: #f45e61;
-$tertiary: #DAD8A7;
+    margin-top: 1%;
+    font: 100 24px/1.5em sans-serif;
+    text-align: center;
+    // background: rgba(255, 255, 255, 0.5);
+    background: none;
+    border: 0;
+    box-sizing: border-box;
+    padding: 1em 2em;
+    border-radius: 3px;
+    // border-radius: 5px;
 
-// Basic styles
-.button-wrapper {
-  background: #fefefe;
-  font: 100 24px/1.5 sans-serif;
-  text-align: center;
-}
+    // Using inset box-shadow instead of border for sizing simplicity
+    box-shadow: inset 0 0 0 2px $dark-teal, inset 0 0 0 5px $teal;
+    color: $dark-blue;
+    font-size: inherit;
+    font-weight: 700;
 
-button:focus {
-  outline: none;
-}
-// Inherits from .draw
-.meet {
-  background: none;
-  border: 0;
-  box-sizing: border-box;
-  // margin: 1em;
-  padding: 1em 2em;
+    // Required, since we're setting absolute on pseudo-elements
+    position: relative;
+    vertical-align: middle;
+    &::before,
+    &::after {
+      border-radius: 3px;
+      box-sizing: inherit;
+      content: '';
+      position: absolute;
+      border: 2px solid transparent;
+      width: 0;
+      height: 0;
+      top: 0;
+      left: 0;
+    }
 
-  // Using inset box-shadow instead of border for sizing simplicity
-  box-shadow: inset 0 0 0 2px $secondary, inset 0 0 0 5px $tertiary;
-  color: $secondary;
-  font-size: inherit;
-  font-weight: 700;
+    &:hover {
+      color: lighten($dark-blue, 10%);
+      cursor: pointer;
+    }
 
-  // Required, since we're setting absolute on pseudo-elements
-  position: relative;
-  vertical-align: middle;
+    &:hover::before,
+    &:hover::after {
+      width: 100%;
+      height: 100%;
+    }
 
+    // Change colors
+    &:hover::before {
+      border-top-color: darken($dark-blue, 5%);
+      border-right-color: darken($dark-blue, 5%);
+      transition:
+      width 0.4s ease-out, // Width expands first
+      height 0.4s ease-out 0.4s; // And then height
 
-  &::before,
-  &::after {
-    box-sizing: inherit;
-    content: '';
-    position: absolute;
-    border: 2px solid transparent;
-    width: 0;
-    height: 0;
-    top: 0;
-    left: 0;
+    }
+
+    &:hover::after {
+      border-bottom-color: darken($dark-blue, 5%);
+      border-left-color: darken($dark-blue, 5%);
+      transition: // Animate height first, then width
+      height 0.4s ease-out,
+      width 0.4s ease-out 0.4s;
+    }
   }
-
-  &:hover {
-    color: #3FB8AF;
-  }
-
-  &:hover::before,
-  &:hover::after {
-    width: 100%;
-    height: 100%;
-  }
-
-  // Change colors
-  &:hover::before {
-    border-top-color: #3FB8AF;
-    border-right-color: #3FB8AF;
-    transition:
-    width 0.4s ease-out, // Width expands first
-    height 0.4s ease-out 0.4s; // And then height
-
-  }
-
-  &:hover::after {
-    border-bottom-color: #3FB8AF;
-    border-left-color: #3FB8AF;
-    transition: // Animate height first, then width
-    height 0.4s ease-out,
-    width 0.4s ease-out 0.4s;
-  }
-  }
-}
+ }
+ button:focus {
+   outline: none;
+ }

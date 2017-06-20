@@ -335,6 +335,40 @@ namespace SocialMedia.Objects
       return matches;
     }
 
+    public void Update(string firstName, string lastName, string username, string password, string email)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("UPDATE users SET first_name = @FirstName, last_name = @LastName, username = @Username, password = @Password, email = @Email OUTPUT INSERTED.first_name, INSERTED.last_name, INSERTED.username, INSERTED.password, INSERTED.email WHERE id = @UserId;", conn);
+      cmd.Parameters.Add(new SqlParameter("@FirstName", firstName));
+      cmd.Parameters.Add(new SqlParameter("@LastName", lastName));
+      cmd.Parameters.Add(new SqlParameter("@Username", username));
+      cmd.Parameters.Add(new SqlParameter("@Password", password));
+      cmd.Parameters.Add(new SqlParameter("@Email", email));
+      cmd.Parameters.Add(new SqlParameter("@UserId", this.Id));
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while(rdr.Read())
+      {
+        this.FirstName = rdr.GetString(0);
+        this.LastName = rdr.GetString(1);
+        this.Username = rdr.GetString(2);
+        this.Password = rdr.GetString(3);
+        this.Email = rdr.GetString(4);
+      }
+
+      if(rdr != null)
+      {
+        rdr.Close();
+      }
+      if(conn != null)
+      {
+        conn.Close();
+      }
+    }
+
     public void RemoveFriend(User userToRemove)
     {
       SqlConnection conn = DB.Connection();

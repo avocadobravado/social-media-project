@@ -233,6 +233,19 @@ namespace SocialMedia.Objects
       Assert.Equal(controlList, testList);
     }
 
+    [Fact]
+    public void User_Update_UpdatesUserInfo()
+    {
+      User testUser = new User("Joshua", "Fairchild", "jfairchild", "password", "mail@mail.com", new DateTime(2017, 06, 19));
+      testUser.Save();
+
+      testUser.Update("Tom", "Hanks", "thanks", "password", "hanks@mail.com");
+
+      User controlUser = new User("Tom", "Hanks", "thanks", "password", "hanks@mail.com", new DateTime(2017, 06, 19), testUser.Id);
+
+      Assert.Equal(controlUser, testUser);
+    }
+
     public void Dispose()
     {
       User.DeleteAll();

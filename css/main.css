@@ -395,10 +395,16 @@ template {
 
 body {
   font-size: 1.2em;
-  font-family: sans-serif; }
+  font-family: "Nunito"; }
 
 a, li a {
   text-decoration: none; }
+
+button {
+  font-family: "Nunito"; }
+
+input {
+  font-family: "Nunito"; }
 
 ul {
   padding: 0; }
@@ -436,42 +442,41 @@ ul {
   font-size: 12px; }
 
 .login-wrapper {
-  width: calc(85.71429%);
+  width: calc(100%);
   float: left;
   margin-left: 0;
   height: 100vh;
-  border: 5px solid tomato;
+  width: 100%;
   margin: 0;
   padding: 0; }
 
 .photo-section {
-  width: calc(42.85714%);
+  width: calc(50%);
   float: left;
   margin-left: 0;
   height: 100%;
+  width: 50%;
   margin: 0;
   padding: 0;
-  border: 1px solid thistle; }
+  box-shadow: 3px 2px 2px grey;
+  background-image: url(https://github.com/avocadobravado/social-media-project-inspiration/blob/master/background.png?raw=true); }
 
 .sign-up-section {
-  width: calc(42.85714%);
+  width: calc(41.66667%);
   float: left;
   margin-left: 0;
   height: 70%;
-  margin: 0 25px;
+  margin: 0 50px;
   padding: 0;
-  border: 1px solid orange;
   display: flex;
   flex-wrap: nowrap;
   flex-direction: column;
   justify-content: space-between; }
 
 .sign-in {
-  align-self: flex-end;
-  border: 5px solid red; }
+  align-self: flex-end; }
 
 .sign-up-form {
-  border: 5px solid yellow;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
@@ -487,7 +492,7 @@ ul {
   border-bottom: 1px inset pink; }
 
 .sidebar {
-  width: calc(28.57143%);
+  width: calc(33.33333%);
   float: left;
   margin-left: 0;
   height: 100vh;
@@ -497,14 +502,14 @@ ul {
   border: 1px solid lightblue; }
 
 .newsfeed-wrapper {
-  width: calc(85.71429%);
+  width: calc(100%);
   float: left;
   margin-left: 0;
   margin: 0;
   border: 3px solid green; }
 
 .newsfeed-posts {
-  width: calc(57.14286%);
+  width: calc(66.66667%);
   float: left;
   margin-left: 0;
   display: flex;

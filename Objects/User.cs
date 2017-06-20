@@ -155,6 +155,22 @@ namespace SocialMedia.Objects
       return foundUser;
     }
 
+    public bool UsernameTaken()
+    {
+      List<User> allUsers = User.GetAll();
+      bool isTaken = false;
+
+      foreach(User user in allUsers)
+      {
+        if(this.Username == user.Username)
+        {
+          isTaken = true;
+        }
+      }
+
+      return isTaken;
+    }
+
     //THIS METHOD NEEDS TO DELETE FROM THE JOIN TABLE AS WELL
     public void Delete()
     {

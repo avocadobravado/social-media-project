@@ -71,6 +71,30 @@ namespace SocialMedia.Objects
       Assert.Equal(controlList, testList);
     }
 
+    [Fact]
+    public void User_UsernameTaken_ReturnsFalse()
+    {
+      User user1 = new User("Joshua", "Fairchild", "jfairchild", "password", "mail@mail.com", new DateTime(2017, 06, 19));
+      user1.Save();
+
+      User user2 = new User("Joshua", "Fairchild", "fairchild1", "password", "mail@mail.com", new DateTime(2017, 06, 20));
+
+      user2.UsernameTaken();
+      Assert.Equal(false, user2.UsernameTaken());
+    }
+
+    [Fact]
+    public void User_UsernameTaken_ReturnsTrue()
+    {
+      User user1 = new User("Joshua", "Fairchild", "jfairchild", "password", "mail@mail.com", new DateTime(2017, 06, 19));
+      user1.Save();
+
+      User user2 = new User("Joshua", "Fairchild", "jfairchild", "password", "mail@mail.com", new DateTime(2017, 06, 20));
+
+      user2.UsernameTaken();
+      Assert.Equal(true, user2.UsernameTaken());
+    }
+
     public void Dispose()
     {
       User.DeleteAll();

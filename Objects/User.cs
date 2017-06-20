@@ -284,6 +284,22 @@ namespace SocialMedia.Objects
       return friends;
     }
 
+    public void RemoveFriend(User userToRemove)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("DELETE FROM user_friendships WHERE user1_id = @ThisUserId AND user2_id = @UserToRemoveId; DELETE FROM user_friendships WHERE user2_id = @ThisUserId AND user1_id = @UserToRemoveId;", conn);
+      cmd.Parameters.Add(new SqlParameter("@ThisUserId", this.Id));
+      cmd.Parameters.Add(new SqlParameter("@UserToRemoveId", userToRemove.Id));
+      cmd.ExecuteNonQuery();
+
+      if(conn != null)
+      {
+        conn.Close();
+      }
+    }
+
     public void Delete()
     {
       SqlConnection conn = DB.Connection();

@@ -171,6 +171,42 @@ namespace SocialMedia.Objects
       return isTaken;
     }
 
+    public List<Post> GetPosts()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT * FROM posts WHERE user_id = @UserId", conn);
+      cmd.Parameters.Add(new SqlParameter("@UserId", this.Id));
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      List<Post> posts = new List<Post>{};
+
+      while(rdr.Read())
+      {
+        int id = rdr.GetInt32(0);
+        string content = rdr.GetString(1);
+        int userId = rdr.GetInt32(2);
+        int likes = rdr.GetInt32(3);
+        int dislikes = rdr.GetInt32(4);
+        DateTime timestamp = rdr.GetDateTime(5);
+        Post newPost = new Post(content, userId, timestamp, likes, dislikes, id);
+        posts.Add(newPost);
+      }
+
+      if(rdr != null)
+      {
+        rdr.Close();
+      }
+      if(conn != null)
+      {
+        conn.Close();
+      }
+
+      return posts;
+    }
+
     //THIS METHOD NEEDS TO DELETE FROM THE JOIN TABLE AS WELL
     public void Delete()
     {

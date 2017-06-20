@@ -592,9 +592,6 @@ ul {
   border: 3px solid green; }
 
 .profile-container {
-  width: calc(74.64286%);
-  float: left;
-  margin-left: 0;
   border: 2px solid hotpink;
   margin: 0;
   padding: 0;
@@ -607,11 +604,11 @@ ul {
   width: 100%; }
 
 .profile-newsfeed {
-  width: 60%;
+  width: 70%;
   border: 2px solid teal; }
 
 .friends-list {
-  width: 40%;
+  width: 30%;
   border: 2px solid salmon; }
 
 .profile-picture {
@@ -639,7 +636,21 @@ ul {
     letter-spacing: 0.03em; }
 
 .profile-friends-wrapper {
+  display: flex; }
+  .profile-friends-wrapper .profile-status {
+    width: 300px;
+    height: 75px; }
+  .profile-friends-wrapper .profile-post-wrapper {
+    margin: 0 auto;
+    width: 40%;
+    min-width: 400px; }
+
+.friends-list {
+  border: 1px solid thistle;
   display: flex;
-  flex-direction: row; }
+  flex-direction: column;
+  align-items: center; }
+  .friends-list li {
+    margin: 5% 0; }
 
 /*# sourceMappingURL=main.css.map */

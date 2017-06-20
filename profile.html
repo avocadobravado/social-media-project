@@ -38,6 +38,7 @@
         </ul>
       </nav><!--SIDEBAR NAV ENDS-->
       <div class="profile-container">
+
         <!--HERO PHOTO-->
         <div class="hero-photo"></div>
         <!--HERO ENDS-->
@@ -54,11 +55,82 @@
 
         <div class="profile-friends-wrapper">
           <div class="profile-newsfeed"><!-- PROFILE NEWSFEED STARTS -->
-            <h4>Newsfeed</h4>
+            <h4>Write a post</h4>
+            <!--FORM STATUS UPDATE-->
+            <div class="profile-post-wrapper">
+              <form class="update-post-form" action="index.html" method="post">
+                <input type="text" name="name" value="" class="profile-status status-input" placeholder="Write a post">
+                <button type="button" name="button" class="update-post profile-update-post">Update</button>
+              </form>
+            </div> <!--PROFILE POST WRAPPER ENDS-->
+            <!--FORM STATUS UPDATE ENDS-->
 
+            <h4>Newsfeed</h4>
+            <div class="comment-wrapper anythingandtestitandseeifitworks">
+              <div class="avatar-username">
+                <div class="static-avatar"></div>
+                <div class="static-username">
+                  <a href="#">Neil deGrasse Tyson</a>
+                </div><!--STATIC USERNAME ENDS-->
+              </div><!--AVATAR USERNAME ENDS-->
+              <div class="message-wrapper">
+                <div class="static-message">
+                  <p>This is a placeholder comment. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                </div><!--STATIC MESSAGE-->
+                <div class="underneath-message">
+                  <p class="like-dislikes">Like/Dislike</p>
+                  <p class="timestamp">Timestamp</p>
+                </div><!--UNDERNEATH MESSAGE ENDS-->
+                <div class="comment-section">
+
+                  <!--FIRST COMMENT-->
+                  <div class="small-avatar-username">
+                    <div class="avatar-sm">
+                    </div>
+                    <a href="#" class="newsfeed-username">Honeyblossom Michelle Charlotte Ange</a>
+                  </div><!--SMALL AVATAR USERNAME ENDS-->
+
+                  <p>I am another test comment, there are many comments in the world but not one quite like this!</p>
+                  <hr>
+
+                  <!--SECOND COMMENT-->
+                  <div class="small-avatar-username">
+                    <div class="avatar-sm">
+                    </div>
+                    <a href="#" class="newsfeed-username">Placeholder Username #2</a>
+                  </div><!--SMALL AVATAR USERNAME ENDS-->
+
+                  <p>I am another test comment, there are many comments in the world but not one quite like this!</p>
+                  <input type="text" name="name" value="" class="comment-input" placeholder="Write a comment...">
+                  <button type="button" name="button" class="submit-comment">Submit</button>
+                </div><!--COMMENT SECTION ENDS-->
+              </div><!--MESSAGE WRAPPER ENDS-->
+
+            </div><!--COMMENT WRAPPER ENDS-->
           </div><!-- PROFILE NEWSFEED ENDS -->
           <div class="friends-list"><!-- FRIENDS LIST STARTS -->
             <h4>Friends List</h4>
+            <ul>
+              <li><a href="#">Placeholder friendfriend</a></li>
+              <hr>
+              <li><a href="#">Placeholder friend</a></li>
+              <hr>
+              <li><a href="#">Placeholder friend</a></li>
+              <hr>
+              <li><a href="#">Placeholder friend</a></li>
+              <hr>
+              <li><a href="#">Placeholder friend</a></li>
+              <hr>
+              <li><a href="#">Placeholder friend</a></li>
+              <hr>
+              <li><a href="#">Placeholder friend</a></li>
+              <hr>
+              <li><a href="#">Placeholder friend</a></li>
+              <hr>
+              <li><a href="#">Placeholder friend</a></li>
+              <hr>
+              <li><a href="#">Placeholder friend</a></li>
+            </ul>
           </div><!-- FRIENDS LIST ENDS -->
         </div><!--PROFILE FRIENDS WRAPPER ENDS-->
       </div><!-- PROFILE WRAPPER ENDS -->

@@ -5,7 +5,6 @@
 }
 
 .profile-container {
-  @include grid-column(10.45, $neat-grid);
   border: 2px solid hotpink;
   margin: 0;
   padding: 0;
@@ -20,12 +19,12 @@
 }
 
 .profile-newsfeed {
-  width: 60%;
+  width: 70%;
   border: 2px solid teal;
 }
 
 .friends-list {
-  width: 40%;
+  width: 30%;
   border: 2px solid salmon;
 }
 
@@ -61,5 +60,24 @@
 
 .profile-friends-wrapper {
   display: flex;
-  flex-direction: row;
+  .profile-status {
+    width: 300px;
+    height: 75px;
+  }
+  .profile-post-wrapper {
+    margin: 0 auto;
+    width: 40%;
+    min-width: 400px;
+  }
 }
+
+.friends-list {
+  border: 1px solid thistle;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  li {
+    margin: 5% 0;
+  }
+}
+//

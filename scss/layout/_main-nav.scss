@@ -17,4 +17,16 @@
       border: 5px solid thistle;
     }
   }
+  .searchbar {
+    input {
+    width: 250px;
+    height: 25px;
+    font-size: 16px;
+  }
+  .search-button {
+    height: 30px;
+    border: none;
+    font-size: 12px;
+  }
+}
 }

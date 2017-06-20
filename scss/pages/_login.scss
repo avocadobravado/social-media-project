@@ -16,20 +16,22 @@
 
 .sign-up-section {
   @include grid-column(6);
-  height: 60%;
+  height: 70%;
   margin: 0 25px;
   padding: 0;
   border: 1px solid orange;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   flex-direction: column;
   justify-content: space-between;
 }
 
 .sign-in {
   align-self: flex-end;
+  border: 5px solid red;
 }
  .sign-up-form {
+   border: 5px solid yellow;
    display: flex;
    flex-wrap: wrap;
    flex-direction: column;

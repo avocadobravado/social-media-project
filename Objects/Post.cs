@@ -200,6 +200,32 @@ namespace SocialMedia.Objects
       return comments;
     }
 
+    public void Update(string newContent)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("UPDATE posts SET content = @Content OUTPUT INSERTED.content WHERE id = @PostId;", conn);
+      cmd.Parameters.Add(new SqlParameter("@Content", newContent));
+      cmd.Parameters.Add(new SqlParameter("@PostId", this.Id));
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while(rdr.Read())
+      {
+        this.Content = rdr.GetString(0);
+      }
+
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if(conn != null)
+      {
+        conn.Close();
+      }
+    }
+
     public static void DeleteAll()
     {
       SqlConnection conn = DB.Connection();

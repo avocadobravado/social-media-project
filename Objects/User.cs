@@ -407,6 +407,44 @@ namespace SocialMedia.Objects
       postToDislike.Dislike();
     }
 
+    public void LikeComment(Comment commentToLike)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("INSERT INTO comment_likes (comment_id, user_id) VALUES (@CommentId, @UserId);",conn);
+      cmd.Parameters.Add(new SqlParameter("@CommentId", commentToLike.Id));
+      cmd.Parameters.Add(new SqlParameter("@UserId", this.Id));
+
+      cmd.ExecuteNonQuery();
+
+      if(conn != null)
+      {
+        conn.Close();
+      }
+
+      commentToLike.Like();
+    }
+
+    public void DislikeComment(Comment commentToDislike)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("INSERT INTO comment_dislikes (comment_id, user_id) VALUES (@CommentId, @UserId);",conn);
+      cmd.Parameters.Add(new SqlParameter("@CommentId", commentToDislike.Id));
+      cmd.Parameters.Add(new SqlParameter("@UserId", this.Id));
+
+      cmd.ExecuteNonQuery();
+
+      if(conn != null)
+      {
+        conn.Close();
+      }
+
+      commentToDislike.Dislike();
+    }
+
     public void RemoveFriend(User userToRemove)
     {
       SqlConnection conn = DB.Connection();

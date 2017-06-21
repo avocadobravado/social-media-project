@@ -5,6 +5,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <!--FONT AWESOME-->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
     <link rel="stylesheet" href="/Content/css/main.css" media="screen" title="no title" charset="utf-8">
     <title>Placeholder Newsfeed</title>
   </head>
@@ -13,16 +14,16 @@
     <nav class="main-nav">
       <div class="main-nav-wrapper">
         <div class="logo">
-          <img src="https://raw.githubusercontent.com/avocadobravado/social-media-project-inspiration/master/logo_sm_color.png" alt="" class="logo"/>
+          <h3>LOGO</h3>
         </div><!--LOGO ENDS-->
         <div class="searchbar">
           <form action='/users/@Model["user"].Id/search'>
-            <input type="text" name="search-query" value="" placeholder="Search">
-            <button type="submit" name="button" class="search-button"><i class="fa fa-search" aria-hidden="true"></i></button>
+            <input type="text" name="search-query" placeholder="Search">
+            <button type="submit" name="button" class="search-button">Search</button> <!-- BUILD ME A ROUTE -->
           </form>
         </div><!--SEARCHBAR ENDS-->
         <ul>
-          <li><a href='/users/@Model["user"].Id/profile_view'>Hi, <span>@Model["user"].FirstName</span></a></li>
+          <li><a href='/users/@Model["user"].Id/profile_view'>View profile</a></li>
           <li><a href="/">Sign out</a></li>
         </ul>
       </div><!--MAIN NAVIGATION WRAPPER-->
@@ -34,18 +35,21 @@
         <ul>
           <li><a href='/users/@Model["user"].Id/profile_view'><i class="fa fa-user fa-2x" aria-hidden="true"></i></a></li>
           <li><a href='/users/@Model["user"].Id/profile_view'>My Profile</a></li>
-          <li><a href="#"><i class="fa fa-users fa-2x" aria-hidden="true"></i></a></li>
+          <li><a href="#"><i class="fa fa-users fa-2x" aria-hidden="true"></i></a></li>     <!-- BUILD ME A ROUTE -->
           <li><a href="#">Friends</a></li>
           <li><a href="#"><i class="fa fa-cogs fa-2x" aria-hidden="true"></i></a></li>
           <li><a href="#">Admin Access</a></li>
         </ul>
       </nav><!--SIDEBAR NAV ENDS-->
 
+
+
+
       <div class="newsfeed-posts">
         <!--ADD A POST SECTION-->
         <form class="update-post-form" action='/users/@Model["user"].Id/post' method="post">
-         <textarea wrap="hard" name="post" value="" class="status-input" placeholder="Write a post" required></textarea>
-         <button type="submit" name="button" class="update-post">Update</button>
+          <input type="text" name="post" class="status-input" placeholder="Write a post">
+          <button type="submit" name="button" class="update-post">Update</button>
         </form>
         <!--ADD A POST SECTION ENDS-->
 
@@ -59,7 +63,7 @@
           {
             <div class="comment-wrapper">
               <div class="avatar-username">
-                <div class="static-avatar"><img src="" alt="" class="user-image"/></div>
+                <div class="static-avatar"></div>
                 <div class="static-username">
                   <a href='/users/@Model["user"].Id/profile_view/@post.UserId'>@post.GetPosterName()</a>
                 </div><!--STATIC USERNAME ENDS-->
@@ -69,13 +73,8 @@
                   <p>@post.Content</p>
                 </div><!--STATIC MESSAGE-->
                 <div class="underneath-message">
-                  <p class="like-dislikes">
-                    <span>@post.Likes</span><!--PLACEHOLDER/SPAN FOR NUMBER OF LIKES-->
-                    <button class="like"> <i class="fa fa-thumbs-up" aria-hidden="true"></i></button>
-                    <span>@post.Dislikes</span><!--PLACEHOLDER/SPAN FOR NUMBER OF DISLIKES-->
-                    <button class="dislike"> <i class="fa fa-thumbs-down" aria-hidden="true"></i></button></p>
-                  <p class="timestamp"><span>@post.Timestamp.ToString("d")</span>
-                  </p>
+                  <p class="like-dislikes">Like/Dislike</p>
+                  <p class="timestamp">@post.Timestamp.ToString("d")</p>
                 </div><!--UNDERNEATH MESSAGE ENDS-->
 
                 <div class="comment-section">
@@ -84,24 +83,16 @@
                     <!--FIRST COMMENT-->
                     <div class="small-avatar-username">
                       <div class="avatar-sm">
-                        <img src="" alt="" class="sm-user-image"/>
                       </div>
                       <a href='/users/@Model["user"].Id/profile_view/@comment.UserId' class="newsfeed-username">@comment.GetCommenterName()</a>
                     </div><!--SMALL AVATAR USERNAME ENDS-->
 
                     <p>@comment.Content</p>
-                    <div class="comment-like-wrapper">
-                      <p>
-                        <span>@comment.Likes</span><!--PLACEHOLDER/SPAN FOR NUMBER OF LIKES-->
-                        <button class="like"> <i class="fa fa-thumbs-up" aria-hidden="true"></i></button>
-                        <span>@comment.Dislikes</span><!--PLACEHOLDER/SPAN FOR NUMBER OF DISLIKES-->
-                        <button class="dislike"> <i class="fa fa-thumbs-down" aria-hidden="true"></i></button></p>
-                      </p>
-                    </div><!--COMMENT LIKE WRAPPER ENDS-->
+                    <hr>
                   }
 
                   <form action='/users/@Model["user"].Id/posts/@post.Id/comment' method="post">
-                    <textarea type="text" name="content" value="" class="comment-input" placeholder="Write a comment..." required></textarea>
+                    <input type="text" name="content" class="comment-input" placeholder="Write a comment...">
                     <button type="submit" name="button" class="submit-comment">Submit</button>
                   </form>
                 </div><!--COMMENT SECTION ENDS-->

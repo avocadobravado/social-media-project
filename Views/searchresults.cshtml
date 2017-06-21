@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <!-- FONT AWESOME -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/Content/css/main.css" media="screen" title="no title" charset="utf-8">
+    @if(Model.ContainsKey("search-query"))
+    {
+      <title>Search Results</title>
+    }
+    else
+    {
+      <title>Friends</title>
+    }
+  </head>
+  <body>
+    <!--MAIN NAVIGATION-->
+    <nav class="main-nav">
+      <div class="main-nav-wrapper">
+        <div class="logo">
+          <h3>LOGO</h3>
+        </div><!--LOGO ENDS-->
+        <div class="searchbar">
+          <form action='/users/@Model["user"].Id/search'>
+            <input type="text" name="name" value="" placeholder="Search">
+            <button type="submit" name="button" class="search-button"><i class="fa fa-search" aria-hidden="true"></i></button>
+          </form>
+        </div><!--SEARCHBAR ENDS-->
+        <ul>
+          <li><a href='/users/@Model["user"].Id/profile_view'>Hi, <span>@Model["user"].FirstName</span></a></li>
+          <li><a href="/">Sign out</a></li>
+        </ul>
+      </div><!--MAIN NAVIGATION WRAPPER-->
+    </nav><!--MAIN NAVIGATION ENDS-->
+    <nav class="sidebar">
+      <ul>
+        <li><a href='/users/@Model["user"].Id/profile_view'><i class="fa fa-user fa-2x" aria-hidden="true"></i></a></li>
+        <li><a href='/users/@Model["user"].Id/profile_view'>My Profile</a></li>
+        <li><a href="#"><i class="fa fa-users fa-2x" aria-hidden="true"></i></a></li>
+        <li><a href="#">Friends</a></li>
+        <li><a href="#"><i class="fa fa-cogs fa-2x" aria-hidden="true"></i></a></li>
+        <li><a href="#">Admin Access</a></li>
+      </ul>
+    </nav>
+    @if(Model.ContainsKey("search-query"))
+    {
+      <div class="results">
+        <h4 class="titles">Results</h4>
+        @if(Model["matches"].Count == 0)
+        {
+          <p>Your search yielded no results</p>
+        }
+        else
+        {
+          @foreach(var user in Model["matches"])
+          {
+            <div class="search-info">
+              <div class="image-and-name">
+                <div class="imageDiv"><img src="" alt="" class="user-image"/></div>
+                <span><a href="#">@user.FirstName @user.LastName</a></span>           <!-- Build me a route! NOTE -->
+              </div>
+              @if(Model["user"].IsFriendsWith(user))
+              {
+                <form class="results" action="index.html" method="post">
+                <button type="button" class="unfollow-result" name="button">Unfollow</button>
+              </form>
+              }
+              else if(!(Model["user"].IsFriendsWith(user)) && Model["user"].Username != user.Username)
+              {
+                <form class="results" action="index.html" method="post">
+                  <button type="button" class="follow-result" name="button">Follow</button>     <!-- BUILD ROUTE NOTE-->
+                </form>
+              }
+            </div>
+          }
+        }
+    </div>
+    }
+    else
+    {
+      <!-- DISPLAY LIST OF FRIENDS HERE -->
+    }
+
+  </body>
+</html>

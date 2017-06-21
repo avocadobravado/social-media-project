@@ -75,7 +75,7 @@ namespace SocialMedia
         Dictionary <string, object> model = new Dictionary<string, object>{};
         User selectedUser = User.Find(parameters.userId);
         Status selectedStatus = Status.Find(parameters.postId);
-        Comment newComment = new Comment(Request.Form["comment"], selectedStatus.Id, selectedUser.Id, DateTime.Now);
+        Comment newComment = new Comment(Request.Form["content"], selectedStatus.Id, selectedUser.Id, DateTime.Now);
         newComment.Save();
         List<Status> timeline = selectedUser.GetTimeline();
         model.Add("timeline", timeline);
@@ -180,6 +180,16 @@ namespace SocialMedia
         model.Add("selected-user", selectedUser);
         model.Add("user-statuses", userStatuses);
         return View["friend.cshtml", model];
+      };
+      Get["/users/{loggedInId}/profile_view"] = parameters => {
+        Dictionary <string, object> model = new Dictionary<string, object>{};
+        User selectedUser = User.Find(parameters.loggedInId);
+        List<Status> selectedUserStatuses = selectedUser.GetStatuses();
+        List<User> friendsList = selectedUser.GetFriends();
+        model.Add("user", selectedUser);
+        model.Add("user-statuses", selectedUserStatuses);
+        model.Add("friends", friendsList);
+        return View["profile.cshtml", model];
       };
     }
   }

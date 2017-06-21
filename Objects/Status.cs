@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 
 namespace SocialMedia.Objects
 {
-  public class Post
+  public class Status
   {
     public int Id {get;set;}
     public string Content {get;set;}
@@ -23,7 +23,7 @@ namespace SocialMedia.Objects
       this.Dislikes++;
     }
 
-    public Post()
+    public Status()
     {
       Id = 0;
       Content = null;
@@ -33,7 +33,7 @@ namespace SocialMedia.Objects
       Timestamp = default(DateTime);
     }
 
-    public Post(string content, int userId, DateTime timestamp, int likes = 0, int dislikes = 0, int id = 0)
+    public Status(string content, int userId, DateTime timestamp, int likes = 0, int dislikes = 0, int id = 0)
     {
       Id = id;
       Content = content;
@@ -43,35 +43,35 @@ namespace SocialMedia.Objects
       Timestamp = timestamp;
     }
 
-    public override bool Equals(System.Object otherPost)
+    public override bool Equals(System.Object otherStatus)
     {
-      if(!(otherPost is Post))
+      if(!(otherStatus is Status))
       {
         return false;
       }
       else
       {
-        Post newPost = (Post) otherPost;
-        bool idEquality = this.Id == newPost.Id;
-        bool contentEquality = this.Content == newPost.Content;
-        bool userIdEquality = this.UserId == newPost.UserId;
-        bool likesEquality = this.Likes == newPost.Likes;
-        bool dislikesEquality = this.Dislikes == newPost.Dislikes;
-        bool timestampEquality = this.Timestamp == newPost.Timestamp;
+        Status newStatus = (Status) otherStatus;
+        bool idEquality = this.Id == newStatus.Id;
+        bool contentEquality = this.Content == newStatus.Content;
+        bool userIdEquality = this.UserId == newStatus.UserId;
+        bool likesEquality = this.Likes == newStatus.Likes;
+        bool dislikesEquality = this.Dislikes == newStatus.Dislikes;
+        bool timestampEquality = this.Timestamp == newStatus.Timestamp;
         return (idEquality && contentEquality && userIdEquality && likesEquality && dislikesEquality && timestampEquality);
       }
     }
 
-    public static List<Post> GetAll()
+    public static List<Status> GetAll()
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("SELECT * FROM posts", conn);
+      SqlCommand cmd = new SqlCommand("SELECT * FROM statuses", conn);
 
       SqlDataReader rdr = cmd.ExecuteReader();
 
-      List<Post> allPosts = new List<Post>{};
+      List<Status> allStatuses = new List<Status>{};
 
       while(rdr.Read())
       {
@@ -81,8 +81,8 @@ namespace SocialMedia.Objects
         int likes = rdr.GetInt32(3);
         int dislikes = rdr.GetInt32(4);
         DateTime timestamp = rdr.GetDateTime(5);
-        Post newPost = new Post(content, userId, timestamp, likes, dislikes, id);
-        allPosts.Add(newPost);
+        Status newStatus = new Status(content, userId, timestamp, likes, dislikes, id);
+        allStatuses.Add(newStatus);
       }
 
       if(rdr != null)
@@ -94,7 +94,7 @@ namespace SocialMedia.Objects
         conn.Close();
       }
 
-      return allPosts;
+      return allStatuses;
     }
 
     public void Save()
@@ -102,7 +102,7 @@ namespace SocialMedia.Objects
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("INSERT INTO posts (content, user_id, likes, dislikes, timestamp) OUTPUT INSERTED.id VALUES (@Content, @UserId, @Likes, @Dislikes, @Timestamp);", conn);
+      SqlCommand cmd = new SqlCommand("INSERT INTO statuses (content, user_id, likes, dislikes, timestamp) OUTPUT INSERTED.id VALUES (@Content, @UserId, @Likes, @Dislikes, @Timestamp);", conn);
       cmd.Parameters.Add(new SqlParameter("@Content", this.Content));
       cmd.Parameters.Add(new SqlParameter("@UserId", this.UserId));
       cmd.Parameters.Add(new SqlParameter("@Likes", this.Likes));
@@ -125,25 +125,25 @@ namespace SocialMedia.Objects
       }
     }
 
-    public static Post Find(int idToFind)
+    public static Status Find(int idToFind)
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("SELECT * FROM posts WHERE id = @PostId;", conn);
-      cmd.Parameters.Add(new SqlParameter("@PostId", idToFind));
+      SqlCommand cmd = new SqlCommand("SELECT * FROM statuses WHERE id = @StatusId;", conn);
+      cmd.Parameters.Add(new SqlParameter("@StatusId", idToFind));
 
       SqlDataReader rdr = cmd.ExecuteReader();
 
-      Post foundPost = new Post();
+      Status foundStatus = new Status();
       while(rdr.Read())
       {
-        foundPost.Id = rdr.GetInt32(0);
-        foundPost.Content = rdr.GetString(1);
-        foundPost.UserId = rdr.GetInt32(2);
-        foundPost.Likes = rdr.GetInt32(3);
-        foundPost.Dislikes = rdr.GetInt32(4);
-        foundPost.Timestamp = rdr.GetDateTime(5);
+        foundStatus.Id = rdr.GetInt32(0);
+        foundStatus.Content = rdr.GetString(1);
+        foundStatus.UserId = rdr.GetInt32(2);
+        foundStatus.Likes = rdr.GetInt32(3);
+        foundStatus.Dislikes = rdr.GetInt32(4);
+        foundStatus.Timestamp = rdr.GetDateTime(5);
       }
 
       if (rdr != null)
@@ -155,7 +155,7 @@ namespace SocialMedia.Objects
         conn.Close();
       }
 
-      return foundPost;
+      return foundStatus;
     }
 
     public List<Comment> GetComments()
@@ -163,8 +163,8 @@ namespace SocialMedia.Objects
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("SELECT * FROM comments WHERE post_id = @PostId;", conn);
-      cmd.Parameters.Add(new SqlParameter("@PostId", this.Id));
+      SqlCommand cmd = new SqlCommand("SELECT * FROM comments WHERE status_id = @StatusId;", conn);
+      cmd.Parameters.Add(new SqlParameter("@StatusId", this.Id));
 
       SqlDataReader rdr = cmd.ExecuteReader();
 
@@ -173,12 +173,12 @@ namespace SocialMedia.Objects
       {
         int id = rdr.GetInt32(0);
         string content = rdr.GetString(1);
-        int postId = rdr.GetInt32(2);
+        int statusId = rdr.GetInt32(2);
         int userId = rdr.GetInt32(3);
         int likes = rdr.GetInt32(4);
         int dislikes = rdr.GetInt32(5);
         DateTime timestamp = rdr.GetDateTime(6);
-        Comment newComment = new Comment(content, postId, userId, timestamp, likes, dislikes, id);
+        Comment newComment = new Comment(content, statusId, userId, timestamp, likes, dislikes, id);
         comments.Add(newComment);
       }
 
@@ -199,9 +199,9 @@ namespace SocialMedia.Objects
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("UPDATE posts SET content = @Content OUTPUT INSERTED.content WHERE id = @PostId;", conn);
+      SqlCommand cmd = new SqlCommand("UPDATE statuses SET content = @Content OUTPUT INSERTED.content WHERE id = @StatusId;", conn);
       cmd.Parameters.Add(new SqlParameter("@Content", newContent));
-      cmd.Parameters.Add(new SqlParameter("@PostId", this.Id));
+      cmd.Parameters.Add(new SqlParameter("@StatusId", this.Id));
 
       SqlDataReader rdr = cmd.ExecuteReader();
 
@@ -225,8 +225,8 @@ namespace SocialMedia.Objects
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("SELECT users.* FROM posts JOIN post_likes ON (posts.id = post_likes.post_id) JOIN users ON (users.id = post_likes.user_id) WHERE post_id = @PostId;", conn);
-      cmd.Parameters.Add(new SqlParameter("@PostId", this.Id));
+      SqlCommand cmd = new SqlCommand("SELECT users.* FROM statuses JOIN status_likes ON (statuses.id = status_likes.status_id) JOIN users ON (users.id = status_likes.user_id) WHERE status_id = @StatusId;", conn);
+      cmd.Parameters.Add(new SqlParameter("@StatusId", this.Id));
 
       SqlDataReader rdr = cmd.ExecuteReader();
 
@@ -261,8 +261,8 @@ namespace SocialMedia.Objects
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("SELECT users.* FROM posts JOIN post_dislikes ON (posts.id = post_dislikes.post_id) JOIN users ON (users.id = post_dislikes.user_id) WHERE post_id = @PostId;", conn);
-      cmd.Parameters.Add(new SqlParameter("@PostId", this.Id));
+      SqlCommand cmd = new SqlCommand("SELECT users.* FROM statuses JOIN status_dislikes ON (statuses.id = status_dislikes.status_id) JOIN users ON (users.id = status_dislikes.user_id) WHERE status_id = @StatusId;", conn);
+      cmd.Parameters.Add(new SqlParameter("@StatusId", this.Id));
 
       SqlDataReader rdr = cmd.ExecuteReader();
 
@@ -304,8 +304,8 @@ namespace SocialMedia.Objects
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("DELETE FROM posts WHERE id = @PostId; DELETE FROM comments WHERE post_id = @PostId;", conn);
-      cmd.Parameters.Add(new SqlParameter("@PostId", this.Id));
+      SqlCommand cmd = new SqlCommand("DELETE FROM statuses WHERE id = @StatusId; DELETE FROM comments WHERE status_id = @StatusId;", conn);
+      cmd.Parameters.Add(new SqlParameter("@StatusId", this.Id));
 
       cmd.ExecuteNonQuery();
 
@@ -320,7 +320,7 @@ namespace SocialMedia.Objects
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("DELETE FROM posts; DELETE FROM comments;", conn);
+      SqlCommand cmd = new SqlCommand("DELETE FROM statuses; DELETE FROM comments;", conn);
       cmd.ExecuteNonQuery();
 
       if(conn != null)

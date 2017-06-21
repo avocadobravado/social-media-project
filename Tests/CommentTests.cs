@@ -128,10 +128,10 @@ namespace SocialMedia.Objects
       User newUser = new User("Joshua", "Fairchild", "jfairchild", "password", "mail@mail.com", new DateTime(2017, 06, 19));
       newUser.Save();
 
-      Post newPost = new Post("Hello world", newUser.Id, new DateTime(2017, 06, 19));
-      newPost.Save();
+      Status newStatus = new Status("Hello world", newUser.Id, new DateTime(2017, 06, 19));
+      newStatus.Save();
 
-      Comment newComment = new Comment("Hello world", newPost.Id, newUser.Id, new DateTime(2017, 06, 19));
+      Comment newComment = new Comment("Hello world", newStatus.Id, newUser.Id, new DateTime(2017, 06, 19));
       newComment.Save();
 
       Assert.Equal("Joshua Fairchild", newComment.GetCommenterName());

@@ -21,8 +21,8 @@
           <button type="button" name="button" class="search-button">Search</button>     <!-- BUILD ME A ROUTE -->
         </div><!--SEARCHBAR ENDS-->
         <ul>
-          <li><a href='/users/@Model["user"].Id/profile_view'>View profile</a></li>     <!-- BUILD ME A ROUTE -->
-          <li><a href="/">Sign out</a></li>     <!-- BUILD ME A ROUTE -->
+          <li><a href='/users/@Model["user"].Id/profile_view'>View profile</a></li>
+          <li><a href="/">Sign out</a></li>
         </ul>
       </div><!--MAIN NAVIGATION WRAPPER-->
     </nav><!--MAIN NAVIGATION ENDS-->
@@ -31,11 +31,9 @@
     <div class="profile-wrapper">
       <nav class="sidebar">
         <ul>
-          <li><a href='/users/@Model["user"].Id/news'><i class="fa fa-home fa-2x" aria-hidden="true"></i></a></li>     <!-- BUILD ME A ROUTE -->
+          <li><a href='/users/@Model["user"].Id/news'><i class="fa fa-home fa-2x" aria-hidden="true"></i></a></li>
           <li><a href='/users/@Model["user"].Id/news'>Home</a></li>
-          <li><a href='/users/@Model["user"].Id/profile_view'><i class="fa fa-user fa-2x" aria-hidden="true"></i></a></li>
-          <li><a href='/users/@Model["user"].Id/profile_view'>My Profile</a></li>
-          <li><a href="#"><i class="fa fa-users fa-2x" aria-hidden="true"></i></a></li>     <!-- BUILD ME A ROUTE -->
+          <li><a href="#"><i class="fa fa-users fa-2x" aria-hidden="true"></i></a></li>   <!-- BUILD ME A ROUTE -->
           <li><a href="#">Friends</a></li>
           <li><a href="#"><i class="fa fa-cogs fa-2x" aria-hidden="true"></i></a></li>
           <li><a href="#">Admin Access</a></li>
@@ -50,35 +48,34 @@
         <div class="profile-info"> <!-- PROFILE INFORMATION STARTS -->
           <div class="profile-picture"></div>
           <ul class="title">
-            <li><span>NAME: </span>@Model["selected-user"].FirstName @Model["selected-user"].LastName</li>
-            <li><span>USERNAME: </span>@Model["selected-user"].Username</li>
-            <li><span>DATE JOINED: </span>@Model["selected-user"].Timestamp</li>
-            <li><span>EMAIL: </span>@Model["selected-user"].Email</li>
-            <li><form action='/users/@Model["user"].Id/profile_view/@Model["selected-user"].Id/unfollow' method="post"><input type="hidden" name="_method" value="DELETE"><button type="submit" name="button" class="unfollow-friend">Unfollow</button></form></li>     <!-- BUILD ME A ROUTE -->
+            <li><span>NAME: </span>@Model["user"].FirstName @Model["user"].LastName</li>
+            <li><span>USERNAME: </span>@Model["user"].Username</li>
+            <li><span>DATE JOINED: </span>@Model["user"].Timestamp.ToString("d")</li>
+            <li><span>EMAIL: </span>@Model["user"].Email</li>
           </ul>
         </div><!-- PROFILE INFORMATION ENDS -->
 
         <div class="profile-friends-wrapper">
           <div class="profile-newsfeed"><!-- PROFILE NEWSFEED STARTS -->
-            <!-- <h4>Say hi to Placeholdername</h4> -->
+            <h4>Write a post</h4>
             <!--FORM STATUS UPDATE-->
-            <!-- <div class="profile-post-wrapper">
-              <form class="update-post-form" action="index.html" method="post">
-                <input type="text" name="name" value="" class="profile-status status-input" placeholder="Write a post">
-                <button type="button" name="button" class="update-post profile-update-post">Update</button>
+            <div class="profile-post-wrapper">
+              <form class="update-post-form" action='/users/@Model["user"].Id/statuses/new' method="post">
+                <input type="text" name="content" class="profile-status status-input" placeholder="Write a post">
+                <button type="submit" name="button" class="update-post profile-update-post">Update</button>
               </form>
-            </div> <!--PROFILE POST WRAPPER ENDS--> -->
+            </div> <!--PROFILE POST WRAPPER ENDS-->
             <!--FORM STATUS UPDATE ENDS-->
 
             <h4>Newsfeed</h4>
 
             @if(Model["user-statuses"].Count == 0)
             {
-              <p>This user has no staus updates to display.</p>
+              <p>Your have no status updates to display.</p>
             }
             else
             {
-              @foreach(var status in Model["user-statuses"])
+              @foreach(var status in @Model["user-statuses"])
               {
                 <div class="comment-wrapper anythingandtestitandseeifitworks">
                   <div class="avatar-username">
@@ -97,39 +94,39 @@
                     </div><!--UNDERNEATH MESSAGE ENDS-->
 
 
-                    <div class="comment-section">
-                      @foreach(var comment in status.GetComments())
-                      {
-                        <!--FIRST COMMENT-->
-                        <div class="small-avatar-username">
-                          <div class="avatar-sm">
-                          </div>
-                          <a href='/users/@Model["user"].Id/profile_view/@comment.UserId' class="newsfeed-username">@comment.GetCommenterName()</a>
-                        </div><!--SMALL AVATAR USERNAME ENDS-->
-
-                        <p>@comment.Content</p>
-                        <hr>
-                      }
-
-                      <!--SECOND COMMENT-->
-                      <!-- <div class="small-avatar-username">
+                  <div class="comment-section">
+                    @foreach(var comment in status.GetComments())
+                    {
+                      <!--FIRST COMMENT-->
+                      <div class="small-avatar-username">
                         <div class="avatar-sm">
                         </div>
-                        <a href="#" class="newsfeed-username">Placeholder Username #2</a>
-                      </div><!--SMALL AVATAR USERNAME ENDS--> -->
+                        <a href='/users/@Model["user"].Id/profile_view/@comment.UserId' class="newsfeed-username">@comment.GetCommenterName()</a>
+                      </div><!--SMALL AVATAR USERNAME ENDS-->
 
-                      <!-- <p>I am another test comment, there are many comments in the world but not one quite like this!</p> -->
+                      <p>@comment.Content</p>
+                      <hr>
+                    }
 
-                      <form action='/users/@Model["user"].Id/profile_view/@Model["selected-user"].Id/statuses/@status.Id/comment' method="post">
-                        <input type="text" name="content" value="" class="comment-input" placeholder="Write a comment...">
-                        <button type="button" name="button" class="submit-comment">Submit</button>
-                      </form>
-                    </div><!--COMMENT SECTION ENDS-->
-                  </div><!--MESSAGE WRAPPER ENDS-->
+                    <!-- SECOND COMMENT-->
+                    <!-- <div class="small-avatar-username">
+                      <div class="avatar-sm">
+                      </div>
+                      <a href="#" class="newsfeed-username">Placeholder Username #2</a>
+                    </div><!--SMALL AVATAR USERNAME ENDS --> -->
 
-                </div><!--COMMENT WRAPPER ENDS-->
-              }
+                    <!-- <p>I am another test comment, there are many comments in the world but not one quite like this!</p> -->
+
+                    <form action='/users/@Model["user"].Id/statuses/@status.Id/comments/new' method="post">
+                      <input type="text" name="content" class="comment-input" placeholder="Write a comment...">
+                      <button type="submit" name="button" class="submit-comment">Submit</button>
+                    </form>
+                  </div><!--COMMENT SECTION ENDS-->
+                </div><!--MESSAGE WRAPPER ENDS-->
+
+              </div><!--COMMENT WRAPPER ENDS-->
             }
+          }
           </div><!-- PROFILE NEWSFEED ENDS -->
           <div class="friends-list"><!-- FRIENDS LIST STARTS -->
             <h4>Friends List</h4>

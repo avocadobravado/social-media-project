@@ -96,18 +96,18 @@ namespace SocialMedia.Objects
     }
 
     [Fact]
-    public void User_GetPosts_ReturnsUsersPosts()
+    public void User_GetStatuses_ReturnsUsersStatuses()
     {
       User newUser = new User("Joshua", "Fairchild", "jfairchild", "password", "mail@mail.com", new DateTime(2017, 06, 19));
       newUser.Save();
 
-      Post post1 = new Post("Hello world", newUser.Id, new DateTime(2017, 06, 19));
-      post1.Save();
-      Post post2 = new Post("Goodbye world", newUser.Id, new DateTime(2017, 06, 19));
-      post2.Save();
+      Status status1 = new Status("Hello world", newUser.Id, new DateTime(2017, 06, 19));
+      status1.Save();
+      Status status2 = new Status("Goodbye world", newUser.Id, new DateTime(2017, 06, 19));
+      status2.Save();
 
-      List<Post> testList = newUser.GetPosts();
-      List<Post> controlList = new List<Post>{post1, post2};
+      List<Status> testList = newUser.GetStatuses();
+      List<Status> controlList = new List<Status>{status1, status2};
 
       Assert.Equal(testList, controlList);
     }
@@ -247,31 +247,31 @@ namespace SocialMedia.Objects
     }
 
     [Fact]
-    public void User_LikePost_LikesPost()
+    public void User_LikeStatus_LikesStatus()
     {
       User testUser = new User("Joshua", "Fairchild", "jfairchild", "password", "mail@mail.com", new DateTime(2017, 06, 19));
       testUser.Save();
 
-      Post newPost = new Post("Hello world", 1, new DateTime(2017, 06, 19));
-      newPost.Save();
+      Status newStatus = new Status("Hello world", 1, new DateTime(2017, 06, 19));
+      newStatus.Save();
 
-      testUser.LikePost(newPost);
+      testUser.LikeStatus(newStatus);
 
-      Assert.Equal(1, newPost.Likes);
+      Assert.Equal(1, newStatus.Likes);
     }
 
     [Fact]
-    public void User_DislikePost_DislikesPost()
+    public void User_DislikeStatus_DislikesStatus()
     {
       User testUser = new User("Joshua", "Fairchild", "jfairchild", "password", "mail@mail.com", new DateTime(2017, 06, 19));
       testUser.Save();
 
-      Post newPost = new Post("Hello world", 1, new DateTime(2017, 06, 19));
-      newPost.Save();
+      Status newStatus = new Status("Hello world", 1, new DateTime(2017, 06, 19));
+      newStatus.Save();
 
-      testUser.DislikePost(newPost);
+      testUser.DislikeStatus(newStatus);
 
-      Assert.Equal(1, newPost.Dislikes);
+      Assert.Equal(1, newStatus.Dislikes);
     }
 
     [Fact]
@@ -303,55 +303,55 @@ namespace SocialMedia.Objects
     }
 
     [Fact]
-    public void User_HasLikedPost_True()
+    public void User_HasLikedStatus_True()
     {
       User testUser = new User("Joshua", "Fairchild", "jfairchild", "password", "mail@mail.com", new DateTime(2017, 06, 19));
       testUser.Save();
 
-      Post newPost = new Post("Hello world", 1, new DateTime(2017, 06, 19));
-      newPost.Save();
+      Status newStatus = new Status("Hello world", 1, new DateTime(2017, 06, 19));
+      newStatus.Save();
 
-      testUser.LikePost(newPost);
+      testUser.LikeStatus(newStatus);
 
-      Assert.Equal(true, testUser.HasLikedPost(newPost));
+      Assert.Equal(true, testUser.HasLikedStatus(newStatus));
     }
 
     [Fact]
-    public void User_HasLikedPost_False()
+    public void User_HasLikedStatus_False()
     {
       User testUser = new User("Joshua", "Fairchild", "jfairchild", "password", "mail@mail.com", new DateTime(2017, 06, 19));
       testUser.Save();
 
-      Post newPost = new Post("Hello world", 1, new DateTime(2017, 06, 19));
-      newPost.Save();
+      Status newStatus = new Status("Hello world", 1, new DateTime(2017, 06, 19));
+      newStatus.Save();
 
-      Assert.Equal(false, testUser.HasLikedPost(newPost));
+      Assert.Equal(false, testUser.HasLikedStatus(newStatus));
     }
 
     [Fact]
-    public void User_HasDislikedPost_True()
+    public void User_HasDislikedStatus_True()
     {
       User testUser = new User("Joshua", "Fairchild", "jfairchild", "password", "mail@mail.com", new DateTime(2017, 06, 19));
       testUser.Save();
 
-      Post newPost = new Post("Hello world", 1, new DateTime(2017, 06, 19));
-      newPost.Save();
+      Status newStatus = new Status("Hello world", 1, new DateTime(2017, 06, 19));
+      newStatus.Save();
 
-      testUser.DislikePost(newPost);
+      testUser.DislikeStatus(newStatus);
 
-      Assert.Equal(true, testUser.HasDislikedPost(newPost));
+      Assert.Equal(true, testUser.HasDislikedStatus(newStatus));
     }
 
     [Fact]
-    public void User_HasDislikedPost_False()
+    public void User_HasDislikedStatus_False()
     {
       User testUser = new User("Joshua", "Fairchild", "jfairchild", "password", "mail@mail.com", new DateTime(2017, 06, 19));
       testUser.Save();
 
-      Post newPost = new Post("Hello world", 1, new DateTime(2017, 06, 19));
-      newPost.Save();
+      Status newStatus = new Status("Hello world", 1, new DateTime(2017, 06, 19));
+      newStatus.Save();
 
-      Assert.Equal(false, testUser.HasDislikedPost(newPost));
+      Assert.Equal(false, testUser.HasDislikedStatus(newStatus));
     }
 
     [Fact]
@@ -406,7 +406,7 @@ namespace SocialMedia.Objects
       Assert.Equal(false, testUser.HasDislikedComment(newComment));
     }
 
-    public void User_GetTimeline_ChronologicalListOfPosts()
+    public void User_GetTimeline_ChronologicalListOfStatuses()
     {
       User user1 = new User("Joshua", "Fairchild", "jfairchild", "password", "mail@mail.com", new DateTime(2017, 06, 01));
       user1.Save();
@@ -415,19 +415,19 @@ namespace SocialMedia.Objects
       User user3 = new User("Tom", "Hanks", "thanks", "password", "mail@mail.com", new DateTime(2017, 06, 01));
       user3.Save();
 
-      Post post1 = new Post("Hello world", user1.Id, new DateTime(2017, 06, 04));
-      post1.Save();
-      Post post2 = new Post("Hola mundo", user3.Id, new DateTime(2017, 06, 02));
-      post2.Save();
-      Post post3 = new Post("Hallo wereld", user3.Id, new DateTime(2017, 06, 03));
-      post3.Save();
-      Post post4 = new Post("Goodbye world", user2.Id, new DateTime(2017, 06, 05));
-      post4.Save();
+      Status status1 = new Status("Hello world", user1.Id, new DateTime(2017, 06, 04));
+      status1.Save();
+      Status status2 = new Status("Hola mundo", user3.Id, new DateTime(2017, 06, 02));
+      status2.Save();
+      Status status3 = new Status("Hallo wereld", user3.Id, new DateTime(2017, 06, 03));
+      status3.Save();
+      Status status4 = new Status("Goodbye world", user2.Id, new DateTime(2017, 06, 05));
+      status4.Save();
 
       user1.AddFriend(user3);
 
-      List<Post> testList = user1.GetTimeline();
-      List<Post> controlList = new List<Post>{post2, post3, post1};
+      List<Status> testList = user1.GetTimeline();
+      List<Status> controlList = new List<Status>{status2, status3, status1};
 
       Assert.Equal(controlList, testList);
     }

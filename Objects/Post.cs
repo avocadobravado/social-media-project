@@ -292,6 +292,13 @@ namespace SocialMedia.Objects
       return users;
     }
 
+    public string GetPosterName()
+    {
+      User whoPosted = User.Find(this.UserId);
+      string result = $"{whoPosted.FirstName} {whoPosted.LastName}";
+      return result;
+    }
+
     public void Delete()
     {
       SqlConnection conn = DB.Connection();

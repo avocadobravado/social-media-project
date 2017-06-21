@@ -36,7 +36,7 @@ namespace SocialMedia
             List<Post> timeline = loggedInUser.GetTimeline();
             model.Add("user", loggedInUser);
             model.Add("timeline", timeline);
-            return View["news.cshtml"];
+            return View["news.cshtml", model];
           }
         }
       };

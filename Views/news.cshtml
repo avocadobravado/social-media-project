@@ -7,7 +7,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
 
-    <link rel="stylesheet" href="css/main.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="Content/css/main.css" media="screen" title="no title" charset="utf-8">
     <title>Placeholder Newsfeed</title>
   </head>
   <body>
@@ -22,8 +22,8 @@
           <button type="button" name="button" class="search-button">Search</button>
         </div><!--SEARCHBAR ENDS-->
         <ul>
-          <li><a href="#">View profile</a></li>
-          <li><a href="#">Sign out</a></li>
+          <li><a href="#">View profile</a></li> <!-- BUILD ME A ROUTE -->
+          <li><a href="/">Sign out</a></li>
         </ul>
       </div><!--MAIN NAVIGATION WRAPPER-->
     </nav><!--MAIN NAVIGATION ENDS-->
@@ -43,6 +43,9 @@
         </ul>
       </nav><!--SIDEBAR NAV ENDS-->
 
+
+
+
       <div class="newsfeed-posts">
         <!--ADD A POST SECTION-->
         <form class="update-post-form" action="index.html" method="post">
@@ -51,47 +54,57 @@
         </form>
         <!--ADD A POST SECTION ENDS-->
 
-        <div class="comment-wrapper">
-          <div class="avatar-username">
-            <div class="static-avatar"></div>
-            <div class="static-username">
-              <a href="#">Neil deGrasse Tyson</a>
-            </div><!--STATIC USERNAME ENDS-->
-          </div><!--AVATAR USERNAME ENDS-->
-          <div class="message-wrapper">
-            <div class="static-message">
-              <p>This is a placeholder comment. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-            </div><!--STATIC MESSAGE-->
-            <div class="underneath-message">
-              <p class="like-dislikes">Like/Dislike</p>
-              <p class="timestamp">Timestamp</p>
-            </div><!--UNDERNEATH MESSAGE ENDS-->
-            <div class="comment-section">
+        @if(Model["timeline"].Count == 0)
+        {
+          <p>Your timeline is empty!</p>
+        }
+        else
+        {
+          @foreach(var post in @Model["timeline"])
+          {
+            <div class="comment-wrapper">
+              <div class="avatar-username">
+                <div class="static-avatar"></div>
+                <div class="static-username">
+                  <a href="#">@post.GetPosterName()</a>
+                </div><!--STATIC USERNAME ENDS-->
+              </div><!--AVATAR USERNAME ENDS-->
+              <div class="message-wrapper">
+                <div class="static-message">
+                  <p>This is a placeholder comment. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                </div><!--STATIC MESSAGE-->
+                <div class="underneath-message">
+                  <p class="like-dislikes">Like/Dislike</p>
+                  <p class="timestamp">Timestamp</p>
+                </div><!--UNDERNEATH MESSAGE ENDS-->
+                <div class="comment-section">
 
-              <!--FIRST COMMENT-->
-              <div class="small-avatar-username">
-                <div class="avatar-sm">
-                </div>
-                <a href="#" class="newsfeed-username">Honeyblossom Michelle Charlotte Ange</a>
-              </div><!--SMALL AVATAR USERNAME ENDS-->
+                  <!--FIRST COMMENT-->
+                  <div class="small-avatar-username">
+                    <div class="avatar-sm">
+                    </div>
+                    <a href="#" class="newsfeed-username">Honeyblossom Michelle Charlotte Ange</a>
+                  </div><!--SMALL AVATAR USERNAME ENDS-->
 
-              <p>I am another test comment, there are many comments in the world but not one quite like this!</p>
-              <hr>
+                  <p>I am another test comment, there are many comments in the world but not one quite like this!</p>
+                  <hr>
 
-              <!--SECOND COMMENT-->
-              <div class="small-avatar-username">
-                <div class="avatar-sm">
-                </div>
-                <a href="#" class="newsfeed-username">Placeholder Username #2</a>
-              </div><!--SMALL AVATAR USERNAME ENDS-->
+                  <!--SECOND COMMENT-->
+                  <div class="small-avatar-username">
+                    <div class="avatar-sm">
+                    </div>
+                    <a href="#" class="newsfeed-username">Placeholder Username #2</a>
+                  </div><!--SMALL AVATAR USERNAME ENDS-->
 
-              <p>I am another test comment, there are many comments in the world but not one quite like this!</p>
-              <input type="text" name="name" value="" class="comment-input" placeholder="Write a comment...">
-              <button type="button" name="button" class="submit-comment">Submit</button>
-            </div><!--COMMENT SECTION ENDS-->
-          </div><!--MESSAGE WRAPPER ENDS-->
+                  <p>I am another test comment, there are many comments in the world but not one quite like this!</p>
+                  <input type="text" name="name" value="" class="comment-input" placeholder="Write a comment...">
+                  <button type="button" name="button" class="submit-comment">Submit</button>
+                </div><!--COMMENT SECTION ENDS-->
+              </div><!--MESSAGE WRAPPER ENDS-->
 
-        </div><!--COMMENT WRAPPER ENDS-->
+            </div><!--COMMENT WRAPPER ENDS-->
+          }
+        }
       </div><!--NEWSFEED POSTS ENDS-->
     </div><!--NEWSFEED WRAPPER ENDS-->
   </body>

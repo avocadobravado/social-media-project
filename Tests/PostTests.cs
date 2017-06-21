@@ -138,6 +138,18 @@ namespace SocialMedia.Objects
       Assert.Equal(controlList, testList);
     }
 
+    [Fact]
+    public void Post_GetPosterName()
+    {
+      User user1 = new User("Joshua", "Fairchild", "jfairchild", "password", "mail@mail.com", new DateTime(2017, 06, 19));
+      user1.Save();
+
+      Post newPost = new Post("Hello world", user1.Id, new DateTime(2017, 06, 19));
+      newPost.Save();
+
+      Assert.Equal("Joshua Fairchild", newPost.GetPosterName());
+    }
+
     public void Dispose()
     {
       Post.DeleteAll();

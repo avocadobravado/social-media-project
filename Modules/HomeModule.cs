@@ -74,7 +74,7 @@ namespace SocialMedia
       Post["/users/{userId}/posts/{postId}/comment"] = parameters => {
         Dictionary <string, object> model = new Dictionary<string, object>{};
         User selectedUser = User.Find(parameters.userId);
-        Status selectedStatus = Status.Find(parameters.postId);                       //NOTE UHOH, IM A BIG PROBLEM
+        Status selectedStatus = Status.Find(parameters.postId);
         Comment newComment = new Comment(Request.Form["comment"], selectedStatus.Id, selectedUser.Id, DateTime.Now);
         newComment.Save();
         List<Status> timeline = selectedUser.GetTimeline();
@@ -97,18 +97,52 @@ namespace SocialMedia
         User loggedInUser = User.Find(parameters.loggedInId);
         User selectedUser = User.Find(parameters.viewingId);
         List<Status> userStatuses = selectedUser.GetStatuses();
-        model.Add("selected-user", selectedUser);
-        model.Add("user-posts", userStatuses);
         if(loggedInUser.IsFriendsWith(selectedUser))
         {
           //VIEWING FRIENDS PAGE
+          model.Add("selected-user", selectedUser);
+          model.Add("user-statuses", userStatuses);
           return View["friend.cshtml", model];
+        }
+        else if(loggedInUser.Username == selectedUser.Username)
+        {
+          //VIEWING OWN PAGE
+          model.Add("user", loggedInUser);
+          model.Add("user-statuses", loggedInUser.GetStatuses());
+          return View["profile.cshtml", model];
         }
         else
         {
           //VIEWING A NON FRIEND
+          model.Add("selected-user", selectedUser);
+          model.Add("user-statuses", userStatuses);
           return View["notfriend.cshtml", model];     //NOTE NEED TO HANDLE THE CASE OF LOGGED IN USR VIEWING THEMSELVES
         }
+      };
+      Post["/users/{userId}/statuses/new"]= parameters => {
+        Dictionary <string, object> model = new Dictionary<string, object>{};
+        User selectedUser = User.Find(parameters.userId);
+        Status newStatus = new Status(Request.Form["content"], selectedUser.Id, DateTime.Now);
+        newStatus.Save();   
+        List<Status> selectedUserStatuses = selectedUser.GetStatuses();
+        List<User> friendsList = selectedUser.GetFriends();
+        model.Add("user", selectedUser);
+        model.Add("user-statuses", selectedUserStatuses);
+        model.Add("friends", friendsList);
+        return View["profile.cshtml", model];
+      };
+      Post["/users/{userId}/statuses/{statusId}/comments/new"] = parameters => {
+        Dictionary <string, object> model = new Dictionary<string, object>{};
+        User selectedUser = User.Find(parameters.userId);
+        Status selectedStatus = Status.Find(parameters.statusId);
+        Comment newComment = new Comment(Request.Form["content"], selectedStatus.Id, selectedUser.Id, DateTime.Now);
+        newComment.Save();
+        List<Status> selectedUserStatuses = selectedUser.GetStatuses();
+        List<User> friendsList = selectedUser.GetFriends();
+        model.Add("user", selectedUser);
+        model.Add("user-statuses", selectedUserStatuses);
+        model.Add("friends", friendsList);
+        return View["profile.cshtml", model];
       };
     }
   }

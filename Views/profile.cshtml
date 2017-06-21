@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <!-- FONT AWESOME -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/Content/css/main.css" media="screen" title="no title" charset="utf-8">
+    <title>Profile</title>
+  </head>
+  <body>
+    <!--MAIN NAVIGATION-->
+    <nav class="main-nav">
+      <div class="main-nav-wrapper">
+        <div class="logo">
+          <h3>LOGO</h3>
+        </div><!--LOGO ENDS-->
+        <div class="searchbar">
+          <input type="text" name="name" value="" placeholder="Search">
+          <button type="button" name="button" class="search-button">Search</button>     <!-- BUILD ME A ROUTE -->
+        </div><!--SEARCHBAR ENDS-->
+        <ul>
+          <li><a href="#">View profile</a></li>          <!-- BUILD ME A ROUTE -->
+          <li><a href="#">Sign out</a></li>        <!-- BUILD ME A ROUTE -->
+        </ul>
+      </div><!--MAIN NAVIGATION WRAPPER-->
+    </nav><!--MAIN NAVIGATION ENDS-->
+
+    <!-- PROFILE WRAPPER -->
+    <div class="profile-wrapper">
+      <nav class="sidebar">
+        <ul>
+          <li><a href="#"><i class="fa fa-home fa-2x" aria-hidden="true"></i></a></li>
+          <li><a href="#">Home</a></li>
+          <li><a href="#"><i class="fa fa-user fa-2x" aria-hidden="true"></i></a></li>       <!-- BUILD ME A ROUTE -->
+          <li><a href="#">My Profile</a></li>
+          <li><a href="#"><i class="fa fa-users fa-2x" aria-hidden="true"></i></a></li>
+          <li><a href="#">Friends</a></li>
+          <li><a href="#"><i class="fa fa-cogs fa-2x" aria-hidden="true"></i></a></li>
+          <li><a href="#">Admin Access</a></li>
+        </ul>
+      </nav><!--SIDEBAR NAV ENDS-->
+      <div class="profile-container">
+
+        <!--HERO PHOTO-->
+        <div class="hero-photo"></div>
+        <!--HERO ENDS-->
+
+        <div class="profile-info"> <!-- PROFILE INFORMATION STARTS -->
+          <div class="profile-picture"></div>
+          <ul class="title">
+            <li><span>NAME: </span>@Model["user"].FirstName @Model["user"].LastName</li>
+            <li><span>USERNAME: </span>@Model["user"].Username</li>
+            <li><span>DATE JOINED: </span>@Model["user"].Timestamp.ToString("d")</li>
+            <li><span>EMAIL: </span>@Model["user"].Email</li>
+          </ul>
+        </div><!-- PROFILE INFORMATION ENDS -->
+
+        <div class="profile-friends-wrapper">
+          <div class="profile-newsfeed"><!-- PROFILE NEWSFEED STARTS -->
+            <h4>Write a post</h4>
+            <!--FORM STATUS UPDATE-->
+            <div class="profile-post-wrapper">
+              <form class="update-post-form" action='/users/@Model["user"].Id/statuses/new' method="post">
+                <input type="text" name="content" class="profile-status status-input" placeholder="Write a post">
+                <button type="submit" name="button" class="update-post profile-update-post">Update</button>
+              </form>
+            </div> <!--PROFILE POST WRAPPER ENDS-->
+            <!--FORM STATUS UPDATE ENDS-->
+
+            <h4>Newsfeed</h4>
+
+            @if(Model["user-statuses"].Count == 0)
+            {
+              <p>Your have no status updates to display.</p>
+            }
+            else
+            {
+              @foreach(var status in @Model["user-statuses"])
+              {
+                <div class="comment-wrapper anythingandtestitandseeifitworks">
+                  <div class="avatar-username">
+                    <div class="static-avatar"></div>
+                    <div class="static-username">
+                      <a href='/users/@Model["user"].Id/profile_view/@status.UserId'>@status.GetPosterName()</a>
+                    </div><!--STATIC USERNAME ENDS-->
+                  </div><!--AVATAR USERNAME ENDS-->
+                  <div class="message-wrapper">
+                    <div class="static-message">
+                      <p>@status.Content</p>
+                    </div><!--STATIC MESSAGE-->
+                    <div class="underneath-message">
+                      <p class="like-dislikes">Like/Dislike</p>
+                      <p class="timestamp">@status.Timestamp.ToString("d")</p>
+                    </div><!--UNDERNEATH MESSAGE ENDS-->
+
+
+                  <div class="comment-section">
+                    @foreach(var comment in status.GetComments())
+                    {
+                      <!--FIRST COMMENT-->
+                      <div class="small-avatar-username">
+                        <div class="avatar-sm">
+                        </div>
+                        <a href='/users/@Model["user"].Id/profile_view/@status.UserId' class="newsfeed-username">@comment.GetCommenterName()</a>
+                      </div><!--SMALL AVATAR USERNAME ENDS-->
+
+                      <p>@comment.Content</p>
+                      <hr>
+                    }
+
+                    <!-- SECOND COMMENT-->
+                    <!-- <div class="small-avatar-username">
+                      <div class="avatar-sm">
+                      </div>
+                      <a href="#" class="newsfeed-username">Placeholder Username #2</a>
+                    </div><!--SMALL AVATAR USERNAME ENDS --> -->
+
+                    <!-- <p>I am another test comment, there are many comments in the world but not one quite like this!</p> -->
+
+                    <form action='/users/@Model["user"].Id/statuses/@status.Id/comments/new' method="post">
+                      <input type="text" name="content" class="comment-input" placeholder="Write a comment...">
+                      <button type="submit" name="button" class="submit-comment">Submit</button>
+                    </form>
+                  </div><!--COMMENT SECTION ENDS-->
+                </div><!--MESSAGE WRAPPER ENDS-->
+
+              </div><!--COMMENT WRAPPER ENDS-->
+            }
+          }
+          </div><!-- PROFILE NEWSFEED ENDS -->
+          <div class="friends-list"><!-- FRIENDS LIST STARTS -->
+            <h4>Friends List</h4>
+            <ul>
+              <li><a href="#">Placeholder friendfriend</a></li>
+              <hr>
+              <li><a href="#">Placeholder friend</a></li>
+              <hr>
+              <li><a href="#">Placeholder friend</a></li>
+              <hr>
+              <li><a href="#">Placeholder friend</a></li>
+              <hr>
+              <li><a href="#">Placeholder friend</a></li>
+              <hr>
+              <li><a href="#">Placeholder friend</a></li>
+              <hr>
+              <li><a href="#">Placeholder friend</a></li>
+              <hr>
+              <li><a href="#">Placeholder friend</a></li>
+              <hr>
+              <li><a href="#">Placeholder friend</a></li>
+              <hr>
+              <li><a href="#">Placeholder friend</a></li>
+            </ul>
+          </div><!-- FRIENDS LIST ENDS -->
+        </div><!--PROFILE FRIENDS WRAPPER ENDS-->
+      </div><!-- PROFILE WRAPPER ENDS -->
+      </div>
+  </body>
+</html>

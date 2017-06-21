@@ -54,7 +54,7 @@
             <li><span>USERNAME: </span>@Model["selected-user"].Username</li>
             <li><span>DATE JOINED: </span>@Model["selected-user"].Timestamp</li>
             <li><span>EMAIL: </span>@Model["selected-user"].Email</li>
-            <li><button type="button" name="button" class="unfollow-friend">Unfollow</button></li>     <!-- BUILD ME A ROUTE -->
+            <li><form action='/users/@Model["user"].Id/profile_view/@Model["selected-user"].Id/unfollow' method="post"><input type="hidden" name="_method" value="DELETE"><button type="submit" name="button" class="unfollow-friend">Unfollow</button></form></li>     <!-- BUILD ME A ROUTE -->
           </ul>
         </div><!-- PROFILE INFORMATION ENDS -->
 

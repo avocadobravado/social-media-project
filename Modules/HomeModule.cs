@@ -159,6 +159,17 @@ namespace SocialMedia
         model.Add("user-statuses", userStatuses);
         return View["friend.cshtml", model];
       };
+      Delete["/users/{loggedInId}/profile_view/{viewingId}/unfollow"] = parameters => {
+        Dictionary <string, object> model = new Dictionary<string, object>{};
+        User loggedInUser = User.Find(parameters.loggedInId);
+        User selectedUser = User.Find(parameters.viewingId);
+        loggedInUser.RemoveFriend(selectedUser);
+        List<Status> userStatuses = selectedUser.GetStatuses();
+        model.Add("user", loggedInUser);
+        model.Add("selected-user", selectedUser);
+        model.Add("user-statuses", userStatuses);
+        return View["notfriend.cshtml", model];
+      };
     }
   }
 }

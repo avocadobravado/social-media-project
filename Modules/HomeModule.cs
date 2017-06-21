@@ -170,6 +170,17 @@ namespace SocialMedia
         model.Add("user-statuses", userStatuses);
         return View["notfriend.cshtml", model];
       };
+      Post["/users/{loggedInId}/profile_view/{viewingId}/follow"] = parameters => {
+        Dictionary <string, object> model = new Dictionary<string, object>{};
+        User loggedInUser = User.Find(parameters.loggedInId);
+        User selectedUser = User.Find(parameters.viewingId);
+        loggedInUser.AddFriend(selectedUser);
+        List<Status> userStatuses = selectedUser.GetStatuses();
+        model.Add("user", loggedInUser);
+        model.Add("selected-user", selectedUser);
+        model.Add("user-statuses", userStatuses);
+        return View["friend.cshtml", model];
+      };
     }
   }
 }

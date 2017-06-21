@@ -19,7 +19,7 @@
         </div><!--LOGO ENDS-->
         <div class="searchbar">
           <input type="text" name="name" value="" placeholder="Search">
-          <button type="button" name="button" class="search-button">Search</button>
+          <button type="button" name="button" class="search-button"><i class="fa fa-search" aria-hidden="true"></i></button>
         </div><!--SEARCHBAR ENDS-->
         <ul>
           <li><a href="#">Hi, <span>Placeholdername</span></a></li>
@@ -61,8 +61,13 @@
               <p>This is a placeholder comment. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
             </div><!--STATIC MESSAGE-->
             <div class="underneath-message">
-              <p class="like-dislikes"><button class="like"><i class="fa fa-thumbs-up" aria-hidden="true"></i></button> <button class="dislike"><i class="fa fa-thumbs-down" aria-hidden="true"></i></button></p>
-              <p class="timestamp">Timestamp</p>
+              <p class="like-dislikes">
+                <span></span><!--PLACEHOLDER/SPAN FOR NUMBER OF LIKES-->
+                <button class="like"> <i class="fa fa-thumbs-up" aria-hidden="true"></i></button>
+                <span></span><!--PLACEHOLDER/SPAN FOR NUMBER OF DISLIKES-->
+                <button class="dislike"> <i class="fa fa-thumbs-down" aria-hidden="true"></i></button></p>
+              <p class="timestamp"><span>Placeholder timestap</span>
+              </p>
             </div><!--UNDERNEATH MESSAGE ENDS-->
             <div class="comment-section">
 
@@ -74,7 +79,14 @@
               </div><!--SMALL AVATAR USERNAME ENDS-->
 
               <p>I am another test comment, there are many comments in the world but not one quite like this!</p>
-              <hr>
+              <div class="comment-like-wrapper">
+                <p>
+                  <span></span><!--PLACEHOLDER/SPAN FOR NUMBER OF LIKES-->
+                  <button class="like"> <i class="fa fa-thumbs-up" aria-hidden="true"></i></button>
+                  <span></span><!--PLACEHOLDER/SPAN FOR NUMBER OF DISLIKES-->
+                  <button class="dislike"> <i class="fa fa-thumbs-down" aria-hidden="true"></i></button></p>
+                </p>
+              </div><!--COMMENT LIKE WRAPPER ENDS-->
 
               <!--SECOND COMMENT-->
               <div class="small-avatar-username">

@@ -1,32 +1,53 @@
 .main-nav {
-  // border: 5px solid mistyrose;
+    background-image: linear-gradient(to right, #f4f7d8, #bfdfca, #66b3ad, #3c887c, #407b81, #2b9ba3);
   .main-nav-wrapper {
     width: 100%;
     display: flex;
     justify-content: space-around;
     align-items: baseline;
-    // border: 5px solid tomato;
   }
   ul {
     display: flex;
     li {
-      padding-right: 7%;
-      text-align: right;
-      width: 150px;
-      max-width: 150px;
-      border: 5px solid thistle;
+      padding-right: 2%;
+      text-align: center;
+      width: 200px;
+      max-width: 250px;
+      a {
+        color: white;
+      }
     }
   }
   .searchbar {
     input {
-    width: 250px;
-    height: 25px;
-    font-size: 16px;
+      width: 300px;
+      margin: 1% 0;
+      height: 30px;
+      background-color: rgba(255, 255, 255, 0.5);
+      border: none;
+      color: $dark-blue;
+      font-size: 18px;
+      padding-left: 5px;
+      margin-right: 5px;
+      transition: all .3s ease-in-out;
+      &:focus {
+       border: 1px solid $teal;
+       background-color: rgba(255, 255, 255, 0.65);
+      }
+    }
   }
   .search-button {
-    height: 30px;
+    background-color: $dark-blue;
     border: none;
-    font-size: 12px;
+    color: $yellow-green;
+    padding: 5px 20px 7px 20px;
+    font-size: 18px;
+    border-radius: 3px;
+
+    &:hover {
+     transition:.6s;
+     background-color: $teal;
+     color: white;
+    }
   }
-}
 }

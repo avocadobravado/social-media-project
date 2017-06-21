@@ -406,6 +406,18 @@ button {
 input {
   font-family: "Nunito"; }
 
+a {
+  color: #66b3ad; }
+
+p {
+  color: #444; }
+
+li {
+  color: #3c887c; }
+
+.titles {
+  margin-left: 50px; }
+
 ul {
   padding: 0; }
   ul li {
@@ -416,35 +428,92 @@ input {
   input:focus {
     outline: none; }
 
+.comment-like-wrapper {
+  width: 100%;
+  text-align: right; }
+  .comment-like-wrapper .like, .comment-like-wrapper .dislike {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    text-align: right; }
+    .comment-like-wrapper .like:hover, .comment-like-wrapper .dislike:hover {
+      transform: scale(1.5, 1.5); }
+
+.upload-photo, .unfollow-friend, .follow-friend {
+  background-color: #407b81;
+  border: none;
+  color: #f4f7d8;
+  padding: 5px 15px;
+  font-size: 18px;
+  border-radius: 3px;
+  cursor: pointer; }
+  .upload-photo:hover, .unfollow-friend:hover, .follow-friend:hover {
+    transition: .6s;
+    background-color: #66b3ad;
+    color: white; }
+
 .sidebar {
   display: flex;
-  justify-content: center; }
+  height: 300vh;
+  justify-content: center;
+  background-image: linear-gradient(to bottom, #407b81, #3c887c, #66b3ad, #bfdfca, white); }
   .sidebar li {
     font-size: 1.5em;
     margin-bottom: 15%;
     text-align: center; }
+    .sidebar li:nth-child(odd) {
+      margin-bottom: 3%; }
+    .sidebar li:nth-child(even) {
+      margin-bottom: 70%; }
+    .sidebar li a {
+      color: white;
+      text-shadow: 1px 1px 1px #407b81;
+      transition: all 0.3s ease-in-out; }
+      .sidebar li a:hover {
+        color: rgba(255, 255, 255, 0.5); }
 
-.main-nav .main-nav-wrapper {
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-  align-items: baseline; }
-.main-nav ul {
-  display: flex; }
-  .main-nav ul li {
-    padding-right: 7%;
-    text-align: right;
-    width: 150px;
-    max-width: 150px;
-    border: 5px solid thistle; }
-.main-nav .searchbar input {
-  width: 250px;
-  height: 25px;
-  font-size: 16px; }
-.main-nav .searchbar .search-button {
-  height: 30px;
-  border: none;
-  font-size: 12px; }
+.main-nav {
+  background-image: linear-gradient(to right, #f4f7d8, #bfdfca, #66b3ad, #3c887c, #407b81, #2b9ba3); }
+  .main-nav .main-nav-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: baseline; }
+  .main-nav ul {
+    display: flex; }
+    .main-nav ul li {
+      padding-right: 2%;
+      text-align: center;
+      width: 200px;
+      max-width: 250px; }
+      .main-nav ul li a {
+        color: white; }
+  .main-nav .searchbar input {
+    width: 300px;
+    margin: 1% 0;
+    height: 30px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: none;
+    color: #407b81;
+    font-size: 18px;
+    padding-left: 5px;
+    margin-right: 5px;
+    transition: all .3s ease-in-out; }
+    .main-nav .searchbar input:focus {
+      border: 1px solid #66b3ad;
+      background-color: rgba(255, 255, 255, 0.65); }
+  .main-nav .search-button {
+    background-color: #407b81;
+    border: none;
+    color: #f4f7d8;
+    padding: 5px 20px 7px 20px;
+    font-size: 18px;
+    border-radius: 3px; }
+    .main-nav .search-button:hover {
+      transition: .6s;
+      background-color: #66b3ad;
+      color: white; }
 
 .login-wrapper {
   width: calc(100%);
@@ -465,7 +534,7 @@ input {
   margin: 0;
   padding: 0;
   box-shadow: 3px 2px 2px #407b81;
-  background-image: url(https://github.com/avocadobravado/social-media-project-inspiration/blob/master/background-img01.png?raw=true);
+  background-image: url(https://github.com/avocadobravado/social-media-project-inspiration/blob/master/evening-bg01.png?raw=true);
   background-repeat: no-repeat;
   background-size: cover; }
 
@@ -586,8 +655,7 @@ button:focus {
   outline: none; }
 
 .main-nav {
-  width: 100%;
-  border-bottom: 1px inset pink; }
+  width: 100%; }
 
 .sidebar {
   width: calc(33.33333%);
@@ -596,15 +664,13 @@ button:focus {
   height: 100vh;
   margin: 0;
   padding: 0;
-  width: 25%;
-  border: 1px solid lightblue; }
+  width: 25%; }
 
 .newsfeed-wrapper {
   width: calc(100%);
   float: left;
   margin-left: 0;
-  margin: 0;
-  border: 3px solid green; }
+  margin: 0; }
 
 .newsfeed-posts {
   width: calc(66.66667%);
@@ -614,7 +680,6 @@ button:focus {
   flex-direction: column;
   margin: 0 auto;
   height: 100vh;
-  border: 1px solid plum;
   align-items: center; }
   .newsfeed-posts .status-input {
     width: 300px;
@@ -624,7 +689,6 @@ button:focus {
     height: 30px; }
 
 .comment-wrapper {
-  border: 1px solid lightgreen;
   padding: 0 10%; }
 
 .avatar-username {
@@ -632,8 +696,7 @@ button:focus {
   align-items: center; }
   .avatar-username .static-username {
     padding-left: 2%;
-    max-width: 400px;
-    border: 1px solid olive; }
+    max-width: 400px; }
 
 .static-avatar {
   width: 80px;
@@ -643,14 +706,21 @@ button:focus {
 
 .message-wrapper {
   margin-left: 10%;
-  background-color: #f8f9fb;
+  background-color: #f2f9f4;
   padding: 3%; }
   .message-wrapper .underneath-message {
     text-transform: uppercase;
     font-size: 0.8em;
-    background-color: #e8ebf2;
     display: flex;
-    justify-content: space-between; }
+    justify-content: space-between;
+    background-color: #c9e4d2; }
+    .message-wrapper .underneath-message button {
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out; }
+      .message-wrapper .underneath-message button:hover {
+        transform: scale(1.5, 1.5); }
 
 .comment-section {
   display: flex;
@@ -668,6 +738,8 @@ button:focus {
     height: 30px;
     width: 75px;
     font-size: 12px; }
+  .comment-section p {
+    margin-bottom: 0; }
 
 .small-avatar-username {
   display: flex;
@@ -690,28 +762,27 @@ button:focus {
 
 .profile-wrapper {
   display: flex;
-  margin: 0;
-  border: 3px solid green; }
+  margin: 0; }
 
 .profile-container {
-  border: 2px solid hotpink;
   margin: 0;
   padding: 0;
   display: flex;
   flex-direction: column; }
 
 .hero-photo {
-  background-color: mistyrose;
-  height: 300px;
+  background-image: url(https://raw.githubusercontent.com/avocadobravado/social-media-project-inspiration/master/background.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 350px;
   width: 100%; }
 
 .profile-newsfeed {
-  width: 70%;
-  border: 2px solid teal; }
+  width: 70%; }
 
 .friends-list {
-  width: 30%;
-  border: 2px solid salmon; }
+  width: 30%; }
 
 .profile-picture {
   margin-top: 1%;
@@ -721,20 +792,18 @@ button:focus {
   background-color: RosyBrown; }
 
 .profile-info {
-  border: 2px solid fuchsia;
   display: flex;
   flex-direction: column;
   text-align: center;
-  align-items: center;
-  border: 2px solid burlywood; }
+  align-items: center; }
   .profile-info li {
     margin: 20px;
     display: inline; }
-  .profile-info span {
+  .profile-info .user-info {
     text-transform: uppercase;
     font-weight: bold;
     font-size: 0.75em;
-    color: gray;
+    color: #444;
     letter-spacing: 0.03em; }
 
 .profile-friends-wrapper {
@@ -748,7 +817,6 @@ button:focus {
     min-width: 400px; }
 
 .friends-list {
-  border: 1px solid thistle;
   display: flex;
   flex-direction: column;
   align-items: center; }

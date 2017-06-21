@@ -1,11 +1,9 @@
 .profile-wrapper {
   display: flex;
   margin: 0;
-  border: 3px solid green;
 }
 
 .profile-container {
-  border: 2px solid hotpink;
   margin: 0;
   padding: 0;
   display: flex;
@@ -13,19 +11,20 @@
 }
 
 .hero-photo {
-  background-color: mistyrose;
-  height: 300px;
+  background-image: url(https://raw.githubusercontent.com/avocadobravado/social-media-project-inspiration/master/background.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 350px;
   width: 100%;
 }
 
 .profile-newsfeed {
   width: 70%;
-  border: 2px solid teal;
 }
 
 .friends-list {
   width: 30%;
-  border: 2px solid salmon;
 }
 
 // PROFILE INFO AND PICTURE AREA
@@ -39,21 +38,19 @@
 }
 
 .profile-info {
-  border: 2px solid fuchsia;
   display: flex;
   flex-direction: column;
   text-align: center;
   align-items: center;
-  border: 2px solid burlywood;
   li {
     margin: 20px;
     display: inline;
   }
-  span {
+  .user-info {
     text-transform: uppercase;
     font-weight: bold;
     font-size: 0.75em;
-    color: lighten(black, 50%);
+    color: #444;
     letter-spacing: 0.03em;
   }
 }
@@ -72,7 +69,6 @@
 }
 
 .friends-list {
-  border: 1px solid thistle;
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -1,10 +1,26 @@
 .sidebar {
   display: flex;
-  // align-items: center;
+  height: 300vh;
   justify-content: center;
+  background-image: linear-gradient(to bottom, $dark-blue, $dark-teal, $teal, $light-green, white);
+  // box-shadow: 3px 2px 2px #407b81;
   li {
     font-size: 1.5em;
     margin-bottom: 15%;
     text-align: center;
+    &:nth-child(odd) {
+      margin-bottom: 3%;
+    }
+    &:nth-child(even) {
+      margin-bottom: 70%;
+    }
+    a {
+      color: white;
+      text-shadow: 1px 1px 1px #407b81;
+      transition: all 0.3s ease-in-out;
+      &:hover {
+        color: rgba(255, 255, 255, 0.5);
+      }
+    }
   }
 }

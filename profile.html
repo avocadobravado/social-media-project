@@ -17,10 +17,10 @@
         </div><!--LOGO ENDS-->
         <div class="searchbar">
           <input type="text" name="name" value="" placeholder="Search">
-          <button type="button" name="button" class="search-button">Search</button>
+          <button type="button" name="button" class="search-button"><i class="fa fa-search" aria-hidden="true"></i></button>
         </div><!--SEARCHBAR ENDS-->
         <ul>
-          <li><a href="#">View profile</a></li>
+          <li><a href="#">Hi, <span>Placeholdername</span></a></li>
           <li><a href="#">Sign out</a></li>
         </ul>
       </div><!--MAIN NAVIGATION WRAPPER-->
@@ -32,8 +32,6 @@
         <ul>
           <li><a href="#"><i class="fa fa-home fa-2x" aria-hidden="true"></i></a></li>
           <li><a href="#">Home</a></li>
-          <li><a href="#"><i class="fa fa-user fa-2x" aria-hidden="true"></i></a></li>
-          <li><a href="#">My Profile</a></li>
           <li><a href="#"><i class="fa fa-users fa-2x" aria-hidden="true"></i></a></li>
           <li><a href="#">Friends</a></li>
           <li><a href="#"><i class="fa fa-cogs fa-2x" aria-hidden="true"></i></a></li>
@@ -49,16 +47,17 @@
         <div class="profile-info"> <!-- PROFILE INFORMATION STARTS -->
           <div class="profile-picture"></div>
           <ul class="title">
-            <li><span>NAME: </span>Placeholder</li>
-            <li><span>USERNAME: </span>Placeholder</li>
-            <li><span>DATE JOINED: </span>Placeholder</li>
-            <li><span>EMAIL: </span>Placeholder</li>
+            <li><span class="user-info">NAME: </span><span>Placeholder</span></li>
+            <li><span class="user-info">USERNAME: </span><span>Placeholder</span></li>
+            <li><span class="user-info">DATE JOINED: </span><span>Placeholder</span></li>
+            <li><span class="user-info">EMAIL: </span><span>Placeholder</span></li>
+            <li><button type="button" name="button" class="upload-photo">Upload photo</button></li>
           </ul>
         </div><!-- PROFILE INFORMATION ENDS -->
 
         <div class="profile-friends-wrapper">
           <div class="profile-newsfeed"><!-- PROFILE NEWSFEED STARTS -->
-            <h4>Write a post</h4>
+            <h4 class="titles">Write a post</h4>
             <!--FORM STATUS UPDATE-->
             <div class="profile-post-wrapper">
               <form class="update-post-form" action="index.html" method="post">
@@ -68,8 +67,8 @@
             </div> <!--PROFILE POST WRAPPER ENDS-->
             <!--FORM STATUS UPDATE ENDS-->
 
-            <h4>Newsfeed</h4>
-            <div class="comment-wrapper anythingandtestitandseeifitworks">
+            <h4 class="titles">Newsfeed</h4>
+            <div class="comment-wrapper">
               <div class="avatar-username">
                 <div class="static-avatar"></div>
                 <div class="static-username">
@@ -81,8 +80,13 @@
                   <p>This is a placeholder comment. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
                 </div><!--STATIC MESSAGE-->
                 <div class="underneath-message">
-                  <p class="like-dislikes">Like/Dislike</p>
-                  <p class="timestamp">Timestamp</p>
+                  <p class="like-dislikes">
+                    <span></span><!--PLACEHOLDER/SPAN FOR NUMBER OF LIKES-->
+                    <button class="like"> <i class="fa fa-thumbs-up" aria-hidden="true"></i></button>
+                    <span></span><!--PLACEHOLDER/SPAN FOR NUMBER OF DISLIKES-->
+                    <button class="dislike"> <i class="fa fa-thumbs-down" aria-hidden="true"></i></button></p>
+                  <p class="timestamp"><span>Placeholder timestap</span>
+                  </p>
                 </div><!--UNDERNEATH MESSAGE ENDS-->
                 <div class="comment-section">
 
@@ -94,7 +98,15 @@
                   </div><!--SMALL AVATAR USERNAME ENDS-->
 
                   <p>I am another test comment, there are many comments in the world but not one quite like this!</p>
-                  <hr>
+
+                  <div class="comment-like-wrapper">
+                    <p>
+                      <span></span><!--PLACEHOLDER/SPAN FOR NUMBER OF LIKES-->
+                      <button class="like"> <i class="fa fa-thumbs-up" aria-hidden="true"></i></button>
+                      <span></span><!--PLACEHOLDER/SPAN FOR NUMBER OF DISLIKES-->
+                      <button class="dislike"> <i class="fa fa-thumbs-down" aria-hidden="true"></i></button></p>
+                    </p>
+                  </div><!--COMMENT LIKE WRAPPER ENDS-->
 
                   <!--SECOND COMMENT-->
                   <div class="small-avatar-username">

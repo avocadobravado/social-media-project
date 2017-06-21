@@ -10,11 +10,29 @@
     text-align: right;
     &:hover {
       transform: scale(1.5, 1.5);
+      background-color: transparent;
+      color: $dark-blue;
     }
   }
 }
 
 .upload-photo, .unfollow-friend, .follow-friend {
+  background-color: $dark-blue;
+  border: none;
+  color: $yellow-green;
+  padding: 5px 15px;
+  font-size: 18px;
+  border-radius: 3px;
+  cursor: pointer;
+
+  &:hover {
+   transition:.6s;
+   background-color: $teal;
+   color: white;
+  }
+}
+
+.follow-result, .unfollow-result {
   background-color: $dark-blue;
   border: none;
   color: $yellow-green;

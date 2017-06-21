@@ -429,6 +429,9 @@ ul {
   ul li {
     list-style-type: none; }
 
+.logo img {
+  max-height: 100px; }
+
 input {
   border-radius: 3px; }
   input:focus {
@@ -451,7 +454,9 @@ textarea {
     transition: all 0.3s ease-in-out;
     text-align: right; }
     .comment-like-wrapper .like:hover, .comment-like-wrapper .dislike:hover {
-      transform: scale(1.5, 1.5); }
+      transform: scale(1.5, 1.5);
+      background-color: transparent;
+      color: #407b81; }
 
 .upload-photo, .unfollow-friend, .follow-friend {
   background-color: #407b81;
@@ -462,6 +467,19 @@ textarea {
   border-radius: 3px;
   cursor: pointer; }
   .upload-photo:hover, .unfollow-friend:hover, .follow-friend:hover {
+    transition: .6s;
+    background-color: #66b3ad;
+    color: white; }
+
+.follow-result, .unfollow-result {
+  background-color: #407b81;
+  border: none;
+  color: #f4f7d8;
+  padding: 5px 15px;
+  font-size: 18px;
+  border-radius: 3px;
+  cursor: pointer; }
+  .follow-result:hover, .unfollow-result:hover {
     transition: .6s;
     background-color: #66b3ad;
     color: white; }
@@ -493,7 +511,7 @@ textarea {
     width: 100%;
     display: flex;
     justify-content: space-around;
-    align-items: baseline; }
+    align-items: center; }
   .main-nav ul {
     display: flex; }
     .main-nav ul li {
@@ -924,5 +942,32 @@ button:focus {
   align-items: center; }
   .friends-list li {
     margin: 5% 0; }
+
+.results {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  color: #444; }
+  .results form {
+    height: auto; }
+
+.search-info {
+  display: flex;
+  width: 60%;
+  align-items: center;
+  justify-content: space-between; }
+  .search-info .image-and-name {
+    display: flex;
+    flex-direction: row;
+    align-items: center; }
+    .search-info .image-and-name span {
+      padding-left: 5px; }
+
+.imageDiv {
+  width: 100px;
+  height: 100px;
+  background-color: #bfdfca;
+  border-radius: 50%; }
 
 /*# sourceMappingURL=main.css.map */

@@ -100,6 +100,7 @@ namespace SocialMedia
         if(loggedInUser.IsFriendsWith(selectedUser))
         {
           //VIEWING FRIENDS PAGE
+          model.Add("user", loggedInUser);
           model.Add("selected-user", selectedUser);
           model.Add("user-statuses", userStatuses);
           return View["friend.cshtml", model];
@@ -114,16 +115,17 @@ namespace SocialMedia
         else
         {
           //VIEWING A NON FRIEND
+          model.Add("user", loggedInUser);
           model.Add("selected-user", selectedUser);
           model.Add("user-statuses", userStatuses);
-          return View["notfriend.cshtml", model];     //NOTE NEED TO HANDLE THE CASE OF LOGGED IN USR VIEWING THEMSELVES
+          return View["notfriend.cshtml", model];
         }
       };
       Post["/users/{userId}/statuses/new"]= parameters => {
         Dictionary <string, object> model = new Dictionary<string, object>{};
         User selectedUser = User.Find(parameters.userId);
         Status newStatus = new Status(Request.Form["content"], selectedUser.Id, DateTime.Now);
-        newStatus.Save();   
+        newStatus.Save();
         List<Status> selectedUserStatuses = selectedUser.GetStatuses();
         List<User> friendsList = selectedUser.GetFriends();
         model.Add("user", selectedUser);
@@ -143,6 +145,19 @@ namespace SocialMedia
         model.Add("user-statuses", selectedUserStatuses);
         model.Add("friends", friendsList);
         return View["profile.cshtml", model];
+      };
+      Post["/users/{loggedInId}/profile_view/{viewingId}/statuses/{statusId}/comment"] = parameters => {
+        Dictionary <string, object> model = new Dictionary<string, object>{};
+        User loggedInUser = User.Find(parameters.loggedInId);
+        User selectedUser = User.Find(parameters.viewingId);
+        Status selectedStatus = Status.Find(parameters.statusId);
+        Comment newComment = new Comment(Request.Form["content"], selectedStatus.Id, loggedInUser.Id, DateTime.Now);
+        newComment.Save();
+        List<Status> userStatuses = selectedUser.GetStatuses();
+        model.Add("user", loggedInUser);
+        model.Add("selected-user", selectedUser);
+        model.Add("user-statuses", userStatuses);
+        return View["friend.cshtml", model];
       };
     }
   }

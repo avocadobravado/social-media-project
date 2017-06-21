@@ -92,6 +92,24 @@ namespace SocialMedia
         model.Add("user", selectedUser);
         return View["news.cshtml", model];
       };
+      Get["/users/{loggedInId}/profile_view/{viewingId}"] = parameters => {
+        Dictionary <string, object> model = new Dictionary<string, object>{};
+        User loggedInUser = User.Find(parameters.loggedInId);
+        User selectedUser = User.Find(parameters.viewingId);
+        List<Post> usersPosts = selectedUser.GetPosts();
+        model.Add("selected-user", selectedUser);
+        model.Add("user-posts", usersPosts);
+        if(loggedInUser.IsFriendsWith(selectedUser))
+        {
+          //VIEWING FRIENDS PAGE
+          return View["friend.cshtml", model];
+        }
+        else
+        {
+          //VIEWING A NON FRIEND
+          return View["notfriend.cshtml", model];     //NOTE NEED TO HANDLE THE CASE OF LOGGED IN USR VIEWING THEMSELVES
+        }
+      };
     }
   }
 }

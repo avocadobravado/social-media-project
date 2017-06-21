@@ -48,7 +48,7 @@
 
       <div class="newsfeed-posts">
         <!--ADD A POST SECTION-->
-        <form class="update-post-form" action='/users/@Model["user"].Id/post' method="post">                 <!-- BUILD ME A ROUTE -->
+        <form class="update-post-form" action='/users/@Model["user"].Id/post' method="post">
          <input type="text" name="post" class="status-input" placeholder="Write a post">
          <button type="submit" name="button" class="update-post">Update</button>
         </form>
@@ -66,7 +66,7 @@
               <div class="avatar-username">
                 <div class="static-avatar"></div>
                 <div class="static-username">
-                  <a href="#">@post.GetPosterName()</a>   <!-- BUILD ME A ROUTE -->
+                  <a href='users/@Model["user"].Id/profile_view/@post.UserId'>@post.GetPosterName()</a>   <!-- BUILD ME A ROUTE -->
                 </div><!--STATIC USERNAME ENDS-->
               </div><!--AVATAR USERNAME ENDS-->
               <div class="message-wrapper">

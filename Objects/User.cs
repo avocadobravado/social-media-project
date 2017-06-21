@@ -520,7 +520,7 @@ namespace SocialMedia.Objects
       }
 
       timeline.Sort((status1, status2) => DateTime.Compare(status1.Timestamp, status2.Timestamp));
-      // timeline.Reverse();
+      timeline.Reverse();
 
       return timeline;
     }

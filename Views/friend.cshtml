@@ -14,15 +14,15 @@
     <nav class="main-nav">
       <div class="main-nav-wrapper">
         <div class="logo">
-          <h3>LOGO</h3>
+          <img src="https://raw.githubusercontent.com/avocadobravado/social-media-project-inspiration/master/logo_sm_color.png" alt="" class="logo"/>
         </div><!--LOGO ENDS-->
         <div class="searchbar">
-          <input type="text" name="name" value="" placeholder="Search">
-          <button type="button" name="button" class="search-button">Search</button>     <!-- BUILD ME A ROUTE -->
+          <input type="text" name="name" value="" placeholder="Search">           <!-- BUILD ME A ROUTE -->
+          <button type="button" name="button" class="search-button"><i class="fa fa-search" aria-hidden="true"></i></button>
         </div><!--SEARCHBAR ENDS-->
         <ul>
-          <li><a href='/users/@Model["user"].Id/profile_view'>View profile</a></li>     <!-- BUILD ME A ROUTE -->
-          <li><a href="/">Sign out</a></li>     <!-- BUILD ME A ROUTE -->
+          <li><a href='/users/@Model["user"].Id/profile_view'>Hi, <span>@Model["user"].FirstName</span></a></li>
+          <li><a href="/">Sign out</a></li>
         </ul>
       </div><!--MAIN NAVIGATION WRAPPER-->
     </nav><!--MAIN NAVIGATION ENDS-->
@@ -31,13 +31,13 @@
     <div class="profile-wrapper">
       <nav class="sidebar">
         <ul>
-          <li><a href='/users/@Model["user"].Id/news'><i class="fa fa-home fa-2x" aria-hidden="true"></i></a></li>     <!-- BUILD ME A ROUTE -->
+          <li><a href='/users/@Model["user"].Id/news'><i class="fa fa-home fa-2x" aria-hidden="true"></i></a></li>
           <li><a href='/users/@Model["user"].Id/news'>Home</a></li>
           <li><a href='/users/@Model["user"].Id/profile_view'><i class="fa fa-user fa-2x" aria-hidden="true"></i></a></li>
           <li><a href='/users/@Model["user"].Id/profile_view'>My Profile</a></li>
-          <li><a href="#"><i class="fa fa-users fa-2x" aria-hidden="true"></i></a></li>     <!-- BUILD ME A ROUTE -->
+          <li><a href="#"><i class="fa fa-users fa-2x" aria-hidden="true"></i></a></li>
           <li><a href="#">Friends</a></li>
-          <li><a href="#"><i class="fa fa-cogs fa-2x" aria-hidden="true"></i></a></li>
+          <li><a href="#"><i class="fa fa-cogs fa-2x" aria-hidden="true"></i></a></li>          <!-- BUILD ME A ROUTE -->
           <li><a href="#">Admin Access</a></li>
         </ul>
       </nav><!--SIDEBAR NAV ENDS-->
@@ -50,11 +50,11 @@
         <div class="profile-info"> <!-- PROFILE INFORMATION STARTS -->
           <div class="profile-picture"></div>
           <ul class="title">
-            <li><span>NAME: </span>@Model["selected-user"].FirstName @Model["selected-user"].LastName</li>
-            <li><span>USERNAME: </span>@Model["selected-user"].Username</li>
-            <li><span>DATE JOINED: </span>@Model["selected-user"].Timestamp</li>
-            <li><span>EMAIL: </span>@Model["selected-user"].Email</li>
-            <li><form action='/users/@Model["user"].Id/profile_view/@Model["selected-user"].Id/unfollow' method="post"><input type="hidden" name="_method" value="DELETE"><button type="submit" name="button" class="unfollow-friend">Unfollow</button></form></li>     <!-- BUILD ME A ROUTE -->
+            <li><span class="user-info">NAME: </span>@Model["selected-user"].FirstName @Model["selected-user"].LastName</li>
+            <li><span class="user-info">USERNAME: </span>@Model["selected-user"].Username</li>
+            <li><span class="user-info">DATE JOINED: </span>@Model["selected-user"].Timestamp</li>
+            <li><span class="user-info">EMAIL: </span>@Model["selected-user"].Email</li>
+            <li><form action='/users/@Model["user"].Id/profile_view/@Model["selected-user"].Id/unfollow' method="post"><input type="hidden" name="_method" value="DELETE"><button type="submit" name="button" class="unfollow-friend">Unfollow</button></form></li>
           </ul>
         </div><!-- PROFILE INFORMATION ENDS -->
 
@@ -67,10 +67,11 @@
                 <input type="text" name="name" value="" class="profile-status status-input" placeholder="Write a post">
                 <button type="button" name="button" class="update-post profile-update-post">Update</button>
               </form>
-            </div> <!--PROFILE POST WRAPPER ENDS--> -->
+            </div> -->
+            <!--PROFILE POST WRAPPER ENDS-->
             <!--FORM STATUS UPDATE ENDS-->
 
-            <h4>Newsfeed</h4>
+            <h4 class="titles">Newsfeed</h4>
 
             @if(Model["user-statuses"].Count == 0)
             {
@@ -80,7 +81,7 @@
             {
               @foreach(var status in Model["user-statuses"])
               {
-                <div class="comment-wrapper anythingandtestitandseeifitworks">
+                <div class="comment-wrapper">
                   <div class="avatar-username">
                     <div class="static-avatar"></div>
                     <div class="static-username">
@@ -92,8 +93,13 @@
                       <p>@status.Content</p>
                     </div><!--STATIC MESSAGE-->
                     <div class="underneath-message">
-                      <p class="like-dislikes">Like/Dislike</p>
-                      <p class="timestamp">@status.Timestamp.ToString("d")</p>
+                      <p class="like-dislikes">
+                        <span>@status.Likes</span><!--PLACEHOLDER/SPAN FOR NUMBER OF LIKES-->
+                        <button class="like"> <i class="fa fa-thumbs-up" aria-hidden="true"></i></button>
+                        <span>@status.Dislikes</span><!--PLACEHOLDER/SPAN FOR NUMBER OF DISLIKES-->
+                        <button class="dislike"> <i class="fa fa-thumbs-down" aria-hidden="true"></i></button></p>
+                      <p class="timestamp"><span>@status.Timestamp.ToString("d")</span>
+                      </p>
                     </div><!--UNDERNEATH MESSAGE ENDS-->
 
 
@@ -108,21 +114,20 @@
                         </div><!--SMALL AVATAR USERNAME ENDS-->
 
                         <p>@comment.Content</p>
-                        <hr>
+
+                        <div class="comment-like-wrapper">
+                          <p>
+                            <span>@comment.Likes</span><!--PLACEHOLDER/SPAN FOR NUMBER OF LIKES-->
+                            <button class="like"> <i class="fa fa-thumbs-up" aria-hidden="true"></i></button>   <!-- BUILD ME A ROUTE NOTE -->
+                            <span>@comment.Dislikes</span><!--PLACEHOLDER/SPAN FOR NUMBER OF DISLIKES-->
+                            <button class="dislike"> <i class="fa fa-thumbs-down" aria-hidden="true"></i></button></p>
+                          </p>
+                        </div><!--COMMENT LIKE WRAPPER ENDS-->
                       }
 
-                      <!--SECOND COMMENT-->
-                      <!-- <div class="small-avatar-username">
-                        <div class="avatar-sm">
-                        </div>
-                        <a href="#" class="newsfeed-username">Placeholder Username #2</a>
-                      </div><!--SMALL AVATAR USERNAME ENDS--> -->
-
-                      <!-- <p>I am another test comment, there are many comments in the world but not one quite like this!</p> -->
-
                       <form action='/users/@Model["user"].Id/profile_view/@Model["selected-user"].Id/statuses/@status.Id/comment' method="post">
-                        <input type="text" name="content" value="" class="comment-input" placeholder="Write a comment...">
-                        <button type="button" name="button" class="submit-comment">Submit</button>
+                        <textarea type="text" name="content" value="" class="comment-input" placeholder="Write a comment..."></textarea>
+                        <button type="submit" name="button" class="submit-comment">Submit</button>
                       </form>
                     </div><!--COMMENT SECTION ENDS-->
                   </div><!--MESSAGE WRAPPER ENDS-->
@@ -134,7 +139,7 @@
           <div class="friends-list"><!-- FRIENDS LIST STARTS -->
             <h4>Friends List</h4>
             <ul>
-              <li><a href="#">Placeholder friendfriend</a></li>
+              <li><a href="#">Placeholder friendfriend</a></li>       <!-- BUILD ME A ROUTE -->
               <hr>
               <li><a href="#">Placeholder friend</a></li>
               <hr>

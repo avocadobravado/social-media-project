@@ -122,6 +122,21 @@ namespace SocialMedia.Objects
       Assert.Equal(controlList, testList);
     }
 
+    [Fact]
+    public void Comment_GetCommenterName_ReturnsUserName()
+    {
+      User newUser = new User("Joshua", "Fairchild", "jfairchild", "password", "mail@mail.com", new DateTime(2017, 06, 19));
+      newUser.Save();
+
+      Post newPost = new Post("Hello world", newUser.Id, new DateTime(2017, 06, 19));
+      newPost.Save();
+
+      Comment newComment = new Comment("Hello world", newPost.Id, newUser.Id, new DateTime(2017, 06, 19));
+      newComment.Save();
+
+      Assert.Equal("Joshua Fairchild", newComment.GetCommenterName());
+    }
+
     public void Dispose()
     {
       Comment.DeleteAll();

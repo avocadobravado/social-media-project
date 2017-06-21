@@ -22,7 +22,7 @@
           <button type="button" name="button" class="search-button">Search</button>
         </div><!--SEARCHBAR ENDS-->
         <ul>
-          <li><a href="#">View profile</a></li> <!-- BUILD ME A ROUTE -->
+          <li><a href="#">View profile</a></li>                              <!-- BUILD ME A ROUTE -->
           <li><a href="/">Sign out</a></li>
         </ul>
       </div><!--MAIN NAVIGATION WRAPPER-->
@@ -33,7 +33,7 @@
       <nav class="sidebar">
         <ul>
           <li><a href="#"><i class="fa fa-home fa-2x" aria-hidden="true"></i></a></li>
-          <li><a href="#">Home</a></li>
+          <li><a href="#">Home</a></li>                                                           <!-- BUILD ME A ROUTE -->
           <li><a href="#"><i class="fa fa-user fa-2x" aria-hidden="true"></i></a></li>
           <li><a href="#">My Profile</a></li>
           <li><a href="#"><i class="fa fa-users fa-2x" aria-hidden="true"></i></a></li>
@@ -48,7 +48,7 @@
 
       <div class="newsfeed-posts">
         <!--ADD A POST SECTION-->
-        <form class="update-post-form" action="index.html" method="post">
+        <form class="update-post-form" action="index.html" method="post">                 <!-- BUILD ME A ROUTE -->
          <input type="text" name="name" value="" class="status-input" placeholder="Write a post">
          <button type="button" name="button" class="update-post">Update</button>
         </form>
@@ -66,39 +66,46 @@
               <div class="avatar-username">
                 <div class="static-avatar"></div>
                 <div class="static-username">
-                  <a href="#">@post.GetPosterName()</a>
+                  <a href="#">@post.GetPosterName()</a>   <!-- BUILD ME A ROUTE -->
                 </div><!--STATIC USERNAME ENDS-->
               </div><!--AVATAR USERNAME ENDS-->
               <div class="message-wrapper">
                 <div class="static-message">
-                  <p>This is a placeholder comment. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                  <p>@post.Content</p>
                 </div><!--STATIC MESSAGE-->
                 <div class="underneath-message">
                   <p class="like-dislikes">Like/Dislike</p>
-                  <p class="timestamp">Timestamp</p>
+                  <p class="timestamp">@post.Timestamp.ToString("d")</p>
                 </div><!--UNDERNEATH MESSAGE ENDS-->
+
                 <div class="comment-section">
+                  @foreach(var comment in post.GetComments())
+                  {
+                    <!--FIRST COMMENT-->
+                    <div class="small-avatar-username">
+                      <div class="avatar-sm">
+                      </div>
+                      <a href="#" class="newsfeed-username">@comment.GetCommenterName()</a>
+                    </div><!--SMALL AVATAR USERNAME ENDS-->
 
-                  <!--FIRST COMMENT-->
-                  <div class="small-avatar-username">
-                    <div class="avatar-sm">
-                    </div>
-                    <a href="#" class="newsfeed-username">Honeyblossom Michelle Charlotte Ange</a>
-                  </div><!--SMALL AVATAR USERNAME ENDS-->
+                    <p>@comment.Content</p>
+                    <hr>
+                  }
 
-                  <p>I am another test comment, there are many comments in the world but not one quite like this!</p>
-                  <hr>
 
                   <!--SECOND COMMENT-->
-                  <div class="small-avatar-username">
+                  <!-- <div class="small-avatar-username">           //I dont think we need this now
                     <div class="avatar-sm">
                     </div>
                     <a href="#" class="newsfeed-username">Placeholder Username #2</a>
-                  </div><!--SMALL AVATAR USERNAME ENDS-->
+                  </div><!--SMALL AVATAR USERNAME ENDS--> -->
 
-                  <p>I am another test comment, there are many comments in the world but not one quite like this!</p>
-                  <input type="text" name="name" value="" class="comment-input" placeholder="Write a comment...">
-                  <button type="button" name="button" class="submit-comment">Submit</button>
+                  <!-- <p>I am another test comment, there are many comments in the world but not one quite like this!</p> -->
+
+                  <form action="" method="post">                                                <!-- BUILD ME A ROUTE -->
+                    <input type="text" name="comment" class="comment-input" placeholder="Write a comment...">
+                    <button type="submit" name="button" class="submit-comment">Submit</button>
+                  </form>
                 </div><!--COMMENT SECTION ENDS-->
               </div><!--MESSAGE WRAPPER ENDS-->
 

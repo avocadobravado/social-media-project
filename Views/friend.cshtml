@@ -21,7 +21,7 @@
           <button type="button" name="button" class="search-button">Search</button>     <!-- BUILD ME A ROUTE -->
         </div><!--SEARCHBAR ENDS-->
         <ul>
-          <li><a href="#">View profile</a></li>     <!-- BUILD ME A ROUTE -->
+          <li><a href='/users/@Model["user"].Id/profile_view'>View profile</a></li>     <!-- BUILD ME A ROUTE -->
           <li><a href="/">Sign out</a></li>     <!-- BUILD ME A ROUTE -->
         </ul>
       </div><!--MAIN NAVIGATION WRAPPER-->
@@ -31,10 +31,10 @@
     <div class="profile-wrapper">
       <nav class="sidebar">
         <ul>
-          <li><a href="#"><i class="fa fa-home fa-2x" aria-hidden="true"></i></a></li>     <!-- BUILD ME A ROUTE -->
-          <li><a href="#">Home</a></li>
-          <li><a href="#"><i class="fa fa-user fa-2x" aria-hidden="true"></i></a></li>
-          <li><a href="#">My Profile</a></li>
+          <li><a href='/users/@Model["user"].Id/news'><i class="fa fa-home fa-2x" aria-hidden="true"></i></a></li>     <!-- BUILD ME A ROUTE -->
+          <li><a href='/users/@Model["user"].Id/news'>Home</a></li>
+          <li><a href='/users/@Model["user"].Id/profile_view'><i class="fa fa-user fa-2x" aria-hidden="true"></i></a></li>
+          <li><a href='/users/@Model["user"].Id/profile_view'>My Profile</a></li>
           <li><a href="#"><i class="fa fa-users fa-2x" aria-hidden="true"></i></a></li>     <!-- BUILD ME A ROUTE -->
           <li><a href="#">Friends</a></li>
           <li><a href="#"><i class="fa fa-cogs fa-2x" aria-hidden="true"></i></a></li>

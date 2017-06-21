@@ -18,10 +18,10 @@
         </div><!--LOGO ENDS-->
         <div class="searchbar">
           <input type="text" name="name" value="" placeholder="Search">
-          <button type="button" name="button" class="search-button">Search</button>
+          <button type="button" name="button" class="search-button">Search</button> <!-- BUILD ME A ROUTE -->
         </div><!--SEARCHBAR ENDS-->
         <ul>
-          <li><a href='/users/@Model["user"].Id/profile_view'>View profile</a></li>                              <!-- BUILD ME A ROUTE -->
+          <li><a href='/users/@Model["user"].Id/profile_view'>View profile</a></li>
           <li><a href="/">Sign out</a></li>
         </ul>
       </div><!--MAIN NAVIGATION WRAPPER-->
@@ -33,7 +33,7 @@
         <ul>
           <li><a href='/users/@Model["user"].Id/profile_view'><i class="fa fa-user fa-2x" aria-hidden="true"></i></a></li>
           <li><a href='/users/@Model["user"].Id/profile_view'>My Profile</a></li>
-          <li><a href="#"><i class="fa fa-users fa-2x" aria-hidden="true"></i></a></li>
+          <li><a href="#"><i class="fa fa-users fa-2x" aria-hidden="true"></i></a></li>     <!-- BUILD ME A ROUTE -->
           <li><a href="#">Friends</a></li>
           <li><a href="#"><i class="fa fa-cogs fa-2x" aria-hidden="true"></i></a></li>
           <li><a href="#">Admin Access</a></li>
@@ -82,7 +82,7 @@
                     <div class="small-avatar-username">
                       <div class="avatar-sm">
                       </div>
-                      <a href='users/@Model["user"].Id/profile_view/@comment.UserId' class="newsfeed-username">@comment.GetCommenterName()</a>
+                      <a href='/users/@Model["user"].Id/profile_view/@comment.UserId' class="newsfeed-username">@comment.GetCommenterName()</a>
                     </div><!--SMALL AVATAR USERNAME ENDS-->
 
                     <p>@comment.Content</p>

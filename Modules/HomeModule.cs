@@ -191,6 +191,14 @@ namespace SocialMedia
         model.Add("friends", friendsList);
         return View["profile.cshtml", model];
       };
+      Get["/users/{loggedInId}/news"] = parameters => {
+        Dictionary <string, object> model = new Dictionary<string, object>{};
+        User selectedUser = User.Find(parameters.loggedInId);
+        List<Status> timeline = selectedUser.GetTimeline();
+        model.Add("timeline", timeline);
+        model.Add("user", selectedUser);
+        return View["news.cshtml", model];
+      };
     }
   }
 }

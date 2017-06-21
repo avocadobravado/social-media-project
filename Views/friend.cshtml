@@ -54,7 +54,7 @@
           <ul class="title">
             <li><span class="user-info">NAME: </span>@Model["selected-user"].FirstName @Model["selected-user"].LastName</li>
             <li><span class="user-info">USERNAME: </span>@Model["selected-user"].Username</li>
-            <li><span class="user-info">DATE JOINED: </span>@Model["selected-user"].Timestamp</li>
+            <li><span class="user-info">DATE JOINED: </span>@Model["selected-user"].Timestamp.ToString("d")</li>
             <li><span class="user-info">EMAIL: </span>@Model["selected-user"].Email</li>
             <li><form action='/users/@Model["user"].Id/profile_view/@Model["selected-user"].Id/unfollow' method="post"><input type="hidden" name="_method" value="DELETE"><button type="submit" name="button" class="unfollow-friend">Unfollow</button></form></li>
           </ul>

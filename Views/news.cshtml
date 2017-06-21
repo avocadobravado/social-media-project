@@ -17,8 +17,10 @@
           <h3>LOGO</h3>
         </div><!--LOGO ENDS-->
         <div class="searchbar">
-          <input type="text" name="name" value="" placeholder="Search">
-          <button type="button" name="button" class="search-button">Search</button> <!-- BUILD ME A ROUTE -->
+          <form action='/users/@Model["user"].Id/search'>
+            <input type="text" name="search-query" placeholder="Search">
+            <button type="submit" name="button" class="search-button">Search</button> <!-- BUILD ME A ROUTE -->
+          </form>
         </div><!--SEARCHBAR ENDS-->
         <ul>
           <li><a href='/users/@Model["user"].Id/profile_view'>View profile</a></li>

@@ -199,6 +199,16 @@ namespace SocialMedia
         model.Add("user", selectedUser);
         return View["news.cshtml", model];
       };
+      Get["/users/{loggedInId}/search"] = parameters => {
+        Dictionary <string, object> model = new Dictionary<string, object>{};
+        User loggedInUser = User.Find(parameters.loggedInId);
+        string searchQuery = Request.Query["search-query"];
+        List<User> matches = User.Search(searchQuery);
+        model.Add("user", loggedInUser);
+        model.Add("search-query", searchQuery);
+        model.Add("matches", matches);
+        return View["searchresults.cshtml", model];
+      };
     }
   }
 }

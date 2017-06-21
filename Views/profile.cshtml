@@ -15,9 +15,11 @@
         <div class="logo">
           <img src="https://raw.githubusercontent.com/avocadobravado/social-media-project-inspiration/master/logo_sm_color.png" alt="" class="logo"/>
         </div><!--LOGO ENDS-->
-        <div class="searchbar">                                                   <!-- BUILD ME A ROUTE -->
-          <input type="text" name="name" value="" placeholder="Search">
-          <button type="button" name="button" class="search-button"><i class="fa fa-search" aria-hidden="true"></i></button>
+        <div class="searchbar">
+          <form action='/users/@Model["user"].Id/search'>
+            <input type="text" name="name" value="" placeholder="Search">
+            <button type="submit" name="button" class="search-button"><i class="fa fa-search" aria-hidden="true"></i></button>
+          </form>
         </div><!--SEARCHBAR ENDS-->
         <ul>
           <li><a href='/users/@Model["user"].Id/profile_view'>Hi, <span>@Model["user"].FirstName</span></a></li>
@@ -61,7 +63,7 @@
             <!--FORM STATUS UPDATE-->
             <div class="profile-post-wrapper">
               <form class="update-post-form" action='/users/@Model["user"].Id/statuses/new' method="post">
-                <textarea type="text" name="content" value="" class="profile-status status-input" placeholder="Write a post"></textarea>
+                <textarea type="text" name="content" value="" class="profile-status status-input" placeholder="Write a post" required></textarea>
                 <button type="submit" name="button" class="update-post profile-update-post">Update</button>
               </form>
             </div> <!--PROFILE POST WRAPPER ENDS-->
@@ -120,7 +122,7 @@
                       }
 
                       <form action='/users/@Model["user"].Id/statuses/@status.Id/comments/new' method="post">
-                        <textarea type="text" name="content" value="" class="comment-input" placeholder="Write a comment..."></textarea>
+                        <textarea type="text" name="content" value="" class="comment-input" placeholder="Write a comment..." required></textarea>
                         <button type="submit" name="button" class="submit-comment">Submit</button>
                       </form>
                     </div><!--COMMENT SECTION ENDS-->

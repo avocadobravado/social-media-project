@@ -15,9 +15,11 @@
         <div class="logo">
           <img src="https://raw.githubusercontent.com/avocadobravado/social-media-project-inspiration/master/logo_sm_color.png" alt="" class="logo"/>
         </div><!--LOGO ENDS-->
-        <div class="searchbar">           <!-- BUILD ME A ROUTE -->
-          <input type="text" name="name" value="" placeholder="Search">
-          <button type="button" name="button" class="search-button"><i class="fa fa-search" aria-hidden="true"></i></button>
+        <div class="searchbar">
+          <form action='/users/@Model["user"].Id/search'>
+            <input type="text" name="name" value="" placeholder="Search">
+            <button type="submit" name="button" class="search-button"><i class="fa fa-search" aria-hidden="true"></i></button>
+          </form>
         </div><!--SEARCHBAR ENDS-->
         <ul>
           <li><a href='/users/@Model["user"].Id/profile_view'>Hi, <span>@Model["user"].FirstName</span></a></li>

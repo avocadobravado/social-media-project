@@ -17,8 +17,10 @@
           <img src="https://raw.githubusercontent.com/avocadobravado/social-media-project-inspiration/master/logo_sm_color.png" alt="" class="logo"/>
         </div><!--LOGO ENDS-->
         <div class="searchbar">
-          <input type="text" name="name" value="" placeholder="Search">           <!-- BUILD ME A ROUTE -->
-          <button type="button" name="button" class="search-button"><i class="fa fa-search" aria-hidden="true"></i></button>
+          <form action='/users/@Model["user"].Id/search'>
+            <input type="text" name="name" value="" placeholder="Search">           <!-- BUILD ME A ROUTE -->
+            <button type="submit" name="button" class="search-button"><i class="fa fa-search" aria-hidden="true"></i></button>
+          </form>
         </div><!--SEARCHBAR ENDS-->
         <ul>
           <li><a href='/users/@Model["user"].Id/profile_view'>Hi, <span>@Model["user"].FirstName</span></a></li>
@@ -126,7 +128,7 @@
                       }
 
                       <form action='/users/@Model["user"].Id/profile_view/@Model["selected-user"].Id/statuses/@status.Id/comment' method="post">
-                        <textarea type="text" name="content" value="" class="comment-input" placeholder="Write a comment..."></textarea>
+                        <textarea type="text" name="content" value="" class="comment-input" placeholder="Write a comment..." required></textarea>
                         <button type="submit" name="button" class="submit-comment">Submit</button>
                       </form>
                     </div><!--COMMENT SECTION ENDS-->

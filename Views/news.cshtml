@@ -44,7 +44,7 @@
       <div class="newsfeed-posts">
         <!--ADD A POST SECTION-->
         <form class="update-post-form" action='/users/@Model["user"].Id/post' method="post">
-         <textarea wrap="hard" name="post" value="" class="status-input" placeholder="Write a post"></textarea>
+         <textarea wrap="hard" name="post" value="" class="status-input" placeholder="Write a post" required></textarea>
          <button type="submit" name="button" class="update-post">Update</button>
         </form>
         <!--ADD A POST SECTION ENDS-->
@@ -101,7 +101,7 @@
                   }
 
                   <form action='/users/@Model["user"].Id/posts/@post.Id/comment' method="post">
-                    <textarea type="text" name="content" value="" class="comment-input" placeholder="Write a comment..."></textarea>
+                    <textarea type="text" name="content" value="" class="comment-input" placeholder="Write a comment..." required></textarea>
                     <button type="submit" name="button" class="submit-comment">Submit</button>
                   </form>
                 </div><!--COMMENT SECTION ENDS-->

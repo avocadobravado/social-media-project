@@ -483,14 +483,22 @@ input {
 
 .sign-in {
   align-self: flex-end;
-  flex-direction: column; }
+  flex-direction: column;
+  margin-top: 15px; }
   .sign-in input {
     width: 200px;
     margin: 1% 0;
     height: 30px;
     background-color: rgba(255, 255, 255, 0.5);
     border: none;
-    color: #407b81; }
+    color: #407b81;
+    font-size: 18px;
+    padding-left: 5px;
+    margin-right: 5px;
+    transition: all .3s ease-in-out; }
+    .sign-in input:focus {
+      border: 1px solid #66b3ad;
+      background-color: rgba(255, 255, 255, 0.65); }
   .sign-in .login-button {
     background-color: #407b81;
     border: none;
@@ -566,12 +574,12 @@ input {
     width: 100%;
     height: 100%; }
   .sign-up-form .sign-up-button:hover::before {
-    border-top-color: #386b70;
-    border-right-color: #386b70;
+    border-top-color: #bfdfca;
+    border-right-color: #bfdfca;
     transition: width 0.4s ease-out, height 0.4s ease-out 0.4s; }
   .sign-up-form .sign-up-button:hover::after {
-    border-bottom-color: #386b70;
-    border-left-color: #386b70;
+    border-bottom-color: #bfdfca;
+    border-left-color: #bfdfca;
     transition: height 0.4s ease-out, width 0.4s ease-out 0.4s; }
 
 button:focus {

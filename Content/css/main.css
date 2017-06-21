@@ -424,6 +424,111 @@ li {
 .friends-list h4 {
   margin-left: 0; }
 
+.hidden-triangles {
+  margin: 0;
+  min-height: 0; }
+
+.bg-triangles {
+  position: absolute;
+  margin: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin-bottom: 0;
+  overflow: hidden;
+  z-index: 1; }
+  .bg-triangles li {
+    position: absolute;
+    list-style: none;
+    display: block;
+    border-bottom: 50px solid rgba(255, 255, 255, 0.01);
+    border-left: 50px solid transparent;
+    bottom: -160px;
+    -webkit-animation: square 25s infinite;
+    animation: square 25s infinite;
+    -webkit-transition-timing-function: linear;
+    transition-timing-function: linear; }
+    .bg-triangles li:nth-child(1) {
+      left: 10%;
+      border-bottom: 50px solid rgba(255, 255, 255, 0.1);
+      border-left: 50px solid transparent; }
+    .bg-triangles li:nth-child(2) {
+      left: 20%;
+      border-bottom: 80px solid rgba(255, 255, 255, 0.1);
+      border-left: 80px solid transparent;
+      animation-delay: 2s;
+      animation-duration: 17s; }
+    .bg-triangles li:nth-child(3) {
+      left: 25%;
+      animation-delay: 4s; }
+    .bg-triangles li:nth-child(4) {
+      left: 40%;
+      border-bottom: 60px solid rgba(255, 255, 255, 0.1);
+      border-left: 60px solid transparent;
+      animation-duration: 22s; }
+    .bg-triangles li:nth-child(5) {
+      left: 70%;
+      border-bottom: 60px solid rgba(255, 255, 255, 0.3);
+      border-left: 60px solid transparent; }
+    .bg-triangles li:nth-child(6) {
+      left: 80%;
+      border-bottom: 120px solid rgba(255, 255, 255, 0.3);
+      border-left: 120px solid transparent;
+      animation-delay: 3s; }
+    .bg-triangles li:nth-child(7) {
+      left: 32%;
+      border-bottom: 160px solid rgba(255, 255, 255, 0.1);
+      border-left: 160px solid transparent;
+      animation-delay: 7s; }
+    .bg-triangles li:nth-child(8) {
+      left: 55%;
+      border-bottom: 30px solid rgba(255, 255, 255, 0.3);
+      border-left: 30px solid transparent;
+      animation-delay: 15s;
+      animation-duration: 40s; }
+    .bg-triangles li:nth-child(9) {
+      left: 25%;
+      border-bottom: 25px solid rgba(255, 255, 255, 0.1);
+      border-left: 25px solid transparent;
+      animation-delay: 2s;
+      animation-duration: 40s; }
+    .bg-triangles li:nth-child(10) {
+      left: 90%;
+      border-bottom: 140px solid rgba(255, 255, 255, 0.3);
+      border-left: 140px solid transparent;
+      animation-delay: 11s; }
+    .bg-triangles li:nth-child(11) {
+      left: 60%;
+      border-bottom: 30px solid rgba(255, 255, 255, 0.3);
+      border-left: 30px solid transparent;
+      animation-delay: 5s; }
+    .bg-triangles li:nth-child(12) {
+      left: 75%;
+      border-bottom: 50px solid rgba(255, 255, 255, 0.3);
+      border-left: 50px solid transparent;
+      animation-delay: 7s; }
+    .bg-triangles li:nth-child(13) {
+      left: 55%;
+      border-bottom: 140px solid rgba(255, 255, 255, 0.3);
+      border-left: 140px solid transparent;
+      animation-delay: 1s; }
+    .bg-triangles li:nth-child(14) {
+      left: 91%;
+      border-bottom: 140px solid rgba(255, 255, 255, 0.3);
+      border-left: 140px solid transparent;
+      animation-delay: 5s; }
+
+@-webkit-keyframes square {
+  0% {
+    transform: translateY(0); }
+  100% {
+    transform: translateY(-1400px) rotate(600deg); } }
+@keyframes square {
+  0% {
+    transform: translateY(0); }
+  100% {
+    transform: translateY(-1400px) rotate(600deg); } }
 ul {
   padding: 0; }
   ul li {
@@ -584,6 +689,7 @@ textarea {
   justify-content: space-between; }
 
 .sign-in {
+  z-index: 2;
   align-self: flex-end;
   flex-direction: column;
   margin-top: 15px; }
@@ -614,6 +720,7 @@ textarea {
       color: white; }
 
 .sign-up-form {
+  z-index: 3;
   display: flex;
   flex-direction: column;
   align-items: center; }

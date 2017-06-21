@@ -1,4 +1,5 @@
 .login-wrapper {
+  // overflow: hidden;
   @include grid-column(12);
   height: 100vh;
   width: 100%;
@@ -32,6 +33,7 @@
 }
 
  .sign-in {
+   z-index: 2;
    align-self: flex-end;
    flex-direction: column;
    margin-top: 15px;
@@ -71,6 +73,7 @@
    // }
  }
   .sign-up-form {
+    z-index: 3;
     display: flex;
     flex-direction: column;
     align-items: center;

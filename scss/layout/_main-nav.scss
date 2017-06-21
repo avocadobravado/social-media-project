@@ -1,7 +1,9 @@
 .main-nav {
     background-image: linear-gradient(to right, #f4f7d8, #bfdfca, #66b3ad, #3c887c, #407b81, #2b9ba3);
+      box-shadow: 3px 2px 2px #407b81;
   .main-nav-wrapper {
     width: 100%;
+
     display: flex;
     justify-content: space-around;
     align-items: baseline;
@@ -43,6 +45,7 @@
     padding: 5px 20px 7px 20px;
     font-size: 18px;
     border-radius: 3px;
+    cursor: pointer;
 
     &:hover {
      transition:.6s;

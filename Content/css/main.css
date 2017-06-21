@@ -415,8 +415,14 @@ p {
 li {
   color: #3c887c; }
 
-.titles {
-  margin-left: 50px; }
+.titles, .friends-list h4 {
+  margin-left: 50px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: #407b81; }
+
+.friends-list h4 {
+  margin-left: 0; }
 
 ul {
   padding: 0; }
@@ -428,11 +434,18 @@ input {
   input:focus {
     outline: none; }
 
+textarea {
+  border-radius: 3px;
+  padding: 10px 0 0 10px; }
+  textarea:focus {
+    outline: none; }
+
 .comment-like-wrapper {
   width: 100%;
   text-align: right; }
   .comment-like-wrapper .like, .comment-like-wrapper .dislike {
     background-color: transparent;
+    color: #407b81;
     border: none;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
@@ -474,7 +487,8 @@ input {
         color: rgba(255, 255, 255, 0.5); }
 
 .main-nav {
-  background-image: linear-gradient(to right, #f4f7d8, #bfdfca, #66b3ad, #3c887c, #407b81, #2b9ba3); }
+  background-image: linear-gradient(to right, #f4f7d8, #bfdfca, #66b3ad, #3c887c, #407b81, #2b9ba3);
+  box-shadow: 3px 2px 2px #407b81; }
   .main-nav .main-nav-wrapper {
     width: 100%;
     display: flex;
@@ -509,7 +523,8 @@ input {
     color: #f4f7d8;
     padding: 5px 20px 7px 20px;
     font-size: 18px;
-    border-radius: 3px; }
+    border-radius: 3px;
+    cursor: pointer; }
     .main-nav .search-button:hover {
       transition: .6s;
       background-color: #66b3ad;
@@ -671,6 +686,18 @@ button:focus {
   float: left;
   margin-left: 0;
   margin: 0; }
+  .newsfeed-wrapper button {
+    background-color: #407b81;
+    border: none;
+    color: #f4f7d8;
+    padding: 5px 15px;
+    font-size: 18px;
+    border-radius: 3px;
+    cursor: pointer; }
+    .newsfeed-wrapper button:hover {
+      transition: .6s;
+      background-color: #66b3ad;
+      color: white; }
 
 .newsfeed-posts {
   width: calc(66.66667%);
@@ -681,10 +708,6 @@ button:focus {
   margin: 0 auto;
   height: 100vh;
   align-items: center; }
-  .newsfeed-posts .status-input {
-    width: 300px;
-    height: 75px;
-    font-size: 16px; }
   .newsfeed-posts .update-post {
     height: 30px; }
 
@@ -710,15 +733,21 @@ button:focus {
   padding: 3%; }
   .message-wrapper .underneath-message {
     text-transform: uppercase;
-    font-size: 0.8em;
+    font-size: 1em;
     display: flex;
     justify-content: space-between;
+    padding: 0 2%;
     background-color: #c9e4d2; }
+    .message-wrapper .underneath-message span:first-child {
+      font-size: 0.75em; }
+    .message-wrapper .underneath-message span:nth-of-type(2) {
+      font-size: 0.75em; }
     .message-wrapper .underneath-message button {
       background-color: transparent;
       border: none;
       cursor: pointer;
-      transition: all 0.3s ease-in-out; }
+      transition: all 0.3s ease-in-out;
+      color: #407b81; }
       .message-wrapper .underneath-message button:hover {
         transform: scale(1.5, 1.5); }
 
@@ -728,12 +757,22 @@ button:focus {
   align-items: flex-start;
   padding: 1%;
   font-size: 0.95em; }
-  .comment-section input, .comment-section .submit-comment {
+  .comment-section textarea, .comment-section .submit-comment {
     align-self: flex-end; }
-  .comment-section input {
+  .comment-section textarea {
     width: 400px;
     height: 50px;
-    font-size: 14px; }
+    font-size: 14px;
+    margin: 1% 0;
+    border: 1px solid #407b81;
+    background-color: white;
+    color: #444;
+    font-size: 18px;
+    padding-left: 5px;
+    transition: all .3s ease-in-out; }
+    .comment-section textarea:focus {
+      border: 1px solid #66b3ad;
+      background-color: rgba(255, 255, 255, 0.65); }
   .comment-section .submit-comment {
     height: 30px;
     width: 75px;
@@ -758,7 +797,37 @@ button:focus {
 .update-post-form {
   display: flex;
   flex-direction: row;
-  align-items: center; }
+  align-items: center;
+  justify-content: center; }
+  .update-post-form .status-input {
+    width: 300px;
+    height: 75px;
+    font-size: 16px;
+    margin-top: 30px;
+    width: 350px;
+    height: 125px;
+    background-color: #fcfefd;
+    border: 1px solid #bfdfca;
+    color: #444;
+    font-size: 18px;
+    padding: 10px 0 0 10px;
+    transition: all .3s ease-in-out; }
+    .update-post-form .status-input:focus {
+      border: 1px solid #66b3ad;
+      background-color: #f2f9f4; }
+  .update-post-form .update-post {
+    background-color: #407b81;
+    border: none;
+    color: #f4f7d8;
+    padding: 5px 15px;
+    font-size: 18px;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-left: 10px; }
+    .update-post-form .update-post:hover {
+      transition: .6s;
+      background-color: #66b3ad;
+      color: white; }
 
 .profile-wrapper {
   display: flex;
@@ -789,7 +858,7 @@ button:focus {
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  background-color: RosyBrown; }
+  background-color: #3c887c; }
 
 .profile-info {
   display: flex;
@@ -809,8 +878,41 @@ button:focus {
 .profile-friends-wrapper {
   display: flex; }
   .profile-friends-wrapper .profile-status {
-    width: 300px;
-    height: 75px; }
+    width: 350px;
+    height: 125px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 1px solid #bfdfca;
+    color: #444;
+    font-size: 18px;
+    padding-left: 5px;
+    margin-right: 5px;
+    transition: all .3s ease-in-out; }
+    .profile-friends-wrapper .profile-status:focus {
+      border: 1px solid #66b3ad;
+      background-color: rgba(255, 255, 255, 0.65); }
+    .profile-friends-wrapper .profile-status .profile-update-post {
+      background-color: #407b81;
+      border: none;
+      color: #f4f7d8;
+      padding: 5px 15px;
+      font-size: 18px;
+      border-radius: 3px; }
+      .profile-friends-wrapper .profile-status .profile-update-post:hover {
+        transition: .6s;
+        background-color: #66b3ad;
+        color: white; }
+  .profile-friends-wrapper button {
+    background-color: #407b81;
+    border: none;
+    color: #f4f7d8;
+    padding: 5px 15px;
+    font-size: 18px;
+    border-radius: 3px;
+    cursor: pointer; }
+    .profile-friends-wrapper button:hover {
+      transition: .6s;
+      background-color: #66b3ad;
+      color: white; }
   .profile-friends-wrapper .profile-post-wrapper {
     margin: 0 auto;
     width: 40%;

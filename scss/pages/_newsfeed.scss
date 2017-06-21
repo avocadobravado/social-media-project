@@ -14,6 +14,22 @@
   @include grid-column(12);
   margin: 0;
 
+  button {
+    background-color: $dark-blue;
+    border: none;
+    color: $yellow-green;
+    padding: 5px 15px;
+    font-size: 18px;
+    border-radius: 3px;
+    cursor: pointer;
+    &:hover {
+     transition:.6s;
+     background-color: $teal;
+     color: white;
+    }
+  }
+
+
 }
 
 .newsfeed-posts {
@@ -23,11 +39,6 @@
   margin: 0 auto;
   height: 100vh;
   align-items: center;
-  .status-input {
-    width: 300px;
-    height: 75px;
-    font-size: 16px;
-  }
   .update-post {
     height: 30px;
   }
@@ -65,15 +76,23 @@
   padding: 3%;
   .underneath-message {
     text-transform: uppercase;
-    font-size: 0.8em;
+    font-size: 1em;
     display: flex;
     justify-content: space-between;
+    padding: 0 2%;
     background-color: lighten($light-green, 3%);
+    span:first-child {
+      font-size: 0.75em;
+    }
+    span:nth-of-type(2) {
+      font-size: 0.75em;
+    }
     button {
       background-color: transparent;
       border: none;
       cursor: pointer;
       transition: all 0.3s ease-in-out;
+      color: $dark-blue;
       &:hover {
         transform: scale(1.5, 1.5);
       }
@@ -89,13 +108,25 @@
   align-items: flex-start;
   padding: 1%;
   font-size: 0.95em;
-  input, .submit-comment {
+  textarea, .submit-comment {
     align-self: flex-end;
   }
-  input {
+  textarea {
     width: 400px;
     height: 50px;
     font-size: 14px;
+    margin: 1% 0;
+    border: 1px solid $dark-blue;
+    background-color: rgb(255, 255, 255);
+    color: #444;
+    font-size: 18px;
+    padding-left: 5px;
+    // margin-right: 5px;
+    transition: all .3s ease-in-out;
+    &:focus {
+     border: 1px solid $teal;
+     background-color: rgba(255, 255, 255, 0.65);
+   }
   }
   .submit-comment {
     height: 30px;
@@ -132,4 +163,39 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
+  .status-input {
+    width: 300px;
+    height: 75px;
+    font-size: 16px;
+    margin-top: 30px;
+    width: 350px;
+    height: 125px;
+    background-color: lighten($light-green, 18%);
+    border: 1px solid $light-green;
+    color: #444;
+    font-size: 18px;
+    padding: 10px 0 0 10px;
+    transition: all .3s ease-in-out;
+    &:focus {
+      border: 1px solid $teal;
+      background-color: lighten($light-green, 15%);
+    }
+  }
+  .update-post {
+    background-color: $dark-blue;
+    border: none;
+    color: $yellow-green;
+    padding: 5px 15px;
+    font-size: 18px;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-left: 10px;
+
+    &:hover {
+     transition:.6s;
+     background-color: $teal;
+     color: white;
+    }
+  }
 }

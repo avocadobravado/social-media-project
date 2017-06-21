@@ -4,3 +4,11 @@ input {
     outline: none;
   }
 }
+
+textarea {
+  border-radius: 3px;
+  padding: 10px 0 0 10px;
+  &:focus {
+    outline: none;
+  }
+}

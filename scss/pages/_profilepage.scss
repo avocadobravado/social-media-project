@@ -34,7 +34,7 @@
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  background-color: RosyBrown;
+  background-color: $dark-teal;
 }
 
 .profile-info {
@@ -58,8 +58,48 @@
 .profile-friends-wrapper {
   display: flex;
   .profile-status {
-    width: 300px;
-    height: 75px;
+    width: 350px;
+    height: 125px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 1px solid $light-green;
+    color: #444;
+    font-size: 18px;
+    padding-left: 5px;
+    margin-right: 5px;
+    transition: all .3s ease-in-out;
+    &:focus {
+     border: 1px solid $teal;
+     background-color: rgba(255, 255, 255, 0.65);
+    }
+    .profile-update-post {
+      background-color: $dark-blue;
+      border: none;
+      color: $yellow-green;
+      padding: 5px 15px;
+      font-size: 18px;
+      border-radius: 3px;
+
+      &:hover {
+       transition:.6s;
+       background-color: $teal;
+       color: white;
+      }
+    }
+  }
+  button {
+    background-color: $dark-blue;
+    border: none;
+    color: $yellow-green;
+    padding: 5px 15px;
+    font-size: 18px;
+    border-radius: 3px;
+    cursor: pointer;
+    &:hover {
+     transition:.6s;
+     background-color: $teal;
+     color: white;
+    }
+
   }
   .profile-post-wrapper {
     margin: 0 auto;

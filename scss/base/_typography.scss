@@ -29,4 +29,12 @@ li {
 
 .titles {
   margin-left: 50px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: $dark-blue;
+}
+
+.friends-list h4 {
+  @extend .titles;
+  margin-left: 0;
 }

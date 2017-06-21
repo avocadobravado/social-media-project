@@ -7,7 +7,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
 
-    <link rel="stylesheet" href="Content/css/main.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="/Content/css/main.css" media="screen" title="no title" charset="utf-8">
     <title>Placeholder Newsfeed</title>
   </head>
   <body>
@@ -48,9 +48,9 @@
 
       <div class="newsfeed-posts">
         <!--ADD A POST SECTION-->
-        <form class="update-post-form" action="index.html" method="post">                 <!-- BUILD ME A ROUTE -->
-         <input type="text" name="name" value="" class="status-input" placeholder="Write a post">
-         <button type="button" name="button" class="update-post">Update</button>
+        <form class="update-post-form" action='/users/@Model["user"].Id/post' method="post">                 <!-- BUILD ME A ROUTE -->
+         <input type="text" name="post" class="status-input" placeholder="Write a post">
+         <button type="submit" name="button" class="update-post">Update</button>
         </form>
         <!--ADD A POST SECTION ENDS-->
 
@@ -102,7 +102,7 @@
 
                   <!-- <p>I am another test comment, there are many comments in the world but not one quite like this!</p> -->
 
-                  <form action="" method="post">                                                <!-- BUILD ME A ROUTE -->
+                  <form action='/users/@Model["user"].Id/posts/@post.Id/comment' method="post">                                                <!-- BUILD ME A ROUTE -->
                     <input type="text" name="comment" class="comment-input" placeholder="Write a comment...">
                     <button type="submit" name="button" class="submit-comment">Submit</button>
                   </form>

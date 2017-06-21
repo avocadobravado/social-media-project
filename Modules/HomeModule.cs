@@ -33,7 +33,7 @@ namespace SocialMedia
           }
           else
           {
-            List<Post> timeline = loggedInUser.GetTimeline();
+            List<Status> timeline = loggedInUser.GetTimeline();
             model.Add("user", loggedInUser);
             model.Add("timeline", timeline);
             return View["news.cshtml", model];
@@ -64,30 +64,30 @@ namespace SocialMedia
           else
           {
             newUser.Save();
-            List<Post> timeline = newUser.GetTimeline();
+            List<Status> timeline = newUser.GetTimeline();
             model.Add("timeline", timeline);
             model.Add("user", newUser);
             return View["news.cshtml", model];
           }
         }
       };
-      // Post["/users/{userId}/posts/{postId}/comment"] = parameters => {
-      //   Dictionary <string, object> model = new Dictionary<string, object>{};
-      //   User selectedUser = User.Find(parameters.userId);
-      //   Post selectedPost = Post.Find(parameters.postId);                       //NOTE UHOH, IM A BIG PROBLEM
-      //   Comment newComment = new Comment(Request.Form["comment"], selectedPost.Id, selectedUser.Id, DateTime.Now);
-      //   newComment.Save();
-      //   List<Post> timeline = selectedUser.GetTimeline();
-      //   model.Add("timeline", timeline);
-      //   model.Add("user", selectedUser);
-      //   return View["news.cshtml", model];
-      // };
+      Post["/users/{userId}/posts/{postId}/comment"] = parameters => {
+        Dictionary <string, object> model = new Dictionary<string, object>{};
+        User selectedUser = User.Find(parameters.userId);
+        Status selectedStatus = Status.Find(parameters.postId);                       //NOTE UHOH, IM A BIG PROBLEM
+        Comment newComment = new Comment(Request.Form["comment"], selectedStatus.Id, selectedUser.Id, DateTime.Now);
+        newComment.Save();
+        List<Status> timeline = selectedUser.GetTimeline();
+        model.Add("timeline", timeline);
+        model.Add("user", selectedUser);
+        return View["news.cshtml", model];
+      };
       Post["/users/{userId}/post"] = parameters => {
         Dictionary <string, object> model = new Dictionary<string, object>{};
         User selectedUser = User.Find(parameters.userId);
-        Post newPost = new Post(Request.Form["post"], selectedUser.Id, DateTime.Now);
-        newPost.Save();
-        List<Post> timeline = selectedUser.GetTimeline();
+        Status newStatus = new Status(Request.Form["post"], selectedUser.Id, DateTime.Now);
+        newStatus.Save();
+        List<Status> timeline = selectedUser.GetTimeline();
         model.Add("timeline", timeline);
         model.Add("user", selectedUser);
         return View["news.cshtml", model];
@@ -96,9 +96,9 @@ namespace SocialMedia
         Dictionary <string, object> model = new Dictionary<string, object>{};
         User loggedInUser = User.Find(parameters.loggedInId);
         User selectedUser = User.Find(parameters.viewingId);
-        List<Post> usersPosts = selectedUser.GetPosts();
+        List<Status> userStatuses = selectedUser.GetStatuses();
         model.Add("selected-user", selectedUser);
-        model.Add("user-posts", usersPosts);
+        model.Add("user-posts", userStatuses);
         if(loggedInUser.IsFriendsWith(selectedUser))
         {
           //VIEWING FRIENDS PAGE

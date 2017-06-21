@@ -255,14 +255,14 @@
         "compile": {
           "lib/net45/System.Web.Helpers.dll": {},
           "lib/net45/System.Web.WebPages.Deployment.dll": {},
-          "lib/net45/System.Web.WebPages.Razor.dll": {},
-          "lib/net45/System.Web.WebPages.dll": {}
+          "lib/net45/System.Web.WebPages.dll": {},
+          "lib/net45/System.Web.WebPages.Razor.dll": {}
         },
         "runtime": {
           "lib/net45/System.Web.Helpers.dll": {},
           "lib/net45/System.Web.WebPages.Deployment.dll": {},
-          "lib/net45/System.Web.WebPages.Razor.dll": {},
-          "lib/net45/System.Web.WebPages.dll": {}
+          "lib/net45/System.Web.WebPages.dll": {},
+          "lib/net45/System.Web.WebPages.Razor.dll": {}
         }
       },
       "Microsoft.AspNet.WebPages.Data/3.2.3": {
@@ -1055,14 +1055,14 @@
         "compile": {
           "lib/net45/System.Web.Helpers.dll": {},
           "lib/net45/System.Web.WebPages.Deployment.dll": {},
-          "lib/net45/System.Web.WebPages.Razor.dll": {},
-          "lib/net45/System.Web.WebPages.dll": {}
+          "lib/net45/System.Web.WebPages.dll": {},
+          "lib/net45/System.Web.WebPages.Razor.dll": {}
         },
         "runtime": {
           "lib/net45/System.Web.Helpers.dll": {},
           "lib/net45/System.Web.WebPages.Deployment.dll": {},
-          "lib/net45/System.Web.WebPages.Razor.dll": {},
-          "lib/net45/System.Web.WebPages.dll": {}
+          "lib/net45/System.Web.WebPages.dll": {},
+          "lib/net45/System.Web.WebPages.Razor.dll": {}
         }
       },
       "Microsoft.AspNet.WebPages.Data/3.2.3": {
@@ -1855,14 +1855,14 @@
         "compile": {
           "lib/net45/System.Web.Helpers.dll": {},
           "lib/net45/System.Web.WebPages.Deployment.dll": {},
-          "lib/net45/System.Web.WebPages.Razor.dll": {},
-          "lib/net45/System.Web.WebPages.dll": {}
+          "lib/net45/System.Web.WebPages.dll": {},
+          "lib/net45/System.Web.WebPages.Razor.dll": {}
         },
         "runtime": {
           "lib/net45/System.Web.Helpers.dll": {},
           "lib/net45/System.Web.WebPages.Deployment.dll": {},
-          "lib/net45/System.Web.WebPages.Razor.dll": {},
-          "lib/net45/System.Web.WebPages.dll": {}
+          "lib/net45/System.Web.WebPages.dll": {},
+          "lib/net45/System.Web.WebPages.Razor.dll": {}
         }
       },
       "Microsoft.AspNet.WebPages.Data/3.2.3": {

@@ -171,17 +171,17 @@ namespace SocialMedia.Objects
       return isTaken;
     }
 
-    public List<Post> GetPosts()
+    public List<Status> GetStatuses()
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("SELECT * FROM posts WHERE user_id = @UserId;", conn);
+      SqlCommand cmd = new SqlCommand("SELECT * FROM statuses WHERE user_id = @UserId;", conn);
       cmd.Parameters.Add(new SqlParameter("@UserId", this.Id));
 
       SqlDataReader rdr = cmd.ExecuteReader();
 
-      List<Post> posts = new List<Post>{};
+      List<Status> statuses = new List<Status>{};
 
       while(rdr.Read())
       {
@@ -191,8 +191,8 @@ namespace SocialMedia.Objects
         int likes = rdr.GetInt32(3);
         int dislikes = rdr.GetInt32(4);
         DateTime timestamp = rdr.GetDateTime(5);
-        Post newPost = new Post(content, userId, timestamp, likes, dislikes, id);
-        posts.Add(newPost);
+        Status newStatus = new Status(content, userId, timestamp, likes, dislikes, id);
+        statuses.Add(newStatus);
       }
 
       if(rdr != null)
@@ -204,7 +204,7 @@ namespace SocialMedia.Objects
         conn.Close();
       }
 
-      return posts;
+      return statuses;
     }
 
     public void AddFriend(User userToAdd)
@@ -369,13 +369,13 @@ namespace SocialMedia.Objects
       }
     }
 
-    public void LikePost(Post postToLike)
+    public void LikeStatus(Status statusToLike)
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("INSERT INTO post_likes (post_id, user_id) VALUES (@PostId, @UserId);",conn);
-      cmd.Parameters.Add(new SqlParameter("@PostId", postToLike.Id));
+      SqlCommand cmd = new SqlCommand("INSERT INTO status_likes (status_id, user_id) VALUES (@StatusId, @UserId);",conn);
+      cmd.Parameters.Add(new SqlParameter("@StatusId", statusToLike.Id));
       cmd.Parameters.Add(new SqlParameter("@UserId", this.Id));
 
       cmd.ExecuteNonQuery();
@@ -385,16 +385,16 @@ namespace SocialMedia.Objects
         conn.Close();
       }
 
-      postToLike.Like();
+      statusToLike.Like();
     }
 
-    public void DislikePost(Post postToDislike)
+    public void DislikeStatus(Status statusToDislike)
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("INSERT INTO post_dislikes (post_id, user_id) VALUES (@PostId, @UserId);",conn);
-      cmd.Parameters.Add(new SqlParameter("@PostId", postToDislike.Id));
+      SqlCommand cmd = new SqlCommand("INSERT INTO status_dislikes (status_id, user_id) VALUES (@StatusId, @UserId);",conn);
+      cmd.Parameters.Add(new SqlParameter("@StatusId", statusToDislike.Id));
       cmd.Parameters.Add(new SqlParameter("@UserId", this.Id));
 
       cmd.ExecuteNonQuery();
@@ -404,7 +404,7 @@ namespace SocialMedia.Objects
         conn.Close();
       }
 
-      postToDislike.Dislike();
+      statusToDislike.Dislike();
     }
 
     public void LikeComment(Comment commentToLike)
@@ -445,10 +445,10 @@ namespace SocialMedia.Objects
       commentToDislike.Dislike();
     }
 
-    public bool HasLikedPost(Post postToCheck)
+    public bool HasLikedStatus(Status statusToCheck)
     {
       bool result = false;
-      List<User> usersWhoLiked = postToCheck.GetUsersWhoLike();
+      List<User> usersWhoLiked = statusToCheck.GetUsersWhoLike();
       foreach(User user in usersWhoLiked)
       {
         if(user.Username == this.Username)
@@ -459,10 +459,10 @@ namespace SocialMedia.Objects
       return result;
     }
 
-    public bool HasDislikedPost(Post postToCheck)
+    public bool HasDislikedStatus(Status statusToCheck)
     {
       bool result = false;
-      List<User> usersWhoLiked = postToCheck.GetUsersWhoDislike();
+      List<User> usersWhoLiked = statusToCheck.GetUsersWhoDislike();
       foreach(User user in usersWhoLiked)
       {
         if(user.Username == this.Username)
@@ -501,25 +501,25 @@ namespace SocialMedia.Objects
       return result;
     }
 
-    public List<Post> GetTimeline()
+    public List<Status> GetTimeline()
     {
       List<User> friends = this.GetFriends();
-      List<Post> myPosts = this.GetPosts();
-      List<Post> timeline = new List<Post>{};
+      List<Status> myStatuses = this.GetStatuses();
+      List<Status> timeline = new List<Status>{};
       foreach(var friend in friends)
       {
-        List<Post> posts = friend.GetPosts();
-        foreach(var post in posts)
+        List<Status> statuses = friend.GetStatuses();
+        foreach(var status in statuses)
         {
-          timeline.Add(post);
+          timeline.Add(status);
         }
       }
-      foreach(var post in myPosts)
+      foreach(var status in myStatuses)
       {
-        timeline.Add(post);
+        timeline.Add(status);
       }
 
-      timeline.Sort((post1, post2) => DateTime.Compare(post1.Timestamp, post2.Timestamp));
+      timeline.Sort((status1, status2) => DateTime.Compare(status1.Timestamp, status2.Timestamp));
       // timeline.Reverse();
 
       return timeline;
@@ -593,7 +593,7 @@ namespace SocialMedia.Objects
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("DELETE FROM users WHERE id = @UserId; DELETE FROM comments WHERE user_id = @UserId; DELETE FROM posts WHERE user_id = @UserId; DELETE FROM user_friendships WHERE user1_id = @UserId; DELETE FROM user_friendships WHERE user2_id = @UserId", conn);
+      SqlCommand cmd = new SqlCommand("DELETE FROM users WHERE id = @UserId; DELETE FROM comments WHERE user_id = @UserId; DELETE FROM statuses WHERE user_id = @UserId; DELETE FROM user_friendships WHERE user1_id = @UserId; DELETE FROM user_friendships WHERE user2_id = @UserId", conn);
       cmd.Parameters.Add(new SqlParameter("@UserId", this.Id));
       cmd.ExecuteNonQuery();
 
@@ -608,7 +608,7 @@ namespace SocialMedia.Objects
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("DELETE FROM users; DELETE FROM comments; DELETE FROM posts; DELETE FROM user_friendships;", conn);
+      SqlCommand cmd = new SqlCommand("DELETE FROM users; DELETE FROM comments; DELETE FROM statuses; DELETE FROM user_friendships;", conn);
       cmd.ExecuteNonQuery();
 
       if(conn != null)

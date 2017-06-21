@@ -47,9 +47,9 @@
 
       <div class="newsfeed-posts">
         <!--ADD A POST SECTION-->
+        <input type="text" name="post" class="status-input" placeholder="Write a post">
+        <button type="submit" name="button" class="update-post">Update</button>
         <form class="update-post-form" action='/users/@Model["user"].Id/post' method="post">
-         <input type="text" name="post" class="status-input" placeholder="Write a post">
-         <button type="submit" name="button" class="update-post">Update</button>
         </form>
         <!--ADD A POST SECTION ENDS-->
 
@@ -90,16 +90,6 @@
                     <p>@comment.Content</p>
                     <hr>
                   }
-
-
-                  <!--SECOND COMMENT-->
-                  <!-- <div class="small-avatar-username">           //I dont think we need this now
-                    <div class="avatar-sm">
-                    </div>
-                    <a href="#" class="newsfeed-username">Placeholder Username #2</a>
-                  </div><!--SMALL AVATAR USERNAME ENDS--> -->
-
-                  <!-- <p>I am another test comment, there are many comments in the world but not one quite like this!</p> -->
 
                   <form action='/users/@Model["user"].Id/posts/@post.Id/comment' method="post">
                     <input type="text" name="content" class="comment-input" placeholder="Write a comment...">

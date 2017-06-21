@@ -940,8 +940,20 @@ button:focus {
   display: flex;
   flex-direction: column;
   align-items: center; }
+  .friends-list ul {
+    display: flex;
+    flex-basis: 30%;
+    flex-wrap: wrap;
+    justify-content: center; }
   .friends-list li {
-    margin: 5% 0; }
+    margin: 5% 5%; }
+  .friends-list img {
+    margin: 0 auto;
+    height: 65px;
+    border-radius: 50%;
+    transition: all 0.3s ease-in-out; }
+    .friends-list img:hover {
+      opacity: 0.5; }
 
 .results {
   height: 100vh;
@@ -969,5 +981,52 @@ button:focus {
   height: 100px;
   background-color: #bfdfca;
   border-radius: 50%; }
+
+.edit-profile-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 550px; }
+  .edit-profile-form .edit-profile-field {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center; }
+  .edit-profile-form input {
+    margin: 1% 0;
+    height: 30px;
+    background-color: #e1f0e6;
+    border: 1px solid #3c887c;
+    padding: 0.75%;
+    color: #407b81;
+    transition: all 0.3s ease-in-out; }
+    .edit-profile-form input:focus {
+      border: 1px solid #66b3ad;
+      background-color: rgba(255, 255, 255, 0.65); }
+    .edit-profile-form input h1 {
+      font-size: 3em; }
+    .edit-profile-form input h1, .edit-profile-form input h2 {
+      text-align: center;
+      color: #fff;
+      text-shadow: 1px 1px 1px #407b81;
+      margin-top: -2%; }
+    .edit-profile-form input label {
+      padding-bottom: 5%;
+      margin-top: 1% 0; }
+
+.edit-profile-button {
+  margin-top: 5%;
+  align-self: center;
+  background-color: #407b81;
+  border: none;
+  color: #f4f7d8;
+  padding: 5px 15px;
+  font-size: 18px;
+  border-radius: 3px;
+  cursor: pointer; }
+  .edit-profile-button:hover {
+    transition: .6s;
+    background-color: #66b3ad;
+    color: white; }
 
 /*# sourceMappingURL=main.css.map */

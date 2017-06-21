@@ -1,0 +1,56 @@
+.edit-profile-form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 550px;
+  .edit-profile-field {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+  }
+ input {
+    margin: 1% 0;
+    height: 30px;
+    background-color: lighten($light-green, 10%);
+    border: 1px solid $dark-teal;
+    padding: 0.75%;
+    color: $dark-blue;
+    transition: all 0.3s ease-in-out;
+    &:focus {
+     border: 1px solid $teal;
+     background-color: rgba(255, 255, 255, 0.65);
+  }
+  h1 {
+    font-size: 3em;
+  }
+  h1, h2 {
+    text-align: center;
+    color: #fff;
+    text-shadow: 1px 1px 1px #407b81;
+    margin-top: -2%;
+  }
+  label {
+    padding-bottom:5%;
+    margin-top: 1% 0;
+  }
+ }
+}
+
+.edit-profile-button {
+  margin-top: 5%;
+  align-self: center;
+  background-color: $dark-blue;
+  border: none;
+  color: $yellow-green;
+  padding: 5px 15px;
+  font-size: 18px;
+  border-radius: 3px;
+  cursor: pointer;
+
+  &:hover {
+   transition:.6s;
+   background-color: $teal;
+   color: white;
+  }
+}

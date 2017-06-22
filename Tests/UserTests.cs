@@ -107,7 +107,7 @@ namespace SocialMedia.Objects
       status2.Save();
 
       List<Status> testList = newUser.GetStatuses();
-      List<Status> controlList = new List<Status>{status1, status2};
+      List<Status> controlList = new List<Status>{status2, status1};
 
       Assert.Equal(testList, controlList);
     }

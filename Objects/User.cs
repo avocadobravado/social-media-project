@@ -204,6 +204,9 @@ namespace SocialMedia.Objects
         conn.Close();
       }
 
+      statuses.Sort((status1, status2) => DateTime.Compare(status1.Timestamp, status2.Timestamp));
+      statuses.Reverse();
+
       return statuses;
     }
 

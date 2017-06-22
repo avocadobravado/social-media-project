@@ -13,7 +13,7 @@ namespace SocialMedia
       Get["/"] = _ => {
         return View["index.cshtml"];
       };
-      Post["/login"] = _ => {                                                   //NOTE IM NOT VERY RESTFUL
+      Post["/login"] = _ => {
         Dictionary <string, object> model = new Dictionary<string, object>{};
 
         string username = Request.Form["username"];
@@ -40,7 +40,7 @@ namespace SocialMedia
           }
         }
       };
-      Post["/account_created"] = _ => {                                       //NOTE IM NOT VERY RESTFUL
+      Post["/account_created"] = _ => {
         Dictionary <string, object> model = new Dictionary<string, object>{};
         string firstName = Request.Form["first-name"];
         string lastName = Request.Form["last-name"];
@@ -427,7 +427,13 @@ namespace SocialMedia
         User loggedInUser = User.Find(parameters.loggedInId);
         string password = Request.Form["password"];
         string passwordConfirm = Request.Form["password-confirm"];
-        if(password != passwordConfirm)
+        if(User.AccountExists(Request.Form["username"]))
+        {
+          model.Add("user", loggedInUser);
+          model.Add("username-taken", true);
+          return View["editprofile.cshtml", model];
+        }
+        else if(password != passwordConfirm)
         {
           model.Add("user", loggedInUser);
           model.Add("password-mismatch", true);
@@ -459,5 +465,3 @@ namespace SocialMedia
     }
   }
 }
-
-//NOTE FIX SEARCH METHOD/RESULTS

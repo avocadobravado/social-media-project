@@ -84,6 +84,10 @@
       {
         <p>Both passwords must match</p>
       }
+      @if(Model.ContainsKey("username-taken"))
+      {
+        <p>That username is already in use.</p>
+      }
     </div>
 
   </body>

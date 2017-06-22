@@ -57,7 +57,7 @@
             <li><span class="user-info">USERNAME: </span><span>@Model["user"].Username</span></li>
             <li><span class="user-info">DATE JOINED: </span><span>@Model["user"].Timestamp.ToString("d")</span></li>
             <li><span class="user-info">EMAIL: </span><span>@Model["user"].Email</span></li>
-            <form action='/users/@Model["user"].Id/photo_upload' method="post">
+            <form action='/users/@Model["user"].Id/photo_upload' method="post" class="upload-photo-form">
               <input type="hidden" name="_method" value="PATCH">
               <li><input type="url" class="upload-photo-input" placeholder="Insert URL..." name="img-url" required></li>
               <li><button type="button" name="button" class="upload-photo">Upload photo</button></li>

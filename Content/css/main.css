@@ -1107,6 +1107,9 @@ body > div > div > div > div.message-wrapper > div.underneath-message > div > sp
     .friends-list img:hover {
       opacity: 0.5; }
 
+.upload-photo-form {
+  margin-top: 10px; }
+
 .results {
   height: 100vh;
   display: flex;

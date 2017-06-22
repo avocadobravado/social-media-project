@@ -13,6 +13,7 @@ namespace SocialMedia.Objects
     public string Password {get;set;}
     public string Email {get;set;}
     public DateTime Timestamp {get;set;}
+    public string ImgURL {get;set;}
 
     public User()
     {
@@ -23,6 +24,7 @@ namespace SocialMedia.Objects
       Password = null;
       Email = null;
       Timestamp = default(DateTime);
+      ImgURL = null;
     }
 
     public User(string firstName, string lastName, string username, string password, string email, DateTime timestamp, int id = 0)
@@ -34,6 +36,7 @@ namespace SocialMedia.Objects
       Password = password;
       Email = email;
       Timestamp = timestamp;
+      ImgURL = null;
     }
 
     public override bool Equals(System.Object otherUser)
@@ -573,6 +576,60 @@ namespace SocialMedia.Objects
       }
 
       return newUser;
+    }
+
+    public void SaveImg(string imgURL)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("UPDATE users SET img_url = @URL OUTPUT INSERTED.img_url WHERE id = @UserId;", conn);
+      cmd.Parameters.Add(new SqlParameter("@URL", imgURL));
+      cmd.Parameters.Add(new SqlParameter("@UserId", this.Id));
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while(rdr.Read())
+      {
+        this.ImgURL = rdr.GetString(0);
+      }
+
+      if(rdr != null)
+      {
+        rdr.Close();
+      }
+      if(conn != null)
+      {
+        conn.Close();
+      }
+    }
+
+    public string GetImg()
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT img_url FROM users WHERE @UserId = @UserId;", conn);
+      cmd.Parameters.Add(new SqlParameter("@UserId", this.Id));
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      string url = null;
+      while(rdr.Read())
+      {
+        url = rdr.GetString(0);
+      }
+
+      if(rdr != null)
+      {
+        rdr.Close();
+      }
+      if(conn != null)
+      {
+        conn.Close();
+      }
+
+      return url;
     }
 
     public void RemoveFriend(User userToRemove)

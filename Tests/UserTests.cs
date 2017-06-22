@@ -453,6 +453,19 @@ namespace SocialMedia.Objects
       Assert.Equal(user1, foundUser);
     }
 
+    [Fact]
+    public void User_SaveImg_SavesToDatabase()
+    {
+      User user1 = new User("Joshua", "Fairchild", "jfairchild", "password", "mail@mail.com", new DateTime(2017, 06, 01));
+      user1.Save();
+
+      user1.SaveImg("image.png");
+
+      string imageUrl = user1.GetImg();
+
+      Assert.Equal("image.png", imageUrl);
+    }
+
     public void Dispose()
     {
       User.DeleteAll();

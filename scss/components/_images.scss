@@ -3,11 +3,13 @@
 }
 
 .sm-user-image {
-
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
 }
 
 .user-image {
-  max-width: 100px;
-  max-height: 100px;
+  height: 80px;
+  width: 80px;
   border-radius: 50%;
 }

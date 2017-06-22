@@ -537,6 +537,11 @@ ul {
 .logo img {
   max-height: 100px; }
 
+.user-image {
+  max-width: 100px;
+  max-height: 100px;
+  border-radius: 50%; }
+
 input {
   border-radius: 3px; }
   input:focus {
@@ -1015,8 +1020,7 @@ body > div > div > div > div.message-wrapper > div.underneath-message > div > sp
   margin-top: 1%;
   width: 100px;
   height: 100px;
-  border-radius: 50%;
-  background-color: #3c887c; }
+  border-radius: 50%; }
 
 .profile-info {
   display: flex;

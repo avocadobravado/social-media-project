@@ -59,7 +59,7 @@
             <li><span class="user-info">EMAIL: </span><span>@Model["user"].Email</span></li>
             <form action='/users/@Model["user"].Id/photo_upload' method="post" class="upload-photo-form">
               <input type="hidden" name="_method" value="PATCH">
-              <li><input type="url" class="upload-photo-input" placeholder="Insert URL..." name="img-url" required></li>
+              <li><input type="url" class="upload-photo-input" placeholder="Insert url" name="img-url" required></li>
               <li><button type="submit" name="button" class="upload-photo">Upload photo</button></li>
             </form>
           </ul>

@@ -20,10 +20,10 @@ Add a brief description of what we made :)
 ## Screenshots of Application
 
 Screenhot
-![alt text](https://github.com/avocadobravado/social-media-project/blob/master/img/scs01.png?raw=true)
+![alt text](https://github.com/avocadobravado/social-media-project/blob/master/img/scs01.jpg?raw=true)
 
 Screenhot
-![alt text](https://github.com/avocadobravado/social-media-project/blob/master/img/scs02.png?raw=true)
+![alt text](https://github.com/avocadobravado/social-media-project/blob/master/img/scs02.jpg?raw=true)
 
 ## Setup/Installation Requirements
 

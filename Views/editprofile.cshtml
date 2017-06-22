@@ -74,8 +74,11 @@
         </div>
 
         <button type="submit" name="button" class="edit-profile-button">Submit</button>
-        <button type="submit" name="button" class="edit-profile-button">Delete Account</button>
 
+      </form>
+      <form class="delete-account-form" action='/users/@Model["user"].Id/profile/delete' method="post">
+        <input type="hidden" name="_method" value="DELETE">
+        <button type="submit" name="button" class="edit-profile-button">Delete Account</button>
       </form>
       @if(Model.ContainsKey("password-mismatch"))
       {

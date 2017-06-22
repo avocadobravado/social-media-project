@@ -442,6 +442,11 @@ namespace SocialMedia
           return View["profile.cshtml", model];
         }
       };
+      Delete["/users/{loggedInId}/profile/delete"] = parameters => {
+        User loggedInUser = User.Find(parameters.loggedInId);
+        loggedInUser.Delete();
+        return View["index.cshtml"];
+      };
     }
   }
 }

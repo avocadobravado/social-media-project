@@ -315,6 +315,56 @@ namespace SocialMedia
           }
         }
       };
+      Post["/users/{loggedInId}/statuses/{statusId}/comments/{commentId}/like"] = parameters => {
+        Dictionary <string, object> model = new Dictionary<string, object>{};
+        string directTo = Request.Form["redirect"];
+        User loggedInUser = User.Find(parameters.loggedInId);
+        Status selectedStatus = Status.Find(parameters.statusId);
+        Comment commentToLike = Comment.Find(parameters.commentId);
+        // Console.WriteLine(loggedInUser.HasDislikedStatus(statusToDislike));
+        if(!(loggedInUser.HasLikedComment(commentToLike)))
+        {
+          // Console.WriteLine("Hello");
+          loggedInUser.LikeComment(commentToLike);
+          if(directTo == "friend")
+          {
+            User selectedUser = User.Find(Request.Form["userId"]);
+            List<Status> selectedUserStatuses = selectedUser.GetStatuses();
+            model.Add("user", loggedInUser);
+            model.Add("selected-user", selectedUser);
+            model.Add("user-statuses", selectedUserStatuses);
+            return View[directTo + ".cshtml", model];
+          }
+          else
+          {
+            model.Add("user", loggedInUser);
+            model.Add("timeline", loggedInUser.GetTimeline());
+            model.Add("user-statuses", loggedInUser.GetStatuses());
+            model.Add("friends", loggedInUser.GetFriends());
+            return View[directTo + ".cshtml", model];
+          }
+        }
+        else
+        {
+          if(directTo == "friend")
+          {
+            User selectedUser = User.Find(Request.Form["userId"]);
+            List<Status> selectedUserStatuses = selectedUser.GetStatuses();
+            model.Add("user", loggedInUser);
+            model.Add("selected-user", selectedUser);
+            model.Add("user-statuses", selectedUserStatuses);
+            return View[directTo + ".cshtml", model];
+          }
+          else
+          {
+            model.Add("user", loggedInUser);
+            model.Add("timeline", loggedInUser.GetTimeline());
+            model.Add("user-statuses", loggedInUser.GetStatuses());
+            model.Add("friends", loggedInUser.GetFriends());
+            return View[directTo + ".cshtml", model];
+          }
+        }
+      };
     }
   }
 }

@@ -131,9 +131,17 @@
                         <div class="comment-like-wrapper">
                           <p>
                             <span>@comment.Likes</span><!--PLACEHOLDER/SPAN FOR NUMBER OF LIKES-->
-                            <button class="like"> <i class="fa fa-thumbs-up" aria-hidden="true"></i></button>   <!-- BUILD ME A ROUTE NOTE -->
+                            <form action='/users/@Model["user"].Id/statuses/@status.Id/comments/@comment.Id/like' method="post">
+                              <input type="hidden" name="userId" value='@Model["selected-user"].Id'>
+                              <input type="hidden" name="redirect" value="friend">
+                              <button class="like"> <i class="fa fa-thumbs-up" aria-hidden="true"></i></button>
+                            </form>
                             <span>@comment.Dislikes</span><!--PLACEHOLDER/SPAN FOR NUMBER OF DISLIKES-->
-                            <button class="dislike"> <i class="fa fa-thumbs-down" aria-hidden="true"></i></button></p>
+                            <form action='/users/@Model["user"].Id/statuses/@status.Id/comments/@comment.Id/dislike' method="post">
+                              <input type="hidden" name="userId" value='@Model["selected-user"].Id'>
+                              <input type="hidden" name="redirect" value="friend">
+                              <button class="dislike"> <i class="fa fa-thumbs-down" aria-hidden="true"></i></button></p>
+                            </form>
                           </p>
                         </div><!--COMMENT LIKE WRAPPER ENDS-->
                       }

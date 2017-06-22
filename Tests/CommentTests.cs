@@ -137,6 +137,40 @@ namespace SocialMedia.Objects
       Assert.Equal("Joshua Fairchild", newComment.GetCommenterName());
     }
 
+    [Fact]
+    public void Comment_Like_LikesCommentInDB()
+    {
+      User newUser = new User("Joshua", "Fairchild", "jfairchild", "password", "mail@mail.com", new DateTime(2017, 06, 19));
+      newUser.Save();
+
+      Status newStatus = new Status("Hello world", newUser.Id, new DateTime(2017, 06, 19));
+      newStatus.Save();
+
+      Comment newComment = new Comment("Hello world", newStatus.Id, newUser.Id, new DateTime(2017, 06, 19));
+      newComment.Save();
+
+      newComment.Like();
+
+      Assert.Equal(1, newComment.Likes);
+    }
+
+    [Fact]
+    public void Comment_Dislike_DislikesCommentInDB()
+    {
+      User newUser = new User("Joshua", "Fairchild", "jfairchild", "password", "mail@mail.com", new DateTime(2017, 06, 19));
+      newUser.Save();
+
+      Status newStatus = new Status("Hello world", newUser.Id, new DateTime(2017, 06, 19));
+      newStatus.Save();
+
+      Comment newComment = new Comment("Hello world", newStatus.Id, newUser.Id, new DateTime(2017, 06, 19));
+      newComment.Save();
+
+      newComment.Dislike();
+
+      Assert.Equal(1, newComment.Dislikes);
+    }
+
     public void Dispose()
     {
       Comment.DeleteAll();

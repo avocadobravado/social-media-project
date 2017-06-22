@@ -427,7 +427,8 @@ namespace SocialMedia
         User loggedInUser = User.Find(parameters.loggedInId);
         string password = Request.Form["password"];
         string passwordConfirm = Request.Form["password-confirm"];
-        if(User.AccountExists(Request.Form["username"]))
+        string username = Request.Form["username"];
+        if(User.AccountExists(username) && loggedInUser.Username != username)
         {
           model.Add("user", loggedInUser);
           model.Add("username-taken", true);
@@ -441,7 +442,7 @@ namespace SocialMedia
         }
         else
         {
-          loggedInUser.Update(Request.Form["first-name"], Request.Form["last-name"], Request.Form["username"], password, Request.Form["email"]);
+          loggedInUser.Update(Request.Form["first-name"], Request.Form["last-name"], username, password, Request.Form["email"]);
           model.Add("user", loggedInUser);
           model.Add("user-statuses", loggedInUser.GetStatuses());
           model.Add("friends", loggedInUser.GetFriends());

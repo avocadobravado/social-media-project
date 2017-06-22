@@ -43,7 +43,7 @@
 
         <li><a href='/users/@Model["user"].Id/friends'><i class="fa fa-users fa-2x" aria-hidden="true"></i></a></li>
         <li><a href='/users/@Model["user"].Id/friends'>Friends</a></li>
-        
+
         <li><a href='/users/@Model["user"].Id/profile/edit'><i class="fa fa-cogs fa-2x" aria-hidden="true"></i></a></li>
         <li><a href='/users/@Model["user"].Id/profile/edit'>Edit Profile</a></li>
       </ul>
@@ -65,16 +65,6 @@
                 <div class="imageDiv"><img src="" alt="" class="user-image"/></div>
                 <span><a href='/users/@Model["user"].Id/profile_view/@user.Id'>@user.FirstName @user.LastName</a></span>
               </div>
-              @if(Model["user"].IsFriendsWith(user))
-              {
-                <form class="results" action="index.html" method="post">
-                <button type="button" class="unfollow-result" name="button">Unfollow</button>
-              </form>
-              }
-              else if(!(Model["user"].IsFriendsWith(user)) && Model["user"].Username != user.Username)
-              {
-
-              }
             </div>
           }
         }
@@ -97,9 +87,6 @@
                 <div class="imageDiv"><img src="" alt="" class="user-image"/></div>
                 <span><a href='/users/@Model["user"].Id/profile_view/@user.Id'>@user.FirstName @user.LastName</a></span>
               </div>
-              /*<form class="results" action="index.html" method="post">          <!-- BUILD ROUTE NOTE-->*/
-                /*<button type="button" class="unfollow-result" name="button">Unfollow</button>*/
-              /*</form>*/
             </div>
           }
         }

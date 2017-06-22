@@ -43,7 +43,7 @@
         <li><a href='/users/@Model["user"].Id/friends'><i class="fa fa-users fa-2x" aria-hidden="true"></i></a></li>
         <li><a href='/users/@Model["user"].Id/friends'>Friends</a></li>
         <li><a href="#"><i class="fa fa-cogs fa-2x" aria-hidden="true"></i></a></li>
-        <li><a href="#">Admin Access</a></li>
+        <li><a href="#">Edit Profile</a></li>
       </ul>
     </nav>
     @if(Model.ContainsKey("search-query"))
@@ -71,9 +71,7 @@
               }
               else if(!(Model["user"].IsFriendsWith(user)) && Model["user"].Username != user.Username)
               {
-                <form class="results" action="index.html" method="post">
-                  <button type="button" class="follow-result" name="button">Follow</button>     <!-- BUILD ROUTE NOTE-->
-                </form>
+
               }
             </div>
           }
@@ -97,9 +95,9 @@
                 <div class="imageDiv"><img src="" alt="" class="user-image"/></div>
                 <span><a href='/users/@Model["user"].Id/profile_view/@user.Id'>@user.FirstName @user.LastName</a></span>
               </div>
-              <form class="results" action="index.html" method="post">          <!-- BUILD ROUTE NOTE-->
-                <button type="button" class="unfollow-result" name="button">Unfollow</button>
-              </form>
+              /*<form class="results" action="index.html" method="post">          <!-- BUILD ROUTE NOTE-->*/
+                /*<button type="button" class="unfollow-result" name="button">Unfollow</button>*/
+              /*</form>*/
             </div>
           }
         }

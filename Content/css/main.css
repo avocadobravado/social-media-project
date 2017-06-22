@@ -610,6 +610,7 @@ textarea {
         color: rgba(255, 255, 255, 0.5); }
 
 .main-nav {
+  z-index: 9999;
   background-image: linear-gradient(to right, #f4f7d8, #bfdfca, #66b3ad, #3c887c, #407b81, #2b9ba3);
   box-shadow: 3px 2px 2px #407b81; }
   .main-nav .main-nav-wrapper {
@@ -975,12 +976,13 @@ button:focus {
   flex-direction: column; }
 
 .hero-photo {
+  z-index: -1;
   background-image: url(https://raw.githubusercontent.com/avocadobravado/social-media-project-inspiration/master/background.png);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   height: 350px;
-  width: 100%; }
+  width: 80vw; }
 
 .profile-newsfeed {
   width: 70%; }
@@ -1082,6 +1084,7 @@ button:focus {
     height: auto; }
 
 .search-info {
+  margin-bottom: 20px;
   display: flex;
   width: 60%;
   align-items: center;

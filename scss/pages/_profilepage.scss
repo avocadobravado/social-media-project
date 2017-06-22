@@ -11,12 +11,13 @@
 }
 
 .hero-photo {
+  z-index: -1;
   background-image: url(https://raw.githubusercontent.com/avocadobravado/social-media-project-inspiration/master/background.png);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   height: 350px;
-  width: 100%;
+  width: 80vw; // COME BACK AND EDIT ME MAYBE
 }
 
 .profile-newsfeed {

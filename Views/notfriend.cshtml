@@ -138,7 +138,7 @@
             <ul>
               @foreach(var friend in Model["selected-user"].GetFriends())
               {
-                <li><a href='/users/@Model["selected-user"].Id/profile_view/@friend.Id'><img src="@friend.ImgURL" alt="" class="sm-user-image"/> @friend.FirstName</a></li>
+                <li><a href='/users/@Model["user"].Id/profile_view/@friend.Id'><img src="@friend.ImgURL" alt="" class="sm-user-image"/> @friend.FirstName</a></li>
               }
             </ul>
           </div><!-- FRIENDS LIST ENDS -->

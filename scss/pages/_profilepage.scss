@@ -27,7 +27,7 @@
 .friends-list {
   width: 30%;
   ul li a {
-    line-height: 30px;
+    line-height: 25px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -38,9 +38,6 @@
 
 .profile-picture {
   margin-top: 1%;
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
 }
 
 
@@ -129,6 +126,23 @@
   }
 }
 
+body > div > div > div.profile-friends-wrapper > div.profile-newsfeed > div > div.message-wrapper > div.comment-section > div.comment-like-wrapper > p:nth-child(1) > button.dislike {
+  background-color: transparent;
+  color: $dark-blue;
+  transition: all .3s ease-in-out;
+  &:hover {
+    transform: scale(1.5, 1.5);
+  }
+}
+
+body > div > div > div.profile-friends-wrapper > div.profile-newsfeed > div > div.message-wrapper > div.comment-section > div.comment-like-wrapper > p:nth-child(1) > button.like {
+  background-color: transparent;
+  color: $dark-blue;
+  transition: all .3s ease-in-out;
+  &:hover {
+    transform: scale(1.5, 1.5);
+  }
+}
 // FRIENDS
 
 .friends-list {
@@ -147,11 +161,9 @@
   }
   img {
     margin: 0 auto;
-    height: 65px;
-    // padding: 20%;
-    border-radius: 50%;
-    // border: 5px solid $dark-blue;
     transition: all 0.3s ease-in-out;
+    height: 50px;
+    width: 50px;
     &:hover {
       opacity: 0.5;
     }

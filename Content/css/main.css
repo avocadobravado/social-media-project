@@ -829,9 +829,6 @@ button:focus {
       color: white; }
 
 .newsfeed-posts {
-  width: calc(66.66667%);
-  float: left;
-  margin-left: 0;
   display: flex;
   flex-direction: column;
   margin: 0 auto;
@@ -839,9 +836,12 @@ button:focus {
   align-items: center; }
   .newsfeed-posts .update-post {
     height: 30px; }
+  .newsfeed-posts .update-post-form {
+    margin: 100px auto; }
 
 .comment-wrapper {
-  padding: 0 10%; }
+  padding: 0 10%;
+  width: 40vw; }
 
 .avatar-username {
   display: flex;
@@ -883,25 +883,33 @@ button:focus {
 .comment-section {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: flex-end;
   padding: 1%;
+  flex-wrap: wrap;
   font-size: 0.95em; }
-  .comment-section textarea, .comment-section .submit-comment {
-    align-self: flex-end; }
-  .comment-section textarea {
-    width: 400px;
-    height: 50px;
-    font-size: 14px;
-    margin: 1% 0;
-    border: 1px solid #407b81;
-    background-color: white;
-    color: #444;
-    font-size: 18px;
-    padding-left: 5px;
-    transition: all .3s ease-in-out; }
-    .comment-section textarea:focus {
-      border: 1px solid #66b3ad;
-      background-color: rgba(255, 255, 255, 0.65); }
+  .comment-section .comment-form {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center; }
+    .comment-section .comment-form textarea, .comment-section .comment-form .submit-comment {
+      align-self: flex-end; }
+    .comment-section .comment-form textarea {
+      width: 100px;
+      height: 50px;
+      font-size: 14px;
+      margin: 1% 0;
+      border: 1px solid #407b81;
+      background-color: white;
+      color: #444;
+      font-size: 18px;
+      padding-left: 5px;
+      transition: all .3s ease-in-out; }
+      .comment-section .comment-form textarea:focus {
+        border: 1px solid #66b3ad;
+        background-color: rgba(255, 255, 255, 0.65); }
+  .comment-section .comment-input {
+    width: 610px; }
   .comment-section .submit-comment {
     height: 30px;
     width: 75px;
@@ -929,11 +937,9 @@ button:focus {
   align-items: center;
   justify-content: center; }
   .update-post-form .status-input {
-    width: 300px;
-    height: 75px;
+    width: 500px;
     font-size: 16px;
     margin-top: 30px;
-    width: 350px;
     height: 125px;
     background-color: #fcfefd;
     border: 1px solid #bfdfca;

@@ -47,7 +47,7 @@
         <!--HERO ENDS-->
 
         <div class="profile-info"> <!-- PROFILE INFORMATION STARTS -->
-          <div class="profile-picture"></div>
+          <div class="profile-picture"><img src="" alt="" class="user-image"/></div>
           <ul class="title">
             <li><span class="user-info">NAME: </span><span>@Model["user"].FirstName @Model["user"].LastName</span></li>
             <li><span class="user-info">USERNAME: </span><span>@Model["user"].Username</span></li>
@@ -81,7 +81,7 @@
               {
                 <div class="comment-wrapper">
                   <div class="avatar-username">
-                    <div class="static-avatar"></div>
+                    <div class="static-avatar"><img src="" alt="" class="sm-user-image"/></div>
                     <div class="static-username">
                       <a href='/users/@Model["user"].Id/profile_view/@status.UserId'>@status.GetPosterName()</a>
                     </div><!--STATIC USERNAME ENDS-->
@@ -105,6 +105,7 @@
                         <!--FIRST COMMENT-->
                         <div class="small-avatar-username">
                           <div class="avatar-sm">
+                            <img src="" alt="" class="sm-user-image"/>
                           </div>
                           <a href='/users/@Model["user"].Id/profile_view/@comment.UserId' class="newsfeed-username">@comment.GetCommenterName()</a>
                         </div><!--SMALL AVATAR USERNAME ENDS-->
@@ -121,7 +122,7 @@
                         </div><!--COMMENT LIKE WRAPPER ENDS-->
                       }
 
-                      <form action='/users/@Model["user"].Id/statuses/@status.Id/comments/new' method="post">
+                      <form action='/users/@Model["user"].Id/statuses/@status.Id/comments/new' method="post" class="comment-form">
                         <textarea type="text" name="content" value="" class="comment-input" placeholder="Write a comment..." required></textarea>
                         <button type="submit" name="button" class="submit-comment">Submit</button>
                       </form>
@@ -135,25 +136,16 @@
           <div class="friends-list"><!-- FRIENDS LIST STARTS -->
             <h4>Friends List</h4>
             <ul>
-              <li><a href="#">Placeholder friendfriend</a></li>         <!-- BUILD ME ROUTESSSSSS -->
-              <hr>
-              <li><a href="#">Placeholder friend</a></li>
-              <hr>
-              <li><a href="#">Placeholder friend</a></li>
-              <hr>
-              <li><a href="#">Placeholder friend</a></li>
-              <hr>
-              <li><a href="#">Placeholder friend</a></li>
-              <hr>
-              <li><a href="#">Placeholder friend</a></li>
-              <hr>
-              <li><a href="#">Placeholder friend</a></li>
-              <hr>
-              <li><a href="#">Placeholder friend</a></li>
-              <hr>
-              <li><a href="#">Placeholder friend</a></li>
-              <hr>
-              <li><a href="#">Placeholder friend</a></li>
+              <li><a href="#"><img src="https://github.com/avocadobravado/social-media-project-inspiration/blob/master/default-avatar.png?raw=true" alt="" class="sm-user-image"/></a></li>         <!-- BUILD ME ROUTESSSSSS -->
+              <li><a href="#"><img src="https://github.com/avocadobravado/social-media-project-inspiration/blob/master/default-avatar.png?raw=true" alt="" class="sm-user-image"/></a></li>
+              <li><a href="#"><img src="https://github.com/avocadobravado/social-media-project-inspiration/blob/master/default-avatar.png?raw=true" alt="" class="sm-user-image"/></a></li>
+              <li><a href="#"><img src="https://github.com/avocadobravado/social-media-project-inspiration/blob/master/default-avatar.png?raw=true" alt="" class="sm-user-image"/></a></li>
+              <li><a href="#"><img src="https://github.com/avocadobravado/social-media-project-inspiration/blob/master/default-avatar.png?raw=true" alt="" class="sm-user-image"/></a></li>
+              <li><a href="#"><img src="https://github.com/avocadobravado/social-media-project-inspiration/blob/master/default-avatar.png?raw=true" alt="" class="sm-user-image"/></a></li>
+              <li><a href="#"><img src="https://github.com/avocadobravado/social-media-project-inspiration/blob/master/default-avatar.png?raw=true" alt="" class="sm-user-image"/></a></li>
+              <li><a href="#"><img src="https://github.com/avocadobravado/social-media-project-inspiration/blob/master/default-avatar.png?raw=true" alt="" class="sm-user-image"/></a></li>
+              <li><a href="#"><img src="https://github.com/avocadobravado/social-media-project-inspiration/blob/master/default-avatar.png?raw=true" alt="" class="sm-user-image"/></a></li>
+              <li><a href="#"><img src="https://github.com/avocadobravado/social-media-project-inspiration/blob/master/default-avatar.png?raw=true" alt="" class="sm-user-image"/></a></li>
             </ul>
           </div><!-- FRIENDS LIST ENDS -->
         </div><!--PROFILE FRIENDS WRAPPER ENDS-->

@@ -15,7 +15,28 @@ namespace SocialMedia.Objects
 
     public void Like()
     {
-      this.Likes += 1;
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("UPDATE statuses SET likes = @Likes OUTPUT INSERTED.likes WHERE id = @StatusId;", conn);
+      cmd.Parameters.Add(new SqlParameter("@Likes", this.Likes + 1));
+      cmd.Parameters.Add(new SqlParameter("@StatusId", this.Id));
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while(rdr.Read())
+      {
+        this.Likes = rdr.GetInt32(0);
+      }
+
+      if(rdr != null)
+      {
+        rdr.Close();
+      }
+      if(conn != null)
+      {
+        conn.Close();
+      }
     }
 
     public void Dislike()

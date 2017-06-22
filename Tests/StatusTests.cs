@@ -139,7 +139,7 @@ namespace SocialMedia.Objects
     }
 
     [Fact]
-    public void Status_GetPosterName()
+    public void Status_GetPosterName_ReturnsName()
     {
       User user1 = new User("Joshua", "Fairchild", "jfairchild", "password", "mail@mail.com", new DateTime(2017, 06, 19));
       user1.Save();
@@ -148,6 +148,20 @@ namespace SocialMedia.Objects
       newStatus.Save();
 
       Assert.Equal("Joshua Fairchild", newStatus.GetPosterName());
+    }
+
+    [Fact]
+    public void Status_Like_LikesStatusInDB()
+    {
+      User user1 = new User("Joshua", "Fairchild", "jfairchild", "password", "mail@mail.com", new DateTime(2017, 06, 19));
+      user1.Save();
+
+      Status newStatus = new Status("Hello world", 1, new DateTime(2017, 06, 19));
+      newStatus.Save();
+
+      newStatus.Like();
+
+      Assert.Equal(1, newStatus.Likes);
     }
 
     public void Dispose()

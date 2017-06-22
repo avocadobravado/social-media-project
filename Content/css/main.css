@@ -551,14 +551,14 @@ textarea {
 .comment-like-wrapper {
   width: 100%;
   text-align: right; }
-  .comment-like-wrapper .like, .comment-like-wrapper .dislike {
+  .comment-like-wrapper form {
     background-color: transparent;
     color: #407b81;
     border: none;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
     text-align: right; }
-    .comment-like-wrapper .like:hover, .comment-like-wrapper .dislike:hover {
+    .comment-like-wrapper form:hover {
       transform: scale(1.5, 1.5);
       background-color: transparent;
       color: #407b81; }
@@ -865,21 +865,23 @@ button:focus {
     text-transform: uppercase;
     font-size: 1em;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     padding: 0 2%;
     background-color: #c9e4d2; }
     .message-wrapper .underneath-message span:first-child {
       font-size: 0.75em; }
     .message-wrapper .underneath-message span:nth-of-type(2) {
       font-size: 0.75em; }
-    .message-wrapper .underneath-message button {
-      background-color: transparent;
-      border: none;
-      cursor: pointer;
-      transition: all 0.3s ease-in-out;
-      color: #407b81; }
-      .message-wrapper .underneath-message button:hover {
-        transform: scale(1.5, 1.5); }
+    .message-wrapper .underneath-message form {
+      display: flex; }
+      .message-wrapper .underneath-message form button {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        color: #407b81; }
+        .message-wrapper .underneath-message form button:hover {
+          transform: scale(1.5, 1.5); }
 
 .comment-section {
   display: flex;

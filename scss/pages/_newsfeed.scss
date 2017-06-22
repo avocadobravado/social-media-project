@@ -81,29 +81,39 @@
     text-transform: uppercase;
     font-size: 1em;
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     padding: 0 2%;
     background-color: lighten($light-green, 3%);
-    span:first-child {
-      font-size: 0.75em;
-    }
-    span:nth-of-type(2) {
-      font-size: 0.75em;
-    }
-    form {
+    .like-dislikes-wrapper {
       display: flex;
-      button {
-        background-color: transparent;
-        border: none;
-        cursor: pointer;
-        transition: all 0.3s ease-in-out;
-        color: $dark-blue;
-        &:hover {
-          transform: scale(1.5, 1.5);
+      flex-direction: row;
+      align-items: center;
+      span {
+        font-size: 0.75em;
+      }
+      form {
+        display: flex;
+        button {
+          background-color: transparent;
+          border: none;
+          cursor: pointer;
+          transition: all 0.3s ease-in-out;
+          color: $dark-blue;
+          &:hover {
+            transform: scale(1.5, 1.5);
+          }
         }
       }
     }
   }
+}
+
+.timestamp {
+  align-self: flex-end;
+}
+// Targeting the dislike comments section
+body > div > div > div > div.message-wrapper > div.underneath-message > div > span {
+  color: #444;
 }
 
 // COMMENT SECTION
@@ -174,7 +184,7 @@
   .newsfeed-username {
     margin-left: 2%;
     width: 20vw;
-  }
+}
 }
 // AVATAR AND USERNAME SECTION ENDS
 

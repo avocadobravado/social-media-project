@@ -4,7 +4,8 @@
     <!-- GOOGLE FONTS -->
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <!--FONT AWESOME-->
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="/Content/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="/Content/css/main.css" media="screen" title="no title" charset="utf-8">
     <title>Placeholder Newsfeed</title>
   </head>
@@ -39,7 +40,7 @@
 
           <li><a href='/users/@Model["user"].Id/friends'><i class="fa fa-users fa-2x" aria-hidden="true"></i></a></li>
           <li><a href='/users/@Model["user"].Id/friends'>Friends</a></li>
-          
+
           <li><a href='/users/@Model["user"].Id/profile/edit'><i class="fa fa-cogs fa-2x" aria-hidden="true"></i></a></li>
           <li><a href='/users/@Model["user"].Id/profile/edit'>Edit Profile</a></li>
         </ul>
@@ -73,17 +74,19 @@
                   <p>@status.Content</p>
                 </div><!--STATIC MESSAGE-->
                 <div class="underneath-message">
-                  <p class="like-dislikes">
-                    <span>@status.Likes</span><!--PLACEHOLDER/SPAN FOR NUMBER OF LIKES-->
-                    <form action='/users/@Model["user"].Id/statuses/@status.Id/like' method="post">
-                      <input type="hidden" name="redirect" value="news">
-                      <button class="like"> <i class="fa fa-thumbs-up" aria-hidden="true"></i></button>
-                    </form>
-                    <span>@status.Dislikes</span><!--PLACEHOLDER/SPAN FOR NUMBER OF DISLIKES-->
-                    <form action='/users/@Model["user"].Id/statuses/@status.Id/dislike' method="post">      <!--NOTE WORK ON ME-->
-                      <input type="hidden" name="redirect" value="news">
-                      <button class="dislike"> <i class="fa fa-thumbs-down" aria-hidden="true"></i></button>
-                    </form>
+                 <div class="like-dislikes-wrapper">
+                    <p class="like-dislikes">
+                      <span>@status.Likes</span><!--PLACEHOLDER/SPAN FOR NUMBER OF LIKES-->
+                      <form action='/users/@Model["user"].Id/statuses/@status.Id/like' method="post">
+                        <input type="hidden" name="redirect" value="news">
+                        <button class="like"> <i class="fa fa-thumbs-up" aria-hidden="true"></i></button>
+                      </form>
+                      <span>@status.Dislikes</span><!--PLACEHOLDER/SPAN FOR NUMBER OF DISLIKES-->
+                      <form action='/users/@Model["user"].Id/statuses/@status.Id/dislike' method="post">      <!--NOTE WORK ON ME-->
+                        <input type="hidden" name="redirect" value="news">
+                        <button class="dislike"> <i class="fa fa-thumbs-down" aria-hidden="true"></i></button>
+                      </form>
+                    </div>
                   <p class="timestamp"><span>@status.Timestamp.ToString("d")</span>
                   </p>
                 </div><!--UNDERNEATH MESSAGE ENDS-->

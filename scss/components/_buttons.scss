@@ -1,17 +1,28 @@
 .comment-like-wrapper {
+  display: flex;
+  // background-color: tomato;
+  align-items: baseline;
+  justify-content: flex-end;
   width: 100%;
   text-align: right;
+  span {
+    font-size: .75em;
+  }
    form {
-    background-color: transparent;
-    color: $dark-blue;
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-    text-align: right;
-    &:hover {
-      transform: scale(1.5, 1.5);
-      background-color: transparent;
-      color: $dark-blue;
+    //  display: flex;
+    //  background-color: tomato;
+     button {
+       background-color: transparent;
+       color: $dark-blue;
+       border: none;
+       cursor: pointer;
+       transition: all 0.3s ease-in-out;
+       text-align: right;
+       &:hover {
+         transform: scale(1.5, 1.5);
+         background-color: transparent;
+         color: $dark-blue;
+       }
     }
   }
 }

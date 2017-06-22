@@ -99,19 +99,21 @@
                       <p>@status.Content</p>
                     </div><!--STATIC MESSAGE-->
                     <div class="underneath-message">
-                      <p class="like-dislikes">
-                        <span>@status.Likes</span><!--PLACEHOLDER/SPAN FOR NUMBER OF LIKES-->
-                        <form action='/users/@Model["user"].Id/statuses/@status.Id/like' method="post">
-                          <input type="hidden" name="userId" value='@Model["selected-user"].Id'>
-                          <input type="hidden" name="redirect" value="friend">
-                          <button class="like"> <i class="fa fa-thumbs-up" aria-hidden="true"></i></button>
-                        </form>
-                        <span>@status.Dislikes</span><!--PLACEHOLDER/SPAN FOR NUMBER OF DISLIKES-->
-                        <form action='/users/@Model["user"].Id/statuses/@status.Id/dislike' method="post">
-                          <input type="hidden" name="userId" value='@Model["selected-user"].Id'>
-                          <input type="hidden" name="redirect" value="friend">
-                          <button class="dislike"> <i class="fa fa-thumbs-down" aria-hidden="true"></i></button></p>
-                        </form>
+                      <div class="like-dislikes-wrapper">
+                        <p class="like-dislikes">
+                          <span>@status.Likes</span><!--PLACEHOLDER/SPAN FOR NUMBER OF LIKES-->
+                          <form action='/users/@Model["user"].Id/statuses/@status.Id/like' method="post">
+                            <input type="hidden" name="userId" value='@Model["selected-user"].Id'>
+                            <input type="hidden" name="redirect" value="friend">
+                            <button class="like"> <i class="fa fa-thumbs-up" aria-hidden="true"></i></button>
+                          </form>
+                          <span>@status.Dislikes</span><!--PLACEHOLDER/SPAN FOR NUMBER OF DISLIKES-->
+                          <form action='/users/@Model["user"].Id/statuses/@status.Id/dislike' method="post">
+                            <input type="hidden" name="userId" value='@Model["selected-user"].Id'>
+                            <input type="hidden" name="redirect" value="friend">
+                            <button class="dislike"> <i class="fa fa-thumbs-down" aria-hidden="true"></i></button></p>
+                          </form>
+                      </div>
                       <p class="timestamp"><span>@status.Timestamp.ToString("d")</span>
                       </p>
                     </div><!--UNDERNEATH MESSAGE ENDS-->

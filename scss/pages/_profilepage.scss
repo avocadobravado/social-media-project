@@ -26,6 +26,12 @@
 
 .friends-list {
   width: 30%;
+  ul li a {
+    line-height: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 // PROFILE INFO AND PICTURE AREA

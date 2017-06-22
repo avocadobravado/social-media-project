@@ -260,7 +260,9 @@ namespace SocialMedia
           {
             model.Add("user", loggedInUser);
             model.Add("timeline", loggedInUser.GetTimeline());
-            return View["news.cshtml", model];
+            model.Add("user-statuses", loggedInUser.GetStatuses());
+            model.Add("friends", loggedInUser.GetFriends());
+            return View[directTo + ".cshtml", model];
           }
         }
       };

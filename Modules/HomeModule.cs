@@ -447,15 +447,15 @@ namespace SocialMedia
         loggedInUser.Delete();
         return View["index.cshtml"];
       };
-      // Patch["/users/{loggedInId}/photo_upload"] = parameters => {
-      //   Dictionary <string, object> model = new Dictionary<string, object>{};
-      //   User loggedInUser = User.Find(parameters.loggedInId);
-      //   loggedInUser.SaveImg(Request.Form["img-url"]);
-      //   model.Add("user", loggedInUser);
-      //   model.Add("user-statuses", loggedInUser.GetStatuses());
-      //   model.Add("friends", loggedInUser.GetFriends());
-      //   return View["profile.cshtml", model];
-      // };
+      Patch["/users/{loggedInId}/photo_upload"] = parameters => {
+        Dictionary <string, object> model = new Dictionary<string, object>{};
+        User loggedInUser = User.Find(parameters.loggedInId);
+        loggedInUser.SaveImg(Request.Form["img-url"]);
+        model.Add("user", loggedInUser);
+        model.Add("user-statuses", loggedInUser.GetStatuses());
+        model.Add("friends", loggedInUser.GetFriends());
+        return View["profile.cshtml", model];
+      };
     }
   }
 }

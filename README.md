@@ -47,11 +47,76 @@ Add a brief description of what we made :)
 
 ## Screenshots of Application
 
-Screenhot
+Screenshot
 ![alt text](https://github.com/avocadobravado/social-media-project/blob/master/img/scs01.jpg?raw=true)
 
-Screenhot
+Screenshot
 ![alt text](https://github.com/avocadobravado/social-media-project/blob/master/img/scs02.jpg?raw=true)
+
+## Database Setup
+
+
+* In PowerShell, run the following commands:
+
+  `SQLCMD -S "(localdb)\mssqllocaldb"`
+
+  `CREATE DATABASE social_media;`
+
+  `GO`
+
+  `USE social_media;`
+
+  `GO`
+
+  `CREATE TABLE comment_dislikes (id INT IDENTITY(1,1), comment_id INT, user_id INT);`
+
+  `GO`
+
+  `CREATE TABLE comment_likes (id INT IDENTITY(1,1), comment_id INT, user_id INT);`
+
+  `GO`
+
+  `CREATE TABLE status_likes (id INT IDENTITY(1,1), status_id INT, user_id INT);`
+
+  `GO`
+
+  `CREATE TABLE status_dislikes (id INT IDENTITY(1,1), status_id INT, user_id INT);`
+
+  `GO`
+
+  `CREATE TABLE comments (id INT IDENTITY(1,1), content VARCHAR(255), status_id INT, user_id INT, likes INT, dislikes INT, timestamp DATETIME);`
+
+  `GO`
+
+  `CREATE TABLE statuses (id INT IDENTITY(1,1), content VARCHAR(255), user_id INT, likes INT, dislikes INT, timestamp DATETIME);`
+
+  `GO`
+
+  `CREATE TABLE users (id INT IDENTITY(1,1), first_name VARCHAR(255), last_name VARCHAR(255), username VARCHAR(255), password VARCHAR(255), email VARCHAR(255), timestamp DATETIME, img_url VARCHAR(255));`
+
+  `GO`
+
+  `CREATE TABLE user_friendships (id INT IDENTITY(1,1), user1_id INT, user2_id INT);`
+
+  OR
+
+*  Open Microsoft SQL Server Management Studio
+
+* Select *File > Open > File* and select your database of choice from the root directory (social_media.sql for running the application, or social_media_test.sql for running tests)
+
+* If the database does not already exist, add the following lines to the top of the script file:
+
+  `CREATE DATABASE [your_database_name];`
+
+  `GO`
+
+* Save the file and click "! Execute" (F5)
+
+* In PowerShell, run `dnu restore`, then `dnx kestrel` (from the root directory) to start the server
+
+* Navigate to `localhost:5004` in your web browser to view the application
+
+* Tests can be run with the command `dnx test` from PowerShell while within the root directory
 
 ## Setup/Installation Requirements
 
@@ -68,6 +133,8 @@ Screenhot
 
 * Site is optimized for large screens on Windows OS, there may be inconsistencies on other operating systems
 * Site is not optimized for mobile and tablet screens
+* User is able to navigate to profile pages not belonging to them by editing the URL of certain routes
+* Refreshing a post request cause duplicate items to be saved to the database
 
 ## Support and contact details
 
@@ -82,10 +149,15 @@ Screenhot
 * SCSS/CSS
 
 **Back end**
+* Nancy web framework
+* Razor C# syntax
 * C#
+* xUnit
 * SQL
 
 **Other Technologies:**
+* Kestrel web server
+* Microsoft SQL Server Management Studio
 
 **Front end**
 * Neat
@@ -93,7 +165,7 @@ Screenhot
 * Adobe Illustrator
 * Google Fonts
 
-**Back end**
+
 
 ## Acknowledgments
 

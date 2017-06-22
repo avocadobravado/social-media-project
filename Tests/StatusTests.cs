@@ -164,6 +164,20 @@ namespace SocialMedia.Objects
       Assert.Equal(1, newStatus.Likes);
     }
 
+    [Fact]
+    public void Status_Dislike_DislikesStatusInDB()
+    {
+      User user1 = new User("Joshua", "Fairchild", "jfairchild", "password", "mail@mail.com", new DateTime(2017, 06, 19));
+      user1.Save();
+
+      Status newStatus = new Status("Hello world", 1, new DateTime(2017, 06, 19));
+      newStatus.Save();
+
+      newStatus.Dislike();
+
+      Assert.Equal(1, newStatus.Dislikes);
+    }
+
     public void Dispose()
     {
       Status.DeleteAll();

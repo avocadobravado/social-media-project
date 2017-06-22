@@ -100,7 +100,10 @@
                           <button class="like"> <i class="fa fa-thumbs-up" aria-hidden="true"></i></button>
                         </form>
                         <span>@status.Dislikes</span><!--PLACEHOLDER/SPAN FOR NUMBER OF DISLIKES-->
-                        <button class="dislike"> <i class="fa fa-thumbs-down" aria-hidden="true"></i></button></p>
+                        <form action='/users/@Model["user"].Id/statuses/@status.Id/dislike' method="post">
+                          <input type="hidden" name="redirect" value="profile">
+                          <button class="dislike"> <i class="fa fa-thumbs-down" aria-hidden="true"></i></button></p>
+                        </form>
                       <p class="timestamp"><span>@status.Timestamp.ToString("d")</span>
                       </p>
                     </div><!--UNDERNEATH MESSAGE ENDS-->

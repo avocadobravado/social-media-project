@@ -78,7 +78,8 @@
                       <button class="like"> <i class="fa fa-thumbs-up" aria-hidden="true"></i></button>
                     </form>
                     <span>@status.Dislikes</span><!--PLACEHOLDER/SPAN FOR NUMBER OF DISLIKES-->
-                    <form action='users/@Model["user"].Id/statuses/@status.Id/dislike' method="post">       <!--NOTE WORK ONE ME-->
+                    <form action='/users/@Model["user"].Id/statuses/@status.Id/dislike' method="post">       <!--NOTE WORK ONE ME-->
+                      <input type="hidden" name="redirect" value="news">
                       <button class="dislike"> <i class="fa fa-thumbs-down" aria-hidden="true"></i></button></p>
                     </form>
                   <p class="timestamp"><span>@status.Timestamp.ToString("d")</span>

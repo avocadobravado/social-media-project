@@ -341,6 +341,13 @@ namespace SocialMedia.Objects
       return result;
     }
 
+    public string GetPosterImg()
+    {
+      User whoPosted = User.Find(this.UserId);
+      string result = whoPosted.ImgURL;
+      return result;
+    }
+
     public void Delete()
     {
       SqlConnection conn = DB.Connection();

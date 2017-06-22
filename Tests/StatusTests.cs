@@ -151,6 +151,18 @@ namespace SocialMedia.Objects
     }
 
     [Fact]
+    public void Status_GetPosterImg_ReturnsImgURL()
+    {
+      User user1 = new User("Joshua", "Fairchild", "jfairchild", "password", "mail@mail.com", new DateTime(2017, 06, 19));
+      user1.Save();
+
+      Status newStatus = new Status("Hello world", user1.Id, new DateTime(2017, 06, 19));
+      newStatus.Save();
+
+      Assert.Equal("https://github.com/avocadobravado/social-media-project-inspiration/blob/master/default-avatar.png?raw=true", newStatus.GetPosterImg());
+    }
+
+    [Fact]
     public void Status_Like_LikesStatusInDB()
     {
       User user1 = new User("Joshua", "Fairchild", "jfairchild", "password", "mail@mail.com", new DateTime(2017, 06, 19));

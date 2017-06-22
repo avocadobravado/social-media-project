@@ -878,7 +878,8 @@ button:focus {
       flex-direction: row;
       align-items: center; }
       .message-wrapper .underneath-message .like-dislikes-wrapper span {
-        font-size: 0.75em; }
+        font-size: 0.75em;
+        align-self: center; }
       .message-wrapper .underneath-message .like-dislikes-wrapper form {
         display: flex; }
         .message-wrapper .underneath-message .like-dislikes-wrapper form button {
@@ -899,7 +900,7 @@ body > div > div > div > div.message-wrapper > div.underneath-message > div > sp
 .comment-section {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: flex-start;
   padding: 1%;
   flex-wrap: wrap;
   font-size: 0.95em; }
@@ -924,7 +925,7 @@ body > div > div > div > div.message-wrapper > div.underneath-message > div > sp
       .comment-section .comment-form textarea:focus {
         border: 1px solid #66b3ad;
         background-color: rgba(255, 255, 255, 0.65); }
-  .comment-section .comment-input {
+  .comment-section form .comment-input {
     width: 610px; }
   .comment-section .submit-comment {
     height: 30px;

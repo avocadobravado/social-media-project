@@ -90,6 +90,7 @@
       align-items: center;
       span {
         font-size: 0.75em;
+        align-self: center;
       }
       form {
         display: flex;
@@ -122,7 +123,7 @@ body > div > div > div > div.message-wrapper > div.underneath-message > div > sp
 
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: flex-start;
     padding: 1%;
     flex-wrap: wrap;
     font-size: 0.95em;
@@ -154,10 +155,12 @@ body > div > div > div > div.message-wrapper > div.underneath-message > div > sp
          }
        }
      }
-
-     .comment-input {
-       width: 610px;
+     form {
+       .comment-input {
+         width: 610px;
+       }
      }
+
 
     .submit-comment {
       height: 30px;

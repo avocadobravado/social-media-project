@@ -49,7 +49,7 @@
         <!--HERO ENDS-->
 
         <div class="profile-info"> <!-- PROFILE INFORMATION STARTS -->
-          <div class="profile-picture"></div>
+          <div class="profile-picture"><img src="" class="user-image" alt="" /></div>
           <ul class="title">
             <li><span class="user-info">NAME: </span>@Model["selected-user"].FirstName @Model["selected-user"].LastName</li>
             <li><span class="user-info">USERNAME: </span>@Model["selected-user"].Username</li>
@@ -74,7 +74,7 @@
               {
                 <div class="comment-wrapper">
                   <div class="avatar-username">
-                    <div class="static-avatar"></div>
+                    <div class="static-avatar"><img src="" class="sm-user-image" alt="" /></div>
                     <div class="static-username">
                       <a href='/users/@Model["user"].Id/profile_view/@status.UserId'>@status.GetPosterName()</a>
                     </div><!--STATIC USERNAME ENDS-->
@@ -100,6 +100,7 @@
                         <!--FIRST COMMENT-->
                         <div class="small-avatar-username">
                           <div class="avatar-sm">
+                            <img src="" class="sm-user-image" alt="" />
                           </div>
                           <a href='/users/@Model["user"].Id/profile_view/@comment.UserId' class="newsfeed-username">@comment.GetCommenterName()</a>
                         </div><!--SMALL AVATAR USERNAME ENDS-->
@@ -126,25 +127,16 @@
           <div class="friends-list"><!-- FRIENDS LIST STARTS -->
             <h4>Friends List</h4>
             <ul>
-              <li><a href="#">Placeholder friendfriend</a></li>
-              <hr>
-              <li><a href="#">Placeholder friend</a></li>
-              <hr>
-              <li><a href="#">Placeholder friend</a></li>
-              <hr>
-              <li><a href="#">Placeholder friend</a></li>
-              <hr>
-              <li><a href="#">Placeholder friend</a></li>
-              <hr>
-              <li><a href="#">Placeholder friend</a></li>
-              <hr>
-              <li><a href="#">Placeholder friend</a></li>
-              <hr>
-              <li><a href="#">Placeholder friend</a></li>
-              <hr>
-              <li><a href="#">Placeholder friend</a></li>
-              <hr>
-              <li><a href="#">Placeholder friend</a></li>
+              <li><a href="#"><img src="https://github.com/avocadobravado/social-media-project-inspiration/blob/master/default-avatar.png?raw=true" alt="" class="sm-user-image"/></a></li>         <!-- BUILD ME ROUTESSSSSS -->
+              <li><a href="#"><img src="https://github.com/avocadobravado/social-media-project-inspiration/blob/master/default-avatar.png?raw=true" alt="" class="sm-user-image"/></a></li>
+              <li><a href="#"><img src="https://github.com/avocadobravado/social-media-project-inspiration/blob/master/default-avatar.png?raw=true" alt="" class="sm-user-image"/></a></li>
+              <li><a href="#"><img src="https://github.com/avocadobravado/social-media-project-inspiration/blob/master/default-avatar.png?raw=true" alt="" class="sm-user-image"/></a></li>
+              <li><a href="#"><img src="https://github.com/avocadobravado/social-media-project-inspiration/blob/master/default-avatar.png?raw=true" alt="" class="sm-user-image"/></a></li>
+              <li><a href="#"><img src="https://github.com/avocadobravado/social-media-project-inspiration/blob/master/default-avatar.png?raw=true" alt="" class="sm-user-image"/></a></li>
+              <li><a href="#"><img src="https://github.com/avocadobravado/social-media-project-inspiration/blob/master/default-avatar.png?raw=true" alt="" class="sm-user-image"/></a></li>
+              <li><a href="#"><img src="https://github.com/avocadobravado/social-media-project-inspiration/blob/master/default-avatar.png?raw=true" alt="" class="sm-user-image"/></a></li>
+              <li><a href="#"><img src="https://github.com/avocadobravado/social-media-project-inspiration/blob/master/default-avatar.png?raw=true" alt="" class="sm-user-image"/></a></li>
+              <li><a href="#"><img src="https://github.com/avocadobravado/social-media-project-inspiration/blob/master/default-avatar.png?raw=true" alt="" class="sm-user-image"/></a></li>
             </ul>
           </div><!-- FRIENDS LIST ENDS -->
         </div><!--PROFILE FRIENDS WRAPPER ENDS-->

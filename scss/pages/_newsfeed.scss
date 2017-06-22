@@ -33,8 +33,6 @@
 }
 
 .newsfeed-posts {
-  @include grid-column(8);
-  background-color: red;
   display: flex;
   flex-direction: column;
   margin: 0 auto;
@@ -43,6 +41,9 @@
   .update-post {
     height: 30px;
   }
+  .update-post-form {
+    margin: 100px auto;
+  }
 }
 
 
@@ -50,6 +51,7 @@
 
 .comment-wrapper {
   padding: 0 10%;
+  width: 40vw;
 }
 
 // AVATAR AND USERNAME SECTION BEGINS
@@ -103,41 +105,57 @@
 
 // COMMENT SECTION
 
-.comment-section {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 1%;
-  font-size: 0.95em;
-  textarea, .submit-comment {
-    align-self: flex-end;
+  .comment-section {
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 1%;
+    flex-wrap: wrap;
+    font-size: 0.95em;
+    // border: 1px solid tomato;
+
+    .comment-form {
+      // border: 1px solid tomato;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      align-items: center;
+        textarea, .submit-comment {
+          align-self: flex-end;
+        }
+        textarea {
+          width: 100px;
+          height: 50px;
+          font-size: 14px;
+          margin: 1% 0;
+          border: 1px solid $dark-blue;
+          background-color: rgb(255, 255, 255);
+          color: #444;
+          font-size: 18px;
+          padding-left: 5px;
+          transition: all .3s ease-in-out;
+          &:focus {
+           border: 1px solid $teal;
+           background-color: rgba(255, 255, 255, 0.65);
+         }
+       }
+     }
+
+     .comment-input {
+       width: 610px;
+     }
+
+    .submit-comment {
+      height: 30px;
+      width: 75px;
+      font-size: 12px;
+    }
+    p {
+      margin-bottom: 0;
+    }
   }
-  textarea {
-    width: 400px;
-    height: 50px;
-    font-size: 14px;
-    margin: 1% 0;
-    border: 1px solid $dark-blue;
-    background-color: rgb(255, 255, 255);
-    color: #444;
-    font-size: 18px;
-    padding-left: 5px;
-    // margin-right: 5px;
-    transition: all .3s ease-in-out;
-    &:focus {
-     border: 1px solid $teal;
-     background-color: rgba(255, 255, 255, 0.65);
-   }
-  }
-  .submit-comment {
-    height: 30px;
-    width: 75px;
-    font-size: 12px;
-  }
-  p {
-    margin-bottom: 0;
-  }
-}
+
 
 .small-avatar-username {
   display: flex;
@@ -166,11 +184,9 @@
   align-items: center;
   justify-content: center;
   .status-input {
-    width: 300px;
-    height: 75px;
+    width: 500px;
     font-size: 16px;
     margin-top: 30px;
-    width: 350px;
     height: 125px;
     background-color: lighten($light-green, 18%);
     border: 1px solid $light-green;

@@ -1005,6 +1005,11 @@ body > div > div > div > div.message-wrapper > div.underneath-message > div > sp
 
 .friends-list {
   width: 30%; }
+  .friends-list ul li a {
+    line-height: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; }
 
 .profile-picture {
   margin-top: 1%;

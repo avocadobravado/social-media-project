@@ -50,8 +50,8 @@ Add a brief description of what we made :)
 Screenshot
 ![alt text](https://github.com/avocadobravado/social-media-project/blob/master/img/scs01.jpg?raw=true)
 
-Screenshot
-![alt text](https://github.com/avocadobravado/social-media-project/blob/master/img/scs02.jpg?raw=true)
+Branding guide for application
+![alt text](https://github.com/avocadobravado/social-media-project-inspiration/blob/master/branding_guide.jpg?raw=true)
 
 ## Database Setup
 
@@ -138,7 +138,7 @@ Screenshot
 
 ## Support and contact details
 
-* idkyet
+* Contact any of the collaborators on Github
 
 ## Technologies Used
 
@@ -164,8 +164,6 @@ Screenshot
 * Font Awesome
 * Adobe Illustrator
 * Google Fonts
-
-
 
 ## Acknowledgments
 

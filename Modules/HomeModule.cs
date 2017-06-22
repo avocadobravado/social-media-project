@@ -415,6 +415,10 @@ namespace SocialMedia
           }
         }
       };
+      Get["/users/{loggedInId}/profile/edit"] = _ => {
+        User loggedInUser = User.Find(parameters.loggedInId);
+        return View["editprofile.cshtml", loggedInUser];
+      };
     }
   }
 }

@@ -160,7 +160,7 @@
             <ul>
               @foreach(var friend in Model["friends"])
               {
-                <li><a href='/users/@Model["user"].Id/profile_view/@friend.Id'><img src="https://github.com/avocadobravado/social-media-project-inspiration/blob/master/default-avatar.png?raw=true" alt="" class="sm-user-image"/> @friend.FirstName</a></li>
+                <li><a href='/users/@Model["user"].Id/profile_view/@friend.Id'><img src="@friend.ImgURL" alt="" class="sm-user-image"/> @friend.FirstName</a></li>
               }
             </ul>
           </div><!-- FRIENDS LIST ENDS -->

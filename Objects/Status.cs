@@ -15,12 +15,12 @@ namespace SocialMedia.Objects
 
     public void Like()
     {
-      this.Likes++;
+      this.Likes += 1;
     }
 
     public void Dislike()
     {
-      this.Dislikes++;
+      this.Dislikes += 1;
     }
 
     public Status()

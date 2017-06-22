@@ -45,8 +45,8 @@
 
       <div class="newsfeed-posts">
         <!--ADD A POST SECTION-->
-        <form class="update-post-form" action='/users/@Model["user"].Id/post' method="post">
-         <textarea wrap="hard" name="post" value="" class="status-input" placeholder="Write a post" required></textarea>
+        <form class="update-post-form" action='/users/@Model["user"].Id/status' method="post">
+         <textarea wrap="hard" name="status" value="" class="status-input" placeholder="Write a post" required></textarea>
          <button type="submit" name="button" class="update-post">Update</button>
         </form>
         <!--ADD A POST SECTION ENDS-->
@@ -57,31 +57,36 @@
         }
         else
         {
-          @foreach(var post in @Model["timeline"])
+          @foreach(var status in @Model["timeline"])
           {
             <div class="comment-wrapper">
               <div class="avatar-username">
                 <div class="static-avatar"><img src="" alt="" class="user-image"/></div>
                 <div class="static-username">
-                  <a href='/users/@Model["user"].Id/profile_view/@post.UserId'>@post.GetPosterName()</a>
+                  <a href='/users/@Model["user"].Id/profile_view/@status.UserId'>@status.GetPosterName()</a>
                 </div><!--STATIC USERNAME ENDS-->
               </div><!--AVATAR USERNAME ENDS-->
               <div class="message-wrapper">
                 <div class="static-message">
-                  <p>@post.Content</p>
+                  <p>@status.Content</p>
                 </div><!--STATIC MESSAGE-->
                 <div class="underneath-message">
                   <p class="like-dislikes">
-                    <span>@post.Likes</span><!--PLACEHOLDER/SPAN FOR NUMBER OF LIKES-->
-                    <button class="like"> <i class="fa fa-thumbs-up" aria-hidden="true"></i></button>
-                    <span>@post.Dislikes</span><!--PLACEHOLDER/SPAN FOR NUMBER OF DISLIKES-->
-                    <button class="dislike"> <i class="fa fa-thumbs-down" aria-hidden="true"></i></button></p>
-                  <p class="timestamp"><span>@post.Timestamp.ToString("d")</span>
+                    <span>@status.Likes</span><!--PLACEHOLDER/SPAN FOR NUMBER OF LIKES-->
+                    <form action='/users/@Model["user"].Id/statuses/@status.Id/like' method="post">
+                      <input type="hidden" name="redirect" value="news">
+                      <button class="like"> <i class="fa fa-thumbs-up" aria-hidden="true"></i></button>
+                    </form>
+                    <span>@status.Dislikes</span><!--PLACEHOLDER/SPAN FOR NUMBER OF DISLIKES-->
+                    <form action='users/@Model["user"].Id/statuses/@status.Id/dislike' method="post">       <!--NOTE WORK ONE ME-->
+                      <button class="dislike"> <i class="fa fa-thumbs-down" aria-hidden="true"></i></button></p>
+                    </form>
+                  <p class="timestamp"><span>@status.Timestamp.ToString("d")</span>
                   </p>
                 </div><!--UNDERNEATH MESSAGE ENDS-->
 
                 <div class="comment-section">
-                  @foreach(var comment in post.GetComments())
+                  @foreach(var comment in status.GetComments())
                   {
                     <!--FIRST COMMENT-->
                     <div class="small-avatar-username">
@@ -102,7 +107,7 @@
                     </div><!--COMMENT LIKE WRAPPER ENDS-->
                   }
 
-                  <form action='/users/@Model["user"].Id/posts/@post.Id/comment' method="post">
+                  <form action='/users/@Model["user"].Id/statuses/@status.Id/comment' method="post">
                     <textarea type="text" name="content" value="" class="comment-input" placeholder="Write a comment..." required></textarea>
                     <button type="submit" name="button" class="submit-comment">Submit</button>
                   </form>

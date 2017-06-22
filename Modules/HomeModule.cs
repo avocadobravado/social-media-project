@@ -71,10 +71,10 @@ namespace SocialMedia
           }
         }
       };
-      Post["/users/{userId}/posts/{postId}/comment"] = parameters => {
+      Post["/users/{userId}/statuses/{statusId}/comment"] = parameters => {
         Dictionary <string, object> model = new Dictionary<string, object>{};
         User selectedUser = User.Find(parameters.userId);
-        Status selectedStatus = Status.Find(parameters.postId);
+        Status selectedStatus = Status.Find(parameters.statusId);
         Comment newComment = new Comment(Request.Form["content"], selectedStatus.Id, selectedUser.Id, DateTime.Now);
         newComment.Save();
         List<Status> timeline = selectedUser.GetTimeline();
@@ -82,10 +82,10 @@ namespace SocialMedia
         model.Add("user", selectedUser);
         return View["news.cshtml", model];
       };
-      Post["/users/{userId}/post"] = parameters => {
+      Post["/users/{userId}/status"] = parameters => {
         Dictionary <string, object> model = new Dictionary<string, object>{};
         User selectedUser = User.Find(parameters.userId);
-        Status newStatus = new Status(Request.Form["post"], selectedUser.Id, DateTime.Now);
+        Status newStatus = new Status(Request.Form["status"], selectedUser.Id, DateTime.Now);
         newStatus.Save();
         List<Status> timeline = selectedUser.GetTimeline();
         model.Add("timeline", timeline);
@@ -216,6 +216,53 @@ namespace SocialMedia
         model.Add("friends", friendsList);
         model.Add("user", loggedInUser);
         return View["searchresults.cshtml", model];
+      };
+      Post["/users/{loggedInId}/statuses/{statusId}/like"] = parameters => {
+        Dictionary <string, object> model = new Dictionary<string, object>{};
+        string directTo = Request.Form["redirect"];
+        User loggedInUser = User.Find(parameters.loggedInId);
+        Status statusToLike = Status.Find(parameters.statusId);
+        Console.WriteLine(loggedInUser.HasLikedStatus(statusToLike));
+        if(!(loggedInUser.HasLikedStatus(statusToLike)))
+        {
+          Console.WriteLine("Hello");
+          loggedInUser.LikeStatus(statusToLike);
+          if(directTo == "friend")
+          {
+            User selectedUser = User.Find(Request.Form["userId"]);
+            List<Status> selectedUserStatuses = selectedUser.GetStatuses();
+            model.Add("user", loggedInUser);
+            model.Add("selected-user", selectedUser);
+            model.Add("user-statuses", selectedUserStatuses);
+            return View[directTo + ".cshtml", model];
+          }
+          else
+          {
+            model.Add("user", loggedInUser);
+            model.Add("timeline", loggedInUser.GetTimeline());
+            model.Add("user-statuses", loggedInUser.GetStatuses());
+            model.Add("friends", loggedInUser.GetFriends());
+            return View[directTo + ".cshtml", model];
+          }
+        }
+        else
+        {
+          if(directTo == "friend")
+          {
+            User selectedUser = User.Find(Request.Form["userId"]);
+            List<Status> selectedUserStatuses = selectedUser.GetStatuses();
+            model.Add("user", loggedInUser);
+            model.Add("selected-user", selectedUser);
+            model.Add("user-statuses", selectedUserStatuses);
+            return View[directTo + ".cshtml", model];
+          }
+          else
+          {
+            model.Add("user", loggedInUser);
+            model.Add("timeline", loggedInUser.GetTimeline());
+            return View["news.cshtml", model];
+          }
+        }
       };
     }
   }

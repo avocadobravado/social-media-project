@@ -51,14 +51,17 @@
         <!--HERO ENDS-->
 
         <div class="profile-info"> <!-- PROFILE INFORMATION STARTS -->
-          <div class="profile-picture"><img src="" alt="" class="user-image"/></div>
+          <div class="profile-picture"><img src='@Model["user"].ImgURL' alt="" class="user-image"/></div>
           <ul class="title">
             <li><span class="user-info">NAME: </span><span>@Model["user"].FirstName @Model["user"].LastName</span></li>
             <li><span class="user-info">USERNAME: </span><span>@Model["user"].Username</span></li>
             <li><span class="user-info">DATE JOINED: </span><span>@Model["user"].Timestamp.ToString("d")</span></li>
             <li><span class="user-info">EMAIL: </span><span>@Model["user"].Email</span></li>
-            <li><input type="url" class="upload-photo-input" placeholder="Insert URL..."></li>
-            <li><button type="button" name="button" class="upload-photo">Upload photo</button></li>         <!--  NOTE BUILD ME A ROUTE -->
+            <form action='/users/@Model["user"].Id/photo_upload' method="post">
+              <input type="hidden" name="_method" value="PATCH">
+              <li><input type="url" class="upload-photo-input" placeholder="Insert URL..." name="img-url" required></li>
+              <li><button type="button" name="button" class="upload-photo">Upload photo</button></li>
+            </form>
           </ul>
         </div><!-- PROFILE INFORMATION ENDS -->
 

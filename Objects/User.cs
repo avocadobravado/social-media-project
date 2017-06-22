@@ -24,7 +24,7 @@ namespace SocialMedia.Objects
       Password = null;
       Email = null;
       Timestamp = default(DateTime);
-      ImgURL = null;
+      ImgURL = "https://github.com/avocadobravado/social-media-project-inspiration/blob/master/default-avatar.png?raw=true";
     }
 
     public User(string firstName, string lastName, string username, string password, string email, DateTime timestamp, int id = 0)
@@ -36,7 +36,7 @@ namespace SocialMedia.Objects
       Password = password;
       Email = email;
       Timestamp = timestamp;
-      ImgURL = null;
+      ImgURL = "https://github.com/avocadobravado/social-media-project-inspiration/blob/master/default-avatar.png?raw=true";
     }
 
     public override bool Equals(System.Object otherUser)
@@ -55,7 +55,8 @@ namespace SocialMedia.Objects
         bool passwordEquality = this.Password == newUser.Password;
         bool emailEquality = this.Email == newUser.Email;
         bool timestampEquality = this.Timestamp == newUser.Timestamp;
-        return (idEquality && firstNameEquality && lastNameEquality && usernameEquality && passwordEquality && emailEquality && timestampEquality);
+        bool imgEquality = this.ImgURL == newUser.ImgURL;
+        return (idEquality && firstNameEquality && lastNameEquality && usernameEquality && passwordEquality && emailEquality && timestampEquality && imgEquality);
       }
     }
 
@@ -80,6 +81,7 @@ namespace SocialMedia.Objects
         string email = rdr.GetString(5);
         DateTime timestamp = rdr.GetDateTime(6);
         User newUser = new User(firstName, lastName, username, password, email, timestamp, id);
+        newUser.ImgURL = rdr.GetString(7);
         allUsers.Add(newUser);
       }
 
@@ -100,13 +102,14 @@ namespace SocialMedia.Objects
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("INSERT INTO users (first_name, last_name, username, password, email, timestamp) OUTPUT INSERTED.id VALUES (@FirstName, @LastName, @Username, @Password, @Email, @Timestamp);", conn);
+      SqlCommand cmd = new SqlCommand("INSERT INTO users (first_name, last_name, username, password, email, timestamp, img_url) OUTPUT INSERTED.id VALUES (@FirstName, @LastName, @Username, @Password, @Email, @Timestamp, @ImgURL);", conn);
       cmd.Parameters.Add(new SqlParameter("@FirstName", this.FirstName));
       cmd.Parameters.Add(new SqlParameter("@LastName", this.LastName));
       cmd.Parameters.Add(new SqlParameter("@Username", this.Username));
       cmd.Parameters.Add(new SqlParameter("@Password", this.Password));
       cmd.Parameters.Add(new SqlParameter("@Email", this.Email));
       cmd.Parameters.Add(new SqlParameter("@Timestamp", this.Timestamp));
+      cmd.Parameters.Add(new SqlParameter("@ImgURL", this.ImgURL));
 
       SqlDataReader rdr = cmd.ExecuteReader();
 
@@ -144,6 +147,7 @@ namespace SocialMedia.Objects
         foundUser.Password = rdr.GetString(4);
         foundUser.Email = rdr.GetString(5);
         foundUser.Timestamp = rdr.GetDateTime(6);
+        foundUser.ImgURL = rdr.GetString(7);
       }
 
       if (rdr != null)
@@ -252,6 +256,7 @@ namespace SocialMedia.Objects
         string email = rdr.GetString(5);
         DateTime timestamp = rdr.GetDateTime(6);
         User newUser = new User(firstName, lastName, username, password, email, timestamp, id);
+        newUser.ImgURL = rdr.GetString(7);
         friends.Add(newUser);
       }
 
@@ -275,6 +280,7 @@ namespace SocialMedia.Objects
         string email = rdr2.GetString(5);
         DateTime timestamp = rdr2.GetDateTime(6);
         User newUser = new User(firstName, lastName, username, password, email, timestamp, id);
+        newUser.ImgURL = rdr2.GetString(7);
         friends.Add(newUser);
       }
 
@@ -326,6 +332,7 @@ namespace SocialMedia.Objects
         string email = rdr.GetString(5);
         DateTime timestamp = rdr.GetDateTime(6);
         User newUser = new User(firstName, lastName, username, password, email, timestamp, id);
+        newUser.ImgURL = rdr.GetString(7);
         matches.Add(newUser);
       }
 
@@ -564,6 +571,7 @@ namespace SocialMedia.Objects
         newUser.Password = rdr.GetString(4);
         newUser.Email = rdr.GetString(5);
         newUser.Timestamp = rdr.GetDateTime(6);
+        newUser.ImgURL = rdr.GetString(7);
       }
 
       if(rdr != null)

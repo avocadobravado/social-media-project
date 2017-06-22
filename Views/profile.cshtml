@@ -60,7 +60,7 @@
             <form action='/users/@Model["user"].Id/photo_upload' method="post" class="upload-photo-form">
               <input type="hidden" name="_method" value="PATCH">
               <li><input type="url" class="upload-photo-input" placeholder="Insert URL..." name="img-url" required></li>
-              <li><button type="button" name="button" class="upload-photo">Upload photo</button></li>
+              <li><button type="submit" name="button" class="upload-photo">Upload photo</button></li>
             </form>
           </ul>
         </div><!-- PROFILE INFORMATION ENDS -->
@@ -89,7 +89,7 @@
               {
                 <div class="comment-wrapper">
                   <div class="avatar-username">
-                    <div class="static-avatar"><img src="" alt="" class="sm-user-image"/></div>
+                    <div class="static-avatar"><img src="@status.GetPosterImg()" alt="" class="sm-user-image"/></div>
                     <div class="static-username">
                       <a href='/users/@Model["user"].Id/profile_view/@status.UserId'>@status.GetPosterName()</a>
                     </div><!--STATIC USERNAME ENDS-->
@@ -121,7 +121,7 @@
                         <!--FIRST COMMENT-->
                         <div class="small-avatar-username">
                           <div class="avatar-sm">
-                            <img src="" alt="" class="sm-user-image"/>
+                            <img src="@comment.GetCommenterImg()" alt="" class="sm-user-image"/>
                           </div>
                           <a href='/users/@Model["user"].Id/profile_view/@comment.UserId' class="newsfeed-username">@comment.GetCommenterName()</a>
                         </div><!--SMALL AVATAR USERNAME ENDS-->

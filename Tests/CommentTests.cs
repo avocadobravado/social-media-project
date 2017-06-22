@@ -138,6 +138,21 @@ namespace SocialMedia.Objects
     }
 
     [Fact]
+    public void Comment_GetCommenterImg_ReturnsUserImgURL()
+    {
+      User newUser = new User("Joshua", "Fairchild", "jfairchild", "password", "mail@mail.com", new DateTime(2017, 06, 19));
+      newUser.Save();
+
+      Status newStatus = new Status("Hello world", newUser.Id, new DateTime(2017, 06, 19));
+      newStatus.Save();
+
+      Comment newComment = new Comment("Hello world", newStatus.Id, newUser.Id, new DateTime(2017, 06, 19));
+      newComment.Save();
+
+      Assert.Equal("https://github.com/avocadobravado/social-media-project-inspiration/blob/master/default-avatar.png?raw=true", newComment.GetCommenterImg());
+    }
+
+    [Fact]
     public void Comment_Like_LikesCommentInDB()
     {
       User newUser = new User("Joshua", "Fairchild", "jfairchild", "password", "mail@mail.com", new DateTime(2017, 06, 19));

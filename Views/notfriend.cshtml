@@ -54,7 +54,7 @@
         <!--HERO ENDS-->
 
         <div class="profile-info"> <!-- PROFILE INFORMATION STARTS -->
-          <div class="profile-picture"><img src="" class="user-image" alt="" /></div>
+          <div class="profile-picture"><img src='@Model["selected-user"].ImgURL' class="user-image" alt="" /></div>
           <ul class="title">
             <li><span class="user-info">NAME: </span>@Model["selected-user"].FirstName @Model["selected-user"].LastName</li>
             <li><span class="user-info">USERNAME: </span>@Model["selected-user"].Username</li>
@@ -79,7 +79,7 @@
               {
                 <div class="comment-wrapper">
                   <div class="avatar-username">
-                    <div class="static-avatar"><img src="" class="sm-user-image" alt="" /></div>
+                    <div class="static-avatar"><img src="@status.GetPosterImg()" class="sm-user-image" alt="" /></div>
                     <div class="static-username">
                       <a href='/users/@Model["user"].Id/profile_view/@status.UserId'>@status.GetPosterName()</a>
                     </div><!--STATIC USERNAME ENDS-->
@@ -109,7 +109,7 @@
                         <!--FIRST COMMENT-->
                         <div class="small-avatar-username">
                           <div class="avatar-sm">
-                            <img src="" class="sm-user-image" alt="" />
+                            <img src="@comment.GetCommenterImg()" class="sm-user-image" alt="" />
                           </div>
                           <a href='/users/@Model["user"].Id/profile_view/@comment.UserId' class="newsfeed-username">@comment.GetCommenterName()</a>
                         </div><!--SMALL AVATAR USERNAME ENDS-->
@@ -138,7 +138,7 @@
             <ul>
               @foreach(var friend in Model["selected-user"].GetFriends())
               {
-                <li><a href='/users/@Model["selected-user"].Id/profile_view/@friend.Id'><img src="https://github.com/avocadobravado/social-media-project-inspiration/blob/master/default-avatar.png?raw=true" alt="" class="sm-user-image"/> @friend.FirstName</a></li>
+                <li><a href='/users/@Model["selected-user"].Id/profile_view/@friend.Id'><img src="@friend.ImgURL" alt="" class="sm-user-image"/> @friend.FirstName</a></li>
               }
             </ul>
           </div><!-- FRIENDS LIST ENDS -->

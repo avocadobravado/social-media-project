@@ -47,14 +47,14 @@ Add a brief description of what we made :)
 
 ## Screenshots of Application
 
-Screenhot
+Screenshot
 ![alt text](https://github.com/avocadobravado/social-media-project/blob/master/img/scs01.jpg?raw=true)
 
-Screenhot
+Screenshot
 ![alt text](https://github.com/avocadobravado/social-media-project/blob/master/img/scs02.jpg?raw=true)
 
 ## Database Setup
-##### Database Setup
+
 
 * In PowerShell, run the following commands:
 

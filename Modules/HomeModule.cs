@@ -209,6 +209,16 @@ namespace SocialMedia
         model.Add("matches", matches);
         return View["searchresults.cshtml", model];
       };
+      Get["/users/{loggedInId}/friends"] = parameters => {
+        Dictionary <string, object> model = new Dictionary<string, object>{};
+        User loggedInUser = User.Find(parameters.loggedInId);
+        List<User> friendsList = loggedInUser.GetFriends();
+        model.Add("friends", friendsList);
+        model.Add("user", loggedInUser);
+        return View["searchresults.cshtml", model];
+      };
     }
   }
 }
+
+//NOTE FIX SEARCH METHOD/RESULTS

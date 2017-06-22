@@ -17,7 +17,7 @@
         </div><!--LOGO ENDS-->
         <div class="searchbar">
           <form action='/users/@Model["user"].Id/search'>
-            <input type="text" name="name" value="" placeholder="Search">
+            <input type="text" name="name" value="" placeholder="Search" required>
             <button type="submit" name="button" class="search-button"><i class="fa fa-search" aria-hidden="true"></i></button>
           </form>
         </div><!--SEARCHBAR ENDS-->
@@ -34,8 +34,8 @@
         <ul>
           <li><a href='/users/@Model["user"].Id/news'><i class="fa fa-home fa-2x" aria-hidden="true"></i></a></li>
           <li><a href='/users/@Model["user"].Id/news'>Home</a></li>
-          <li><a href="#"><i class="fa fa-users fa-2x" aria-hidden="true"></i></a></li>
-          <li><a href="#">Friends</a></li>
+          <li><a href='/users/@Model["user"].Id/friends'><i class="fa fa-users fa-2x" aria-hidden="true"></i></a></li>
+          <li><a href='/users/@Model["user"].Id/friends'>Friends</a></li>
           <li><a href="#"><i class="fa fa-cogs fa-2x" aria-hidden="true"></i></a></li>
           <li><a href="#">Admin Access</a></li>
         </ul>

@@ -110,6 +110,7 @@ namespace SocialMedia
           //VIEWING OWN PAGE
           model.Add("user", loggedInUser);
           model.Add("user-statuses", loggedInUser.GetStatuses());
+          model.Add("friends", loggedInUser.GetFriends());
           return View["profile.cshtml", model];
         }
         else

@@ -162,16 +162,10 @@
           <div class="friends-list"><!-- FRIENDS LIST STARTS -->
             <h4>Friends List</h4>
             <ul>
-              <li><a href="#"><img src="https://github.com/avocadobravado/social-media-project-inspiration/blob/master/default-avatar.png?raw=true" alt="" class="sm-user-image"/></a></li>         <!-- BUILD ME ROUTESSSSSS -->
-              <li><a href="#"><img src="https://github.com/avocadobravado/social-media-project-inspiration/blob/master/default-avatar.png?raw=true" alt="" class="sm-user-image"/></a></li>
-              <li><a href="#"><img src="https://github.com/avocadobravado/social-media-project-inspiration/blob/master/default-avatar.png?raw=true" alt="" class="sm-user-image"/></a></li>
-              <li><a href="#"><img src="https://github.com/avocadobravado/social-media-project-inspiration/blob/master/default-avatar.png?raw=true" alt="" class="sm-user-image"/></a></li>
-              <li><a href="#"><img src="https://github.com/avocadobravado/social-media-project-inspiration/blob/master/default-avatar.png?raw=true" alt="" class="sm-user-image"/></a></li>
-              <li><a href="#"><img src="https://github.com/avocadobravado/social-media-project-inspiration/blob/master/default-avatar.png?raw=true" alt="" class="sm-user-image"/></a></li>
-              <li><a href="#"><img src="https://github.com/avocadobravado/social-media-project-inspiration/blob/master/default-avatar.png?raw=true" alt="" class="sm-user-image"/></a></li>
-              <li><a href="#"><img src="https://github.com/avocadobravado/social-media-project-inspiration/blob/master/default-avatar.png?raw=true" alt="" class="sm-user-image"/></a></li>
-              <li><a href="#"><img src="https://github.com/avocadobravado/social-media-project-inspiration/blob/master/default-avatar.png?raw=true" alt="" class="sm-user-image"/></a></li>
-              <li><a href="#"><img src="https://github.com/avocadobravado/social-media-project-inspiration/blob/master/default-avatar.png?raw=true" alt="" class="sm-user-image"/></a></li>
+              @foreach(var friend in Model["selected-user"].GetFriends())
+              {
+                <li><a href='/users/@Model["selected-user"].Id/profile_view/@friend.Id'><img src="https://github.com/avocadobravado/social-media-project-inspiration/blob/master/default-avatar.png?raw=true" alt="" class="sm-user-image"/> @friend.FirstName</a></li>
+              }
             </ul>
           </div><!-- FRIENDS LIST ENDS -->
         </div><!--PROFILE FRIENDS WRAPPER ENDS-->

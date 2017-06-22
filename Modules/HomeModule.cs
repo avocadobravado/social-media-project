@@ -415,9 +415,31 @@ namespace SocialMedia
           }
         }
       };
-      Get["/users/{loggedInId}/profile/edit"] = _ => {
+      Get["/users/{loggedInId}/profile/edit"] = parameters => {
+        Dictionary <string, object> model = new Dictionary<string, object>{};
         User loggedInUser = User.Find(parameters.loggedInId);
-        return View["editprofile.cshtml", loggedInUser];
+        model.Add("user", loggedInUser);
+        return View["editprofile.cshtml", model];
+      };
+      Patch["users/{loggedInId}/profile/updated"] = parameters => {
+        Dictionary <string, object> model = new Dictionary<string, object>{};
+        User loggedInUser = User.Find(parameters.loggedInId);
+        string password = Request.Form["password"];
+        string passwordConfirm = Request.Form["password-confirm"];
+        if(password != passwordConfirm)
+        {
+          model.Add("user", loggedInUser);
+          model.Add("password-mismatch", true);
+          return View["editprofile.cshtml", model];
+        }
+        else
+        {
+          loggedInUser.Update(Request.Form["first-name"], Request.Form["last-name"], Request.Form["username"], password, Request.Form["email"]);
+          model.Add("user", loggedInUser);
+          model.Add("user-statuses", loggedInUser.GetStatuses());
+          model.Add("friends", loggedInUser.GetFriends());
+          return View["profile.cshtml", model];
+        }
       };
     }
   }

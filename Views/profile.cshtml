@@ -19,7 +19,7 @@
         </div><!--LOGO ENDS-->
         <div class="searchbar">
           <form action='/users/@Model["user"].Id/search'>
-            <input type="text" name="name" value="" placeholder="Search" required>
+            <input type="text" name="search-query" value="" placeholder="Search" required>
             <button type="submit" name="button" class="search-button"><i class="fa fa-search" aria-hidden="true"></i></button>
           </form>
         </div><!--SEARCHBAR ENDS-->
@@ -55,7 +55,10 @@
             <li><span class="user-info">USERNAME: </span><span>@Model["user"].Username</span></li>
             <li><span class="user-info">DATE JOINED: </span><span>@Model["user"].Timestamp.ToString("d")</span></li>
             <li><span class="user-info">EMAIL: </span><span>@Model["user"].Email</span></li>
-            <li><button type="button" name="button" class="upload-photo">Upload photo</button></li>         <!-- BUILD ME A ROUTE -->
+            <li><button type="button" name="button" class="upload-photo">Upload photo</button></li>         <!--  BUILD ME A ROUTE -->
+            <form action='/users/@Model["user"].Id/profile/edit' method="get">
+              <button type="submit" name="button">Edit account</button>
+            </form>
           </ul>
         </div><!-- PROFILE INFORMATION ENDS -->
 

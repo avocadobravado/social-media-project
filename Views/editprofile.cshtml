@@ -5,7 +5,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <!-- FONT AWESOME -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <link rel="stylesheet" href="Content/css/main.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="/Content/css/main.css" media="screen" title="no title" charset="utf-8">
     <title>Edit Profile</title>
   </head>
   <body>
@@ -13,63 +13,72 @@
     <nav class="main-nav">
       <div class="main-nav-wrapper">
         <div class="logo">
-          <img src="https://raw.githubusercontent.com/avocadobravado/social-media-project-inspiration/master/logo_sm_color.png" alt="" class="logo"/>
+          <a href='/users/@Model["user"].Id/news'>
+            <img src="https://raw.githubusercontent.com/avocadobravado/social-media-project-inspiration/master/logo_sm_color.png" alt="" class="logo"/>
+          </a>
         </div><!--LOGO ENDS-->
         <div class="searchbar">
-          <input type="text" name="name" value="" placeholder="Search">
-          <button type="button" name="button" class="search-button"><i class="fa fa-search" aria-hidden="true"></i></button>
+          <form action='/users/@Model["user"].Id/search'>
+            <input type="text" name="search-query" value="" placeholder="Search"  required>
+            <button type="submit" name="search-query" class="search-button"><i class="fa fa-search" aria-hidden="true"></i></button>
+          </form>
         </div><!--SEARCHBAR ENDS-->
         <ul>
-          <li><a href="#">Hi, <span>Placeholdername</span></a></li>
-          <li><a href="#">Sign out</a></li>
+          <li><a href='/users/@Model["user"].Id/profile_view'>Hi, <span>@Model["user"].FirstName</span></a></li>
+          <li><a href="/">Sign out</a></li>
         </ul>
       </div><!--MAIN NAVIGATION WRAPPER-->
     </nav><!--MAIN NAVIGATION ENDS-->
     <nav class="sidebar">
       <ul>
-        <li><a href="#"><i class="fa fa-user fa-2x" aria-hidden="true"></i></a></li>
-        <li><a href="#">My Profile</a></li>
-        <li><a href="#"><i class="fa fa-users fa-2x" aria-hidden="true"></i></a></li>
-        <li><a href="#">Friends</a></li>
+        <li><a href='/users/@Model["user"].Id/news'><i class="fa fa-user fa-2x" aria-hidden="true"></i></a></li>
+        <li><a href='/users/@Model["user"].Id/news'>My Profile</a></li>
+        <li><a href='/users/@Model["user"].Id/friends'><i class="fa fa-users fa-2x" aria-hidden="true"></i></a></li>
+        <li><a href='/users/@Model["user"].Id/friends'>Friends</a></li>
         <li><a href="#"><i class="fa fa-cogs fa-2x" aria-hidden="true"></i></a></li>
         <li><a href="#">Edit Profile</a></li>
       </ul>
     </nav>
     <div class="edit-profile results">
       <h4 class="titles">Edit Profile</h4>
-      <form class="edit-profile-form">
+      <form class="edit-profile-form" method="post" action='/users/@Model["user"].Id/profile/updated'>
+        <input type="hidden" name="_method" value="PATCH">
         <div class="edit-profile-field">
           <label for="name">Your first name: </label>
-          <input type="text" name="name" value="">
+          <input type="text" name="first-name" value='@Model["user"].FirstName' required>
         </div>
 
         <div class="edit-profile-field">
           <label for="lastname">Your last name: </label>
-          <input type="text" name="lastname" value="">
+          <input type="text" name="last-name" value='@Model["user"].LastName' required>
         </div>
 
         <div class="edit-profile-field">
           <label for="name">Your username: </label>
-          <input type="text" name="name" value="">
+          <input type="text" name="username" value='@Model["user"].Username' required>
         </div>
 
         <div class="edit-profile-field">
           <label for="name">Your email: </label>
-          <input type="email" name="name" value="">
+          <input type="email" name="email" value='@Model["user"].Email'>
         </div>
 
         <div class="edit-profile-field">
           <label for="name">Your new password: </label>
-          <input type="password" name="name" value="">
+          <input type="password" name="password" value='@Model["user"].Password' required>
         </div>
 
         <div class="edit-profile-field">
           <label for="name">Confirm your new password: </label>
-          <input type="password" name="name" value="">
+          <input type="password" name="password-confirm" value='@Model["user"].Password' required>
         </div>
 
-      <button type="submit" name="button" class="edit-profile-button">Submit</button>
-    </form>
+        <button type="submit" name="button" class="edit-profile-button">Submit</button>
+      </form>
+      @if(Model.ContainsKey("password-mismatch"))
+      {
+        <p>Both passwords must mastch</p>
+      }
     </div>
 
   </body>

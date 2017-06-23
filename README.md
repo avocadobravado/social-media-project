@@ -6,7 +6,14 @@
 
 ## Description
 
-Description coming soon! &#128175;
+This is a social networking site site intended for Epicodus students to interact with one another. The frontend was built using HTML and Sass, the backend and routing with using C# with the Nancy framework. The core actions that the user can make are:
+* Create/delete user accounts
+* Search for other users
+* Follow/unfollow other users
+* Post status updates
+* Comment on status updates
+* Like/dislike statuses
+* Like/dislike comments
 
 ## Screenshots of Application
 

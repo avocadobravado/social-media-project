@@ -2,11 +2,22 @@
 
 #### CSS/C# - Group Week Project
 
-#### By **Joshua Fairchild, Guy Anderson, Arianna Chau, and Rose Sponseller, June 19-22 2017**
+#### By **Joshua Fairchild, Guy Anderson, Arianna Chau, and Rose Sponseller, June 19-22, 2017**
 
 ## Description
 
-Add a brief description of what we made :)
+Description coming soon! &#128175;
+
+## Screenshots of Application
+
+Landing page
+![alt text](https://github.com/avocadobravado/social-media-project/blob/master/img/scs01.jpg?raw=true)
+
+Branding guide for application
+![alt text](https://github.com/avocadobravado/social-media-project-inspiration/blob/master/branding_guide.jpg?raw=true)
+
+Flowchart for database tables
+![database flowchart](Database_Schemata/database_flowchart.png)
 
 ## Specs
 | Behavior | Input | Output |
@@ -35,7 +46,7 @@ Add a brief description of what we made :)
 | Pages other than landing page and newsfeed views, will have a Home link | Click | Return to Newsfeed view. |
 | All views other than the landing page, will display a Sign out link. | Click | log user out, return to socialCodus landing page. |
 | All views other than the landing page, will display a Search window. Program will search database for matches to first name, last name, and username. | Bob | list of all users where 'Bob' is found in the first, last and username. |
-| Program will display the results of a search query, results will be links to the pages of the found users. | click | Bob's profile page |
+| Program will display the results of a search query, results will be links to the pages of the found users. | Bob | Bob's profile page |
 | Profile page of non-friends will have a button to 'Follow'  | click | Accounts are now linked as friends. |
 | Users may not post on the profile page of non-friends | none | none |
 | Profile page of non-friends will have a button to 'Unfollow' | click | Accounts are now unlinked as friends. |
@@ -45,16 +56,38 @@ Add a brief description of what we made :)
 | Edit Profile view will display a Delete Account button | Click | Account will be deleted, user will be returned to the account socialCodus landing page.|
 
 
-## Screenshots of Application
 
-Screenshot
-![alt text](https://github.com/avocadobravado/social-media-project/blob/master/img/scs01.jpg?raw=true)
+## Setup/Installation Requirements
 
-Branding guide for application
-![alt text](https://github.com/avocadobravado/social-media-project-inspiration/blob/master/branding_guide.jpg?raw=true)
+* You must install or have installed:
 
-## Database Setup
+   * [SQL Server Management Studio](https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms)
 
+   * [Nancy web framework](http://nancyfx.org/)
+
+   * [ASP.NET Core](https://www.microsoft.com/net/download/core)
+
+* Clone this repository
+
+  `git clone https://github.com/avocadobravado/social-media-project`
+
+* Navigate to the root directory
+
+## Database/Server Setup
+
+*  Open Microsoft SQL Server Management Studio
+
+* Select *File > Open > File* and select your database of choice from the root directory (social_media.sql for running the application, or social_media_test.sql for running tests)
+
+* If the database does not already exist, add the following lines to the top of the script file:
+
+  `CREATE DATABASE [your_database_name];`
+
+  `GO`
+
+* Save the file and click "! Execute" (F5)
+
+##### OR
 
 * In PowerShell, run the following commands:
 
@@ -65,6 +98,18 @@ Branding guide for application
   `GO`
 
   `USE social_media;`
+
+  `GO`
+
+  `CREATE TABLE users (id INT IDENTITY(1,1), first_name VARCHAR(255), last_name VARCHAR(255), username VARCHAR(255), password VARCHAR(255), email VARCHAR(255), timestamp DATETIME, img_url VARCHAR(255));`
+
+  `GO`
+
+  `CREATE TABLE comments (id INT IDENTITY(1,1), content VARCHAR(255), status_id INT, user_id INT, likes INT, dislikes INT, timestamp DATETIME);`
+
+  `GO`
+
+  `CREATE TABLE statuses (id INT IDENTITY(1,1), content VARCHAR(255), user_id INT, likes INT, dislikes INT, timestamp DATETIME);`
 
   `GO`
 
@@ -84,49 +129,23 @@ Branding guide for application
 
   `GO`
 
-  `CREATE TABLE comments (id INT IDENTITY(1,1), content VARCHAR(255), status_id INT, user_id INT, likes INT, dislikes INT, timestamp DATETIME);`
-
-  `GO`
-
-  `CREATE TABLE statuses (id INT IDENTITY(1,1), content VARCHAR(255), user_id INT, likes INT, dislikes INT, timestamp DATETIME);`
-
-  `GO`
-
-  `CREATE TABLE users (id INT IDENTITY(1,1), first_name VARCHAR(255), last_name VARCHAR(255), username VARCHAR(255), password VARCHAR(255), email VARCHAR(255), timestamp DATETIME, img_url VARCHAR(255));`
-
-  `GO`
-
   `CREATE TABLE user_friendships (id INT IDENTITY(1,1), user1_id INT, user2_id INT);`
 
-  OR
 
-*  Open Microsoft SQL Server Management Studio
+* In PowerShell, run `dnu restore` to link dependencies, followed by:
 
-* Select *File > Open > File* and select your database of choice from the root directory (social_media.sql for running the application, or social_media_test.sql for running tests)
-
-* If the database does not already exist, add the following lines to the top of the script file:
-
-  `CREATE DATABASE [your_database_name];`
-
-  `GO`
-
-* Save the file and click "! Execute" (F5)
-
-* In PowerShell, run `dnu restore`, then `dnx kestrel` (from the root directory) to start the server
+* `dnx kestrel` to start the server
 
 * Navigate to `localhost:5004` in your web browser to view the application
 
-* Tests can be run with the command `dnx test` from PowerShell while within the root directory
 
-## Setup/Installation Requirements
+## Unit Testing
 
-* Open CMD/Terminal
-* git clone `https://github.com/avocadobravado/social-media-project`
-* Open index.html file in a browser such as Google Chrome
+* Tests can be run from PowerShell with the command `dnx test` *Note: You must create the database `social_media_test` before any tests can be run*
+
 
 ## How to Use
 
-* Open index.cshtml
 * Sign in with login credentials in the upper right corner, or create a new account in the Sign Up section below
 
 ## Known Bugs
@@ -134,7 +153,7 @@ Branding guide for application
 * Site is optimized for large screens on Windows OS, there may be inconsistencies on other operating systems
 * Site is not optimized for mobile and tablet screens
 * User is able to navigate to profile pages not belonging to them by editing the URL of certain routes
-* Refreshing a post request cause duplicate items to be saved to the database
+* Refreshing the page after certain actions can create duplicate HTTP requests, causing repeat data and/or future routing errors.
 
 ## Support and contact details
 
@@ -152,18 +171,20 @@ Branding guide for application
 * Nancy web framework
 * Razor C# syntax
 * C#
-* xUnit
 * SQL
 
 **Other Technologies:**
-* Kestrel web server
-* Microsoft SQL Server Management Studio
 
 **Front end**
 * Neat
 * Font Awesome
 * Adobe Illustrator
 * Google Fonts
+
+**Back end**
+* Kestrel web server
+* xUnit
+* Microsoft SQL Server Management Studio
 
 ## Acknowledgments
 

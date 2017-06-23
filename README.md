@@ -141,7 +141,8 @@ Flowchart for database tables
 
 ## Unit Testing
 
-* Tests can be run from PowerShell with the command `dnx test` *Note: You must create the database `social_media_test` before any tests can be run*
+* Tests can be run from PowerShell with the command `dnx test`
+  * *Note: You must create the database `social_media_test` before any tests can be run*
 
 
 ## How to Use

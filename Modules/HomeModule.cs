@@ -10,9 +10,21 @@ namespace SocialMedia
   {
     public HomeModule()
     {
+      /*
+          comments will typically follow this naming convention:
+
+          PAGE ROUTING FROM ==> ACTION CAUSING ROUTE ==> VIEW TO BE RETURNED
+
+          example:
+
+          ALL TASKS PAGE ==> TASK NAME CLICKED ==> TASK PAGE
+      */
+
       Get["/"] = _ => {
         return View["index.cshtml"];
       };
+
+      //INDEX ==> USER LOGS IN
       Post["/login"] = _ => {
         Dictionary <string, object> model = new Dictionary<string, object>{};
 
@@ -33,6 +45,7 @@ namespace SocialMedia
           }
           else
           {
+            // ==> NEWSFEED
             List<Status> timeline = loggedInUser.GetTimeline();
             model.Add("user", loggedInUser);
             model.Add("timeline", timeline);
@@ -40,6 +53,7 @@ namespace SocialMedia
           }
         }
       };
+      //INDEX ==> USER CREATES ACCOUNT
       Post["/account_created"] = _ => {
         Dictionary <string, object> model = new Dictionary<string, object>{};
         string firstName = Request.Form["first-name"];
@@ -63,6 +77,7 @@ namespace SocialMedia
           }
           else
           {
+            // ==> NEWSFEED
             newUser.Save();
             List<Status> timeline = newUser.GetTimeline();
             model.Add("timeline", timeline);
@@ -71,6 +86,7 @@ namespace SocialMedia
           }
         }
       };
+      //NEWSFEED ==> COMMENT POSTED ==> NEWSFEED
       Post["/users/{userId}/statuses/{statusId}/comment"] = parameters => {
         Dictionary <string, object> model = new Dictionary<string, object>{};
         User selectedUser = User.Find(parameters.userId);
@@ -82,6 +98,7 @@ namespace SocialMedia
         model.Add("user", selectedUser);
         return View["news.cshtml", model];
       };
+      //NEWSFEED ==> STATUS POSTED ==> NEWS FEED
       Post["/users/{userId}/status"] = parameters => {
         Dictionary <string, object> model = new Dictionary<string, object>{};
         User selectedUser = User.Find(parameters.userId);
@@ -92,6 +109,7 @@ namespace SocialMedia
         model.Add("user", selectedUser);
         return View["news.cshtml", model];
       };
+      //NEWSFEED ==> CLICK USER
       Get["/users/{loggedInId}/profile_view/{viewingId}"] = parameters => {
         Dictionary <string, object> model = new Dictionary<string, object>{};
         User loggedInUser = User.Find(parameters.loggedInId);
@@ -99,7 +117,7 @@ namespace SocialMedia
         List<Status> userStatuses = selectedUser.GetStatuses();
         if(loggedInUser.IsFriendsWith(selectedUser))
         {
-          //VIEWING FRIENDS PAGE
+          // ==> VIEW FRIEND
           model.Add("user", loggedInUser);
           model.Add("selected-user", selectedUser);
           model.Add("user-statuses", userStatuses);
@@ -107,7 +125,7 @@ namespace SocialMedia
         }
         else if(loggedInUser.Username == selectedUser.Username)
         {
-          //VIEWING OWN PAGE
+          // ==> VIEW PROFILE
           model.Add("user", loggedInUser);
           model.Add("user-statuses", loggedInUser.GetStatuses());
           model.Add("friends", loggedInUser.GetFriends());
@@ -115,13 +133,14 @@ namespace SocialMedia
         }
         else
         {
-          //VIEWING A NON FRIEND
+          // ==> VIEW NON-FRIEND
           model.Add("user", loggedInUser);
           model.Add("selected-user", selectedUser);
           model.Add("user-statuses", userStatuses);
           return View["notfriend.cshtml", model];
         }
       };
+      //PROFILE ==> STATUS POSTED ==> PROFILE
       Post["/users/{userId}/statuses/new"]= parameters => {
         Dictionary <string, object> model = new Dictionary<string, object>{};
         User selectedUser = User.Find(parameters.userId);
@@ -134,6 +153,7 @@ namespace SocialMedia
         model.Add("friends", friendsList);
         return View["profile.cshtml", model];
       };
+      //PROFILE ==> COMMENT POSTED ==> PROFILE
       Post["/users/{userId}/statuses/{statusId}/comments/new"] = parameters => {
         Dictionary <string, object> model = new Dictionary<string, object>{};
         User selectedUser = User.Find(parameters.userId);
@@ -147,6 +167,7 @@ namespace SocialMedia
         model.Add("friends", friendsList);
         return View["profile.cshtml", model];
       };
+      //FRIEND PAGE ==> COMMENT POSTED ==> FRIEND PAGE
       Post["/users/{loggedInId}/profile_view/{viewingId}/statuses/{statusId}/comment"] = parameters => {
         Dictionary <string, object> model = new Dictionary<string, object>{};
         User loggedInUser = User.Find(parameters.loggedInId);
@@ -160,6 +181,7 @@ namespace SocialMedia
         model.Add("user-statuses", userStatuses);
         return View["friend.cshtml", model];
       };
+      //FRIEND PAGE ==> UNFOLLOW USER ==> NON-FRIEND PAGE
       Delete["/users/{loggedInId}/profile_view/{viewingId}/unfollow"] = parameters => {
         Dictionary <string, object> model = new Dictionary<string, object>{};
         User loggedInUser = User.Find(parameters.loggedInId);
@@ -171,6 +193,7 @@ namespace SocialMedia
         model.Add("user-statuses", userStatuses);
         return View["notfriend.cshtml", model];
       };
+      //NON-FRIEND PAGE ==> UNFOLLOW USER ==> FRIEND PAGE
       Post["/users/{loggedInId}/profile_view/{viewingId}/follow"] = parameters => {
         Dictionary <string, object> model = new Dictionary<string, object>{};
         User loggedInUser = User.Find(parameters.loggedInId);
@@ -182,6 +205,7 @@ namespace SocialMedia
         model.Add("user-statuses", userStatuses);
         return View["friend.cshtml", model];
       };
+      //ANYWHERE ==> "MY PROFILE" CLICKED ==> PROFILE
       Get["/users/{loggedInId}/profile_view"] = parameters => {
         Dictionary <string, object> model = new Dictionary<string, object>{};
         User selectedUser = User.Find(parameters.loggedInId);
@@ -192,6 +216,7 @@ namespace SocialMedia
         model.Add("friends", friendsList);
         return View["profile.cshtml", model];
       };
+      //ANYWHERE ==> "HOME" CLICKED ==> HOME
       Get["/users/{loggedInId}/news"] = parameters => {
         Dictionary <string, object> model = new Dictionary<string, object>{};
         User selectedUser = User.Find(parameters.loggedInId);
@@ -200,6 +225,7 @@ namespace SocialMedia
         model.Add("user", selectedUser);
         return View["news.cshtml", model];
       };
+      //ANYWHERE ==> SEARCH ENTERED ==> SEARCH RESULTS
       Get["/users/{loggedInId}/search"] = parameters => {
         Dictionary <string, object> model = new Dictionary<string, object>{};
         User loggedInUser = User.Find(parameters.loggedInId);
@@ -210,6 +236,7 @@ namespace SocialMedia
         model.Add("matches", matches);
         return View["searchresults.cshtml", model];
       };
+      //ANYWHERE ==> FRIENDS ==> SEARCH RESULTS (ACTS AS FRIENDS LIST VIA RAZOR SYNTAX IN searchresults.cshtml)
       Get["/users/{loggedInId}/friends"] = parameters => {
         Dictionary <string, object> model = new Dictionary<string, object>{};
         User loggedInUser = User.Find(parameters.loggedInId);
@@ -218,18 +245,19 @@ namespace SocialMedia
         model.Add("user", loggedInUser);
         return View["searchresults.cshtml", model];
       };
+      //ANYWHERE ==> LIKE A STATUS
       Post["/users/{loggedInId}/statuses/{statusId}/like"] = parameters => {
         Dictionary <string, object> model = new Dictionary<string, object>{};
         string directTo = Request.Form["redirect"];
         User loggedInUser = User.Find(parameters.loggedInId);
         Status statusToLike = Status.Find(parameters.statusId);
-        // Console.WriteLine(loggedInUser.HasLikedStatus(statusToLike));
         if(!(loggedInUser.HasLikedStatus(statusToLike)))
         {
-          // Console.WriteLine("Hello");
+          //SUCCESSFUL LIKE
           loggedInUser.LikeStatus(statusToLike);
           if(directTo == "friend")
           {
+            // ==> FRIEND PAGE
             User selectedUser = User.Find(Request.Form["userId"]);
             List<Status> selectedUserStatuses = selectedUser.GetStatuses();
             model.Add("user", loggedInUser);
@@ -239,6 +267,7 @@ namespace SocialMedia
           }
           else
           {
+            // ==> NEWSFEED/PROFILE (WHICHEVER ONE USER CAME FROM)
             model.Add("user", loggedInUser);
             model.Add("timeline", loggedInUser.GetTimeline());
             model.Add("user-statuses", loggedInUser.GetStatuses());
@@ -248,8 +277,10 @@ namespace SocialMedia
         }
         else
         {
+          //UNSUCCESSFUL LIKE
           if(directTo == "friend")
           {
+            // ==> FRIEND PAGE
             User selectedUser = User.Find(Request.Form["userId"]);
             List<Status> selectedUserStatuses = selectedUser.GetStatuses();
             model.Add("user", loggedInUser);
@@ -259,6 +290,7 @@ namespace SocialMedia
           }
           else
           {
+            // ==> NEWSFEED/PROFILE (WHICHEVER ONE USER CAME FROM)
             model.Add("user", loggedInUser);
             model.Add("timeline", loggedInUser.GetTimeline());
             model.Add("user-statuses", loggedInUser.GetStatuses());
@@ -267,18 +299,19 @@ namespace SocialMedia
           }
         }
       };
+      //ANYWHERE ==> DISLIKE A STATUS
       Post["/users/{loggedInId}/statuses/{statusId}/dislike"] = parameters => {
         Dictionary <string, object> model = new Dictionary<string, object>{};
         string directTo = Request.Form["redirect"];
         User loggedInUser = User.Find(parameters.loggedInId);
         Status statusToDislike = Status.Find(parameters.statusId);
-        // Console.WriteLine(loggedInUser.HasDislikedStatus(statusToDislike));
         if(!(loggedInUser.HasDislikedStatus(statusToDislike)))
         {
-          // Console.WriteLine("Hello");
+          //SUCCESSFUL DISLIKE
           loggedInUser.DislikeStatus(statusToDislike);
           if(directTo == "friend")
           {
+            // ==> FRIEND PAGE
             User selectedUser = User.Find(Request.Form["userId"]);
             List<Status> selectedUserStatuses = selectedUser.GetStatuses();
             model.Add("user", loggedInUser);
@@ -288,6 +321,7 @@ namespace SocialMedia
           }
           else
           {
+            // ==> NEWSFEED/PROFILE (WHICHEVER ONE USER CAME FROM)
             model.Add("user", loggedInUser);
             model.Add("timeline", loggedInUser.GetTimeline());
             model.Add("user-statuses", loggedInUser.GetStatuses());
@@ -297,8 +331,10 @@ namespace SocialMedia
         }
         else
         {
+          //UNSUCCESSFUL LIKE
           if(directTo == "friend")
           {
+            // ==> FRIEND PAGE
             User selectedUser = User.Find(Request.Form["userId"]);
             List<Status> selectedUserStatuses = selectedUser.GetStatuses();
             model.Add("user", loggedInUser);
@@ -308,6 +344,7 @@ namespace SocialMedia
           }
           else
           {
+            // ==> NEWSFEED/PROFILE (WHICHEVER ONE USER CAME FROM)
             model.Add("user", loggedInUser);
             model.Add("timeline", loggedInUser.GetTimeline());
             model.Add("user-statuses", loggedInUser.GetStatuses());
@@ -316,19 +353,20 @@ namespace SocialMedia
           }
         }
       };
+      //ANYWHERE ==> LIKE A COMMENT
       Post["/users/{loggedInId}/statuses/{statusId}/comments/{commentId}/like"] = parameters => {
         Dictionary <string, object> model = new Dictionary<string, object>{};
         string directTo = Request.Form["redirect"];
         User loggedInUser = User.Find(parameters.loggedInId);
         Status selectedStatus = Status.Find(parameters.statusId);
         Comment commentToLike = Comment.Find(parameters.commentId);
-        // Console.WriteLine(loggedInUser.HasDislikedStatus(statusToDislike));
         if(!(loggedInUser.HasLikedComment(commentToLike)))
         {
-          // Console.WriteLine("Hello");
+          //UNSUCCESSFUL LIKE
           loggedInUser.LikeComment(commentToLike);
           if(directTo == "friend")
           {
+            // ==> FRIEND PAGE
             User selectedUser = User.Find(Request.Form["userId"]);
             List<Status> selectedUserStatuses = selectedUser.GetStatuses();
             model.Add("user", loggedInUser);
@@ -338,6 +376,7 @@ namespace SocialMedia
           }
           else
           {
+            // ==> NEWSFEED/PROFILE (WHICHEVER ONE USER CAME FROM)
             model.Add("user", loggedInUser);
             model.Add("timeline", loggedInUser.GetTimeline());
             model.Add("user-statuses", loggedInUser.GetStatuses());
@@ -347,8 +386,10 @@ namespace SocialMedia
         }
         else
         {
+          //UNSUCCESSFUL LIKE
           if(directTo == "friend")
           {
+            // ==> FRIEND PAGE
             User selectedUser = User.Find(Request.Form["userId"]);
             List<Status> selectedUserStatuses = selectedUser.GetStatuses();
             model.Add("user", loggedInUser);
@@ -358,6 +399,7 @@ namespace SocialMedia
           }
           else
           {
+            // ==> NEWSFEED/PROFILE (WHICHEVER ONE USER CAME FROM)
             model.Add("user", loggedInUser);
             model.Add("timeline", loggedInUser.GetTimeline());
             model.Add("user-statuses", loggedInUser.GetStatuses());
@@ -366,19 +408,20 @@ namespace SocialMedia
           }
         }
       };
+      //ANYWHERE ==> DISLIKE COMMENT
       Post["/users/{loggedInId}/statuses/{statusId}/comments/{commentId}/dislike"] = parameters => {
         Dictionary <string, object> model = new Dictionary<string, object>{};
         string directTo = Request.Form["redirect"];
         User loggedInUser = User.Find(parameters.loggedInId);
         Status selectedStatus = Status.Find(parameters.statusId);
         Comment commentToDislike = Comment.Find(parameters.commentId);
-        // Console.WriteLine(loggedInUser.HasDislikedStatus(statusToDislike));
         if(!(loggedInUser.HasDislikedComment(commentToDislike)))
         {
-          // Console.WriteLine("Hello");
+          //SUCCESSFUL DISLIKE
           loggedInUser.DislikeComment(commentToDislike);
           if(directTo == "friend")
           {
+            // ==> FRIEND PAGE
             User selectedUser = User.Find(Request.Form["userId"]);
             List<Status> selectedUserStatuses = selectedUser.GetStatuses();
             model.Add("user", loggedInUser);
@@ -388,6 +431,7 @@ namespace SocialMedia
           }
           else
           {
+            // ==> NEWSFEED/PROFILE (WHICHEVER ONE USER CAME FROM)
             model.Add("user", loggedInUser);
             model.Add("timeline", loggedInUser.GetTimeline());
             model.Add("user-statuses", loggedInUser.GetStatuses());
@@ -397,8 +441,10 @@ namespace SocialMedia
         }
         else
         {
+          //UNSUCCESSFUL DISLIKE
           if(directTo == "friend")
           {
+            // ==> FRIEND PAGE
             User selectedUser = User.Find(Request.Form["userId"]);
             List<Status> selectedUserStatuses = selectedUser.GetStatuses();
             model.Add("user", loggedInUser);
@@ -408,6 +454,7 @@ namespace SocialMedia
           }
           else
           {
+            // ==> NEWSFEED/PROFILE (WHICHEVER ONE USER CAME FROM)
             model.Add("user", loggedInUser);
             model.Add("timeline", loggedInUser.GetTimeline());
             model.Add("user-statuses", loggedInUser.GetStatuses());
@@ -416,12 +463,14 @@ namespace SocialMedia
           }
         }
       };
+      //PROFILE ==> EDIT PROFILE BUTTON ==> EDIT PAGE
       Get["/users/{loggedInId}/profile/edit"] = parameters => {
         Dictionary <string, object> model = new Dictionary<string, object>{};
         User loggedInUser = User.Find(parameters.loggedInId);
         model.Add("user", loggedInUser);
         return View["editprofile.cshtml", model];
       };
+      //EDIT PAGE ==> SUBMIT FORM
       Patch["users/{loggedInId}/profile/updated"] = parameters => {
         Dictionary <string, object> model = new Dictionary<string, object>{};
         User loggedInUser = User.Find(parameters.loggedInId);
@@ -442,6 +491,7 @@ namespace SocialMedia
         }
         else
         {
+          // ==> PROFILE
           loggedInUser.Update(Request.Form["first-name"], Request.Form["last-name"], username, password, Request.Form["email"]);
           model.Add("user", loggedInUser);
           model.Add("user-statuses", loggedInUser.GetStatuses());
@@ -449,11 +499,13 @@ namespace SocialMedia
           return View["profile.cshtml", model];
         }
       };
+      //EDIT PAGE ==> DELETE ACCOUNT BUTTON ==> INDEX
       Delete["/users/{loggedInId}/profile/delete"] = parameters => {
         User loggedInUser = User.Find(parameters.loggedInId);
         loggedInUser.Delete();
         return View["index.cshtml"];
       };
+      //PROFILE ==> UPLOAD FORM SUBMITTED ==> PROFILE
       Patch["/users/{loggedInId}/photo_upload"] = parameters => {
         Dictionary <string, object> model = new Dictionary<string, object>{};
         User loggedInUser = User.Find(parameters.loggedInId);

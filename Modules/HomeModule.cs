@@ -17,7 +17,7 @@ namespace SocialMedia
 
           example:
 
-          ALL TASKS PAGE ==> TASK NAME CLICKED ==> TASK PAGE
+          FRIENDS LIST ==> USER CLICKS FRIENDS NAME ==> FRIENDS PAGE
       */
 
       Get["/"] = _ => {
